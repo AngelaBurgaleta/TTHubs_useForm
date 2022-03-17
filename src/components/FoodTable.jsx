@@ -39,6 +39,7 @@ import {
   ModalHeader,
   Navbar,
 } from "reactstrap";
+import MyForm from "./MyForm";
 //import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 export function FoodTable() {
@@ -156,7 +157,6 @@ const cargarDocumentos = () => {
   const [newTotalLipids, setNewTotalLipids] = useState(0);
 
   const { register, errors, handleSubmit, reset } = useForm();
-  console.log(errors);
 
   const saveData = async (event) => {
     event.preventDefault();
@@ -259,8 +259,6 @@ const cargarDocumentos = () => {
   };
 
   const [openFood, setOpenFood] = useState("");
-
-  console.log(openFood);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -504,18 +502,24 @@ const cargarDocumentos = () => {
                     </ModalHeader>
 
                     <ModalBody>
-                      <Form onSubmit={handleSubmit(addFood, onSubmit)}>
+                      <MyForm
+                        defaultValue={openFood}
+                        foodsCollectionRefs={foodsCollectionRefs}
+                        handleClose={handleClose}
+                        setFoods={setFoods}
+                      />
+                      {/* <Form onSubmit={handleSubmit(addFood, onSubmit)}>
                         <CardBody>
                           <div class="row">
                             <div class="col-md-6">
                               <label>Food Name *</label>
                               <div class="form-group">
-                                <input
-                                  name="Name"
+                                <Input
+                                  name={nameInput.name}
                                   defaultValue={openFood?.Name}
-                                  {...register("Name", {
-                                    required: "Nombre requerido",
-                                  })}
+                                  innerRef={nameInput.ref}
+                                  onChange={nameInput.onChange}
+                                  onBlur={nameInput.onBlur}
                                   type="text"
                                 />
                               </div>
@@ -608,7 +612,7 @@ const cargarDocumentos = () => {
                             </div>
                           </div>
                         </CardFooter>
-                      </Form>
+                      </Form> */}
                     </ModalBody>
                   </Modal>
 
