@@ -46,6 +46,7 @@ export default function MyForm({
   foodsCollectionRefs,
   handleClose,
   setFoods,
+  showInfo,
 }) {
   const { handleSubmit, register, reset } = useForm();
 
@@ -72,9 +73,20 @@ export default function MyForm({
 
     getFoods();
     reset({ Name: "" });
+    reset({ FoodGroup: "" });
+    reset({ Energy: " " });
   };
 
   const nameInput = register("Name", { required: "Nombre requerido" });
+  const foodgroupInput = register("FoodGroup", {
+    required: "Nombre requerido",
+  });
+  const energyInput = register("Energy", {
+    min: {
+      value: 0,
+      message: "solo numeros",
+    },
+  });
 
   return (
     <Form onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -86,20 +98,39 @@ export default function MyForm({
               <Input
                 name={nameInput.name}
                 defaultValue={defaultValue?.Name}
+                readOnly={showInfo}
                 innerRef={nameInput.ref}
                 onChange={nameInput.onChange}
                 onBlur={nameInput.onBlur}
                 type="text"
               />
             </div>
-            {/* <label>Food Group</label>
-            <div class='form-group'>
+            <label>Food Group</label>
+            <div class="form-group">
               <Input
-                type='text'
-                value={newFoodGroup}
-                onChange={handleChangeFoodGroup}
+                name={foodgroupInput.name}
+                defaultValue={defaultValue?.FoodGroup}
+                readOnly={showInfo}
+                innerRef={foodgroupInput.ref}
+                onChange={foodgroupInput.onChange}
+                onBlur={foodgroupInput.onBlur}
+                type="text"
               />
             </div>
+            <label>Energy(Kcal/KJ)</label>
+            <div class="form-group">
+              <Input
+                name={energyInput.name}
+                defaultValue={defaultValue?.Energy}
+                readOnly={showInfo}
+                innerRef={energyInput.ref}
+                onChange={energyInput.onChange}
+                onBlur={energyInput.onBlur}
+                type="number"
+                min="0"
+              />
+            </div>
+            {/*
             <label>Food Subgroup</label>
             <div class='form-group'>
               <Input
@@ -161,8 +192,13 @@ export default function MyForm({
         <div class="row">
           <div class="col-md-3">
             <div class="form group">
-              <Button type="submit" color="info" class="btn-round btn btn-info">
-                Add
+              <Button
+                type="submit"
+                color="info"
+                class="btn-round btn btn-info"
+                disabled={showInfo}
+              >
+                ADD
               </Button>
             </div>
           </div>

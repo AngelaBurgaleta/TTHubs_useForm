@@ -130,109 +130,11 @@ const cargarDocumentos = () => {
     getFoods();
   }, []);
 
-  //obtener foods in real Time
-  /* function to get all tasks from firestore in realtime 
-  useEffect(() => {
-    const q = query(collection(db, "data"), orderBy("created", "desc"));
-    onSnapshot(q, (querySnapshot) => {
-      setFoods(
-        querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      );
-    });
-  }, []);
-*/
   //-------------------------------------------------
-
-  //AÑADIR campos para el formulario
-  const [newName, setNewName] = useState("");
-  const [newFoodGroup, setNewFoodGroup] = useState("");
-  const [newEnergy, setNewEnergy] = useState(0);
-  const [newFoodSubgroup, setNewFoodSubgroup] = useState("");
-  const [newCountry, setNewCountry] = useState("");
-  const [newTotalCarbos, setNewTotalCarbos] = useState(0);
-  const [newTotalProteins, setNewTotalProteins] = useState(0);
-  const [newTotalLipids, setNewTotalLipids] = useState(0);
-
-  const { register, errors, handleSubmit, reset } = useForm();
-
-  const saveData = async (event) => {
-    event.preventDefault();
-    await addDoc(foodsCollectionRefs, {
-      Name: newName,
-      FoodGroup: newFoodGroup,
-      FoodSubgroup: newFoodSubgroup,
-      Country: newCountry,
-      Energy: Number(newEnergy),
-      TotalCarbos: Number(newTotalCarbos),
-      TotalProteins: Number(newTotalProteins),
-      TotalLipids: Number(newTotalLipids),
-    });
-
-    setNewName("");
-    setNewFoodGroup("");
-    setNewFoodSubgroup("");
-    setNewCountry("");
-    setNewEnergy(0);
-    setNewTotalCarbos(0);
-    setNewTotalProteins(0);
-    setNewTotalLipids(0);
-
-    const getFoods = async () => {
-      const data = await getDocs(foodsCollectionRefs);
-
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getFoods();
-  };
-
-  //creación del nuevo nombre cuando le damos al botón
-  const handleChangeName = (event) => {
-    setNewName(event.target.value);
-  };
-
-  //creación del nuevo food group
-  const handleChangeFoodGroup = (event) => {
-    setNewFoodGroup(event.target.value);
-  };
-
-  //creación de la nueva energy
-  const handleChangeEnergy = (event) => {
-    setNewEnergy(event.target.value);
-  };
-
-  const handleChangeCountry = (event) => {
-    setNewCountry(event.target.value);
-  };
-
-  const handleChangeTotalCarbos = (event) => {
-    setNewTotalCarbos(event.target.value);
-  };
-
-  const handleChangeTotalLipids = (event) => {
-    setNewTotalLipids(event.target.value);
-  };
-
-  const handleChangeTotalProteins = (event) => {
-    setNewTotalProteins(event.target.value);
-  };
-
-  const handleChangeFoodSubgroup = (event) => {
-    setNewFoodSubgroup(event.target.value);
-  };
-
-  //---------------------------------------
 
   //ELIMINAR---------------------------
 
   const deleteFood = async (food) => {
-    //const FoodDoc = await getDocs(db, "data", id);
-
-    //await deleteDoc(FoodDoc);
     await deleteDoc(doc(db, "data", food.id));
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
@@ -247,8 +149,10 @@ const cargarDocumentos = () => {
   //---------------------------------------
 
   //UPDATE----------------------
-  const [showUpdate, setShowUpdate] = useState(false);
-  const handleCloseUpdate = () => setShowUpdate(false);
+  //abrir y cerrar el modal de actualizar alimento
+
+
+  const [openFood, setOpenFood] = useState("");
 
   const openUpdateModal = async (food) => {
     console.log(food.Name);
@@ -258,72 +162,24 @@ const cargarDocumentos = () => {
     setOpenFood(food);
   };
 
-  const [openFood, setOpenFood] = useState("");
+  //READ ----------------
+  //modal de leer alimento
+  const [showInfo, setShowInfo] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const openInfoModal = async (food) => {
+    setShow(true);
 
-  const addFood = async (datos) => {
-    console.log(datos);
+    setShowInfo(true);
 
-    if (openFood) {
-      const foodDocRef = doc(db, "data", openFood.id);
-      await updateDoc(foodDocRef, datos);
-    } else {
-      await addDoc(foodsCollectionRefs, datos);
-    }
-    /*
-
-    event.preventDefault();
-    console.log(food.id);
-    const foodDocRef = doc(db, "data", food.id);
-    
-      console.log('antes del await')
-      await updateDoc(foodDocRef, {
-        
-        Name: newName || food.newName,
-        FoodGroup: newFoodGroup || food.newFoodGroup,
-        //FoodSubgroup: newFoodSubgroup || food.newFoodSubgroup,
-        //Country: newCountry || food.newCountry,
-        //Energy: Number(newEnergy) || food.newEnergy,
-        //TotalCarbos: Number(newTotalCarbos) || food.newTotalCarbos,
-        //TotalProteins: Number(newTotalProteins) || food.newTotalProteins,
-        //TotalLipids: Number(newTotalLipids) || food.newTotalLipids,
-      });
-    
-      
-      
-    
-    //updateDoc(foodDocRef); //??
-    console.log("buenas tardes");
-
-    setNewName("");
-    setNewFoodGroup("");
-    setNewFoodSubgroup("");
-    setNewCountry("");
-    setNewEnergy(0);
-    setNewTotalCarbos(0);
-    setNewTotalProteins(0);
-    setNewTotalLipids(0);
-*/
-    const getFoods = async () => {
-      const data = await getDocs(foodsCollectionRefs);
-
-      setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      handleClose();
-    };
-
-    getFoods();
-    reset({ Name: "" });
+    setOpenFood(food);
   };
 
   //---------------------
 
   //MODAL
-  //Abrir y cerrar el modal de añadir alimento
+  //Abrir y cerrar el modal de añadir/actualizar alimento
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false); //solo add
 
   const handleClose = () => {
     setShow(false);
@@ -399,7 +255,7 @@ const cargarDocumentos = () => {
                             <th>Food Group</th>
                             <th>Food Subgroup</th>
                             <th>Country</th>
-                            <th>Energy (Kcal/KJ)</th>
+                            <th>Energy(Kcal/KJ)</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -437,7 +293,10 @@ const cargarDocumentos = () => {
                                   >
                                     <i className="fa fa-edit"></i>
                                   </Button>
-                                  <Button className="btn-icon btn-link edit btn btn btn-sm">
+                                  <Button
+                                    className="btn-icon btn-link edit btn btn btn-sm"
+                                    onClick={() => openInfoModal(food)}
+                                  >
                                     <i className="nc-icon nc-alert-circle-i"></i>
                                   </Button>
                                 </div>
@@ -498,7 +357,12 @@ const cargarDocumentos = () => {
 
                   <Modal isOpen={show}>
                     <ModalHeader>
-                      {openFood ? "Editar" : "Añadir"} Alimento
+                      {showInfo
+                        ? "Mostrar info de"
+                        : openFood
+                        ? "Editar"
+                        : "Añadir"}{" "}
+                      Alimento
                     </ModalHeader>
 
                     <ModalBody>
@@ -507,228 +371,8 @@ const cargarDocumentos = () => {
                         foodsCollectionRefs={foodsCollectionRefs}
                         handleClose={handleClose}
                         setFoods={setFoods}
+                        showInfo={showInfo}
                       />
-                      {/* <Form onSubmit={handleSubmit(addFood, onSubmit)}>
-                        <CardBody>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <label>Food Name *</label>
-                              <div class="form-group">
-                                <Input
-                                  name={nameInput.name}
-                                  defaultValue={openFood?.Name}
-                                  innerRef={nameInput.ref}
-                                  onChange={nameInput.onChange}
-                                  onBlur={nameInput.onBlur}
-                                  type="text"
-                                />
-                              </div>
-                              <label>Food Group</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  value={newFoodGroup}
-                                  onChange={handleChangeFoodGroup}
-                                />
-                              </div>
-                              <label>Food Subgroup</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  value={newFoodSubgroup}
-                                  onChange={handleChangeFoodSubgroup}
-                                />
-                              </div>
-                              <label>Country</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  value={newCountry}
-                                  onChange={handleChangeCountry}
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>Energy</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  value={newEnergy}
-                                  onChange={handleChangeEnergy}
-                                />
-                              </div>
-                              <label>Total Carbos</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  value={newTotalCarbos}
-                                  onChange={handleChangeTotalCarbos}
-                                />
-                              </div>
-                              <label>Total Proteins</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  value={newTotalProteins}
-                                  onChange={handleChangeTotalProteins}
-                                />
-                              </div>
-                              <label>Total Lipids</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  value={newTotalLipids}
-                                  onChange={handleChangeTotalLipids}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </CardBody>
-                        <CardFooter>
-                          <div class="row">
-                            <div class="col-md-3">
-                              <div class="form group">
-                                <Button
-                                  type="submit"
-                                  color="info"
-                                  class="btn-round btn btn-info"
-                                >
-                                  Add
-                                </Button>
-                              </div>
-                            </div>
-                            <div class="form group">
-                              <Button
-                                color="danger"
-                                class="btn-round btn btn-info"
-                                onClick={handleClose}
-                              >
-                                Close
-                              </Button>
-                            </div>
-                          </div>
-                        </CardFooter>
-                      </Form> */}
-                    </ModalBody>
-                  </Modal>
-
-                  <Modal
-                    isOpen={showUpdate}
-                    onHide={() => setShowUpdate(false)}
-                  >
-                    <ModalHeader>Actualizar Alimento</ModalHeader>
-
-                    <ModalBody>
-                      {/*<Form>
-                        <CardBody>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <label>
-                                Food Name
-                                <label style={{ color: "red" }}>*</label>
-                              </label>
-
-                              <div class="form-group">
-                                <Input
-                                  required
-                                  type="text"
-                                  defaultValue={openFood.Name}
-                                />
-                              </div>
-                              <label>Food Group</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  defaultValue={openFood.FoodGroup}
-                                  onChange={handleChangeFoodGroup}
-                                />
-                              </div>
-                              <label>Food Subgroup</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  defaultValue={openFood.FoodSubgroup}
-                                  onChange={handleChangeFoodSubgroup}
-                                />
-                              </div>
-                              <label>Country</label>
-                              <div class="form-group">
-                                <Input
-                                  type="text"
-                                  defaultValue={openFood.Country}
-                                  onChange={handleChangeCountry}
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <label>Energy</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  defaultValue={openFood.Energy}
-                                  onChange={handleChangeEnergy}
-                                />
-                              </div>
-                              <label>Total Carbos</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  defaultValue={openFood.TotalCarbos}
-                                  onChange={handleChangeTotalCarbos}
-                                />
-                              </div>
-                              <label>Total Proteins</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  defaultValue={openFood.TotalProteins}
-                                  onChange={handleChangeTotalProteins}
-                                />
-                              </div>
-                              <label>Total Lipids</label>
-                              <div class="form-group">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  defaultValue={openFood.TotalLipids}
-                                  onChange={handleChangeTotalLipids}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </CardBody>
-                        <CardFooter>
-                          <div class="row">
-                            <div class="col-md-3">
-                              <div class="form group">
-                                <Button
-                                  type="submit"
-                                  color="info"
-                                  class="btn-round btn btn-info"
-                                >
-                                  Add
-                                </Button>
-                              </div>
-                            </div>
-                            <div class="form group">
-                              <Button
-                                color="danger"
-                                class="btn-round btn btn-info"
-                                onClick={handleCloseUpdate}
-                              >
-                                Close
-                              </Button>
-                            </div>
-                          </div>
-                        </CardFooter>
-                                </Form>*/}
                     </ModalBody>
                   </Modal>
                 </Col>
