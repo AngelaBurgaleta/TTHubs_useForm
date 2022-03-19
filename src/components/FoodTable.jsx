@@ -151,7 +151,6 @@ const cargarDocumentos = () => {
   //UPDATE----------------------
   //abrir y cerrar el modal de actualizar alimento
 
-
   const [openFood, setOpenFood] = useState("");
 
   const openUpdateModal = async (food) => {
@@ -183,6 +182,7 @@ const cargarDocumentos = () => {
 
   const handleClose = () => {
     setShow(false);
+    setShowInfo(false);
     setOpenFood(undefined);
   };
 
@@ -274,11 +274,12 @@ const cargarDocumentos = () => {
                             .map((food) => (
                               <tr key={food.id}>
                                 <th>{food.Name}</th>
-
                                 <th>{food.FoodGroup}</th>
                                 <th>{food.FoodSubgroup}</th>
                                 <th>{food.Country}</th>
                                 <th>{food.Energy}</th>
+                              
+
                                 <div class="card-body">
                                   <Button
                                     className="btn-icon btn-link edit btn btn-danger btn-sm"
