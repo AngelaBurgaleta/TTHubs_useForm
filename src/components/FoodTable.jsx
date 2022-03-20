@@ -250,7 +250,15 @@ const cargarDocumentos = () => {
                       <Table striped>
                         <thead className="text-success">
                           <tr>
-                            <th onClick={() => sorting("Name")}>Name</th>
+                            <th
+                              class="rt-th rt-resizable-header -cursor-pointer -sort-asc"
+                              title="Toggle SortBy"
+                              onClick={() => sorting("Name")}
+                            >
+                              <div class="rt-resizable-header-content::after">
+                                Name
+                              </div>
+                            </th>
                             {/*<Button onClick={() => sorting("Name")}>Ordenar</Button>*/}
                             <th>Food Group</th>
                             <th>Food Subgroup</th>
@@ -278,7 +286,6 @@ const cargarDocumentos = () => {
                                 <th>{food.FoodSubgroup}</th>
                                 <th>{food.Country}</th>
                                 <th>{food.Energy}</th>
-                              
 
                                 <div class="card-body">
                                   <Button
@@ -359,11 +366,11 @@ const cargarDocumentos = () => {
                   <Modal isOpen={show}>
                     <ModalHeader>
                       {showInfo
-                        ? "Mostrar info de"
+                        ? "Show"
                         : openFood
-                        ? "Editar"
-                        : "Añadir"}{" "}
-                      Alimento
+                        ? "Edit"
+                        : "Create"}{" "}
+                      food
                     </ModalHeader>
 
                     <ModalBody>

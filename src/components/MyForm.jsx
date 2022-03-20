@@ -72,6 +72,9 @@ export default function MyForm({
     };
 
     getFoods();
+    //Hay 46 registros
+    //A tres columnas 15 + 15 + 16
+
     reset({ Name: "" });
     reset({ FoodGroup: "" });
     reset({ FoodSubgroup: "" });
@@ -86,7 +89,7 @@ export default function MyForm({
     reset({ SaturatedFattyAcids: " " });
     reset({ MonounsaturatedFattyAcids: " " });
     reset({ PolyunsaturatedFattyAcids: " " });
-    reset({ UnsaturatedFattyAcids: " " });
+    reset({ UnsaturatedFattyAcids: " " }); //15
     reset({ TranFattyAcids: " " });
     reset({ Cholesterol: " " });
     reset({ Ash: " " });
@@ -103,7 +106,7 @@ export default function MyForm({
     reset({ C: " " });
     reset({ D: " " });
     reset({ E: " " });
-    reset({ K: " " });
+    reset({ K: " " }); //15 + 16 = 31
     reset({ Ethanol: " " });
     reset({ Sodium: " " });
     reset({ Calcium: " " });
@@ -117,9 +120,7 @@ export default function MyForm({
     reset({ Iodine: " " });
     reset({ Manganese: " " });
     reset({ Selenium: " " });
-    reset({ EdiblePortion: " " });
-
-    
+    reset({ EdiblePortion: " " }); //46
   };
 
   const nameInput = register("Name", { required: "Required field" });
@@ -189,7 +190,7 @@ export default function MyForm({
     },
     required: "Required field",
   });
-  
+
   const saturatedfattyacidsInput = register("SaturatedFattyAcids", {
     min: {
       value: 0,
@@ -197,14 +198,14 @@ export default function MyForm({
     },
     required: "Required field",
   });
- 
+
   const monounsaturatedfattyacidsInput = register("MonounsaturatedFattyAcids", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const polyunsaturatedfattyacidsInput = register("PolyunsaturatedFattyAcids", {
     min: {
@@ -212,7 +213,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const unsaturatedfattyacidsInput = register("UnsaturatedFattyAcids", {
     min: {
@@ -220,7 +221,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const transfattyacidsInput = register("TransFattyAcids", {
     min: {
@@ -228,7 +229,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const cholesterolInput = register("Cholesterol", {
     min: {
@@ -236,7 +237,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const ashInput = register("Ash", {
     min: {
@@ -244,14 +245,14 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const aInput = register("A", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const betacarotenesInput = register("BetaCarotenes", {
     min: {
@@ -259,7 +260,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const b1Input = register("B1", {
     min: {
@@ -267,7 +268,7 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   const b2Input = register("B2", {
     min: {
@@ -275,182 +276,184 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b3Input = register("B3", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b5Input = register("B5", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b6Input = register("B6", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b8Input = register("B8", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b9Input = register("B9", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const b12Input = register("B12", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const cInput = register("C", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const dInput = register("D", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const eInput = register("E", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const kInput = register("K", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const ethanolInput = register("Ethanol", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const sodiumInput = register("Sodium", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const calciumInput = register("Calcium", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const potassiumInput = register("Potassium", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const phosphorusInput = register("Phosphorus", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const ironInput = register("Iron", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const magnesiumInput = register("Magnesium", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const zincInput = register("Zinc", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const copperInput = register("Copper", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const fluorineInput = register("Fluorine", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const iodineInput = register("Iodine", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const manganeseInput = register("Manganese", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const seleniumInput = register("Selenium", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
   const edibleportionInput = register("EdiblePortion", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
     },
     required: false,
-  }); 
+  });
 
   return (
-    <Form onSubmit={handleSubmit(addFood, onSubmit)}>
+    <Form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
         <div class="row">
-          <div class="col-md-6">
-            <label>Food Name *</label>
+          <div class="col-sm-6 col-lg-4">
+            <label>Food Name*</label>
+            {/*<div class="col-sm-6 col-lg-3">*/}
+
             <div class="form-group">
               <Input
                 name={nameInput.name}
@@ -462,7 +465,9 @@ export default function MyForm({
                 type="text"
               />
             </div>
-            <label>Food Group *</label>
+
+            <label>Food Group*</label>
+
             <div class="form-group">
               <Input
                 name={foodgroupInput.name}
@@ -474,6 +479,7 @@ export default function MyForm({
                 type="text"
               />
             </div>
+
             <label>Food Subgroup *</label>
             <div class="form-group">
               <Input
@@ -486,6 +492,7 @@ export default function MyForm({
                 type="text"
               />
             </div>
+
             <label>Country</label>
             <div class="form-group">
               <Input
@@ -498,6 +505,7 @@ export default function MyForm({
                 type="text"
               />
             </div>
+
             <label>Energy(Kcal/KJ) *</label>
             <div class="form-group">
               <Input
@@ -511,6 +519,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Water</label>
             <div class="form-group">
               <Input
@@ -524,6 +533,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Total Proteins *</label>
             <div class="form-group">
               <Input
@@ -537,6 +547,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Total Carbohydrates *</label>
             <div class="form-group">
               <Input
@@ -550,6 +561,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Total Sugars *</label>
             <div class="form-group">
               <Input
@@ -576,6 +588,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Fibre</label>
             <div class="form-group">
               <Input
@@ -589,7 +602,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
-            <label>Saturated Fatty Acids *</label>
+            <label>Saturated Fatty Acids*</label>
             <div class="form-group">
               <Input
                 name={saturatedfattyacidsInput.name}
@@ -654,7 +667,10 @@ export default function MyForm({
                 min="0"
               />
             </div>
+          </div>
+          <div clas="col-sm-6 col-lg-3">
             <label>Cholesterol</label>
+
             <div class="form-group">
               <Input
                 name={cholesterolInput.name}
@@ -862,7 +878,9 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Ethanol</label>
+
             <div class="form-group">
               <Input
                 name={ethanolInput.name}
@@ -875,6 +893,9 @@ export default function MyForm({
                 min="0"
               />
             </div>
+          </div>
+
+          <div class="col-md-3 ml-auto">
             <label>Sodium</label>
             <div class="form-group">
               <Input
@@ -888,6 +909,7 @@ export default function MyForm({
                 min="0"
               />
             </div>
+
             <label>Calcium</label>
             <div class="form-group">
               <Input
@@ -1044,77 +1066,25 @@ export default function MyForm({
                 min="0"
               />
             </div>
-            
-            
-            
-            
-            
-            
-            
-            
-
-
-            {/*
-            <label>Food Subgroup</label>
-            <div class='form-group'>
-              <Input
-                type='text'
-                value={newFoodSubgroup}
-                onChange={handleChangeFoodSubgroup}
-              />
-            </div>
-            <label>Country</label>
-            <div class='form-group'>
-              <Input
-                type='text'
-                value={newCountry}
-                onChange={handleChangeCountry}
-              />
-            </div>
-          </div>
-          <div class='col-md-6'>
-            <label>Energy</label>
-            <div class='form-group'>
-              <Input
-                type='number'
-                min='0'
-                value={newEnergy}
-                onChange={handleChangeEnergy}
-              />
-            </div>
-            <label>Total Carbos</label>
-            <div class='form-group'>
-              <Input
-                type='number'
-                min='0'
-                value={newTotalCarbos}
-                onChange={handleChangeTotalCarbos}
-              />
-            </div>
-            <label>Total Proteins</label>
-            <div class='form-group'>
-              <Input
-                type='number'
-                min='0'
-                value={newTotalProteins}
-                onChange={handleChangeTotalProteins}
-              />
-            </div>
-            <label>Total Lipids</label>
-            <div class='form-group'>
-              <Input
-                type='number'
-                min='0'
-                value={newTotalLipids}
-                onChange={handleChangeTotalLipids}
-              />
-            </div> */}
           </div>
         </div>
+
+        {/*
+         */}
       </CardBody>
       <CardFooter>
         <div class="row">
-          <div class="col-md-3">
+          {" "}
+          <div class="form group">
+            <Button
+              color="danger"
+              class="btn-round btn btn-info"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </div>
+          <div class="col-sm-6 col-lg-3">
             <div class="form group">
               {!showInfo && (
                 <Button
@@ -1126,15 +1096,6 @@ export default function MyForm({
                 </Button>
               )}
             </div>
-          </div>
-          <div class="form group">
-            <Button
-              color="danger"
-              class="btn-round btn btn-info"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
           </div>
         </div>
       </CardFooter>
