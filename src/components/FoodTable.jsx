@@ -200,7 +200,15 @@ const cargarDocumentos = () => {
               <div class="container-fluid">
                 <div class="navbar-wrapper">
                   <div class="row">
-                    <div class="navbar-brand">Food Table</div>
+                    <Button
+                      className="btn-round btn-icon btn"
+                      color="success"
+                      onClick={handleShow}
+                      style={{ position: "fixed", bottom: "5%", right: "40%" }}
+                    >
+                      <i className="nc-icon nc-simple-add"></i>
+                    </Button>
+                    <div class="navbar-brand">Food Table </div>
                   </div>
                 </div>
 
@@ -212,7 +220,7 @@ const cargarDocumentos = () => {
                     Gluten free
                   </button>
                 </div>
-
+                {/* 
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <Button
@@ -223,7 +231,7 @@ const cargarDocumentos = () => {
                       <i className="nc-icon nc-simple-add"></i>
                     </Button>
                   </li>
-                </ul>
+                </ul>*/}
               </div>
             </Navbar>
 
@@ -365,12 +373,7 @@ const cargarDocumentos = () => {
 
                   <Modal isOpen={show}>
                     <ModalHeader>
-                      {showInfo
-                        ? "Show"
-                        : openFood
-                        ? "Edit"
-                        : "Create"}{" "}
-                      food
+                      {showInfo ? "Show" : openFood ? "Edit" : "Create"} food
                     </ModalHeader>
 
                     <ModalBody>
