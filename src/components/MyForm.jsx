@@ -2,6 +2,12 @@ import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import data from "./mock-data.json";
 import { useForm } from "react-hook-form";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+} from "reactstrap";
 
 //https://bluuweb.github.io/react-udemy/07-crud-firestore/#agregar-documentos
 import {
@@ -48,7 +54,7 @@ export default function MyForm({
   setFoods,
   showInfo,
 }) {
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register, reset, trigger } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -446,631 +452,739 @@ export default function MyForm({
     required: false,
   });
 
+
+
+  const [page, setPage] = useState(1);
+
+  function goNextPage() {
+    if (page === 4) return;
+    setPage((page) => page + 1);
+    trigger(["Name", "FoodGroup"])
+  }
+
+  function goPrevPage() {
+    if (page === 1) return;
+    setPage((page) => page - 1);
+  }
+
+
+
   return (
-    <Form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
+    <form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
-        <div class="row">
-          <div class="col-sm-6 col-lg-4">
-            <label>Food Name*</label>
-            {/*<div class="col-sm-6 col-lg-3">*/}
+        <div>
+          {/* 
+            <Dropdown
+              isOpen={dropdown}
+              toggle={openCloseDropdown}
+              direction="right"
+              size="large"
+            >
+              {}
+              <DropdownToggle caret>Dropdown ejemplo</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={() => accionPrueba()} header>
+                  Accion1
+                </DropdownItem>
+                <DropdownItem>
+                
+                  <label>Food Name*</label>
+                  
+                  <div class="form-group">
+                    <Input
+                      name={nameInput.name}
+                      placeholder=".col-xs-6"
+                      defaultValue={defaultValue?.Name}
+                      readOnly={showInfo}
+                      innerRef={nameInput.ref}
+                      onChange={nameInput.onChange}
+                      onBlur={nameInput.onBlur}
+                      type="text"
+                    />
+                  </div>
+                </DropdownItem>
+                <DropdownItem>Accion1</DropdownItem>
+                <DropdownItem disabled>Acciondes</DropdownItem>
+              </DropdownMenu>{" "}
+            </Dropdown>*/}
+          {page === 1 && (
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <label>Food Name*</label>
 
-            <div class="form-group">
-              <Input
-                name={nameInput.name}
-                defaultValue={defaultValue?.Name}
-                readOnly={showInfo}
-                innerRef={nameInput.ref}
-                onChange={nameInput.onChange}
-                onBlur={nameInput.onBlur}
-                type="text"
-              />
-            </div>
+                <div class="has-danger form-group">
+                  <Input
+                    name={nameInput.name}
+                    defaultValue={defaultValue?.Name}
+                    readOnly={showInfo}
+                    innerRef={nameInput.ref}
+                    onChange={nameInput.onChange}
+                    onBlur={nameInput.onBlur}
+                    type="text"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label>Food Group*</label>
+                <div class="form-group">
+                  <Input
+                    name={foodgroupInput.name}
+                    defaultValue={defaultValue?.FoodGroup}
+                    readOnly={showInfo}
+                    innerRef={foodgroupInput.ref}
+                    onChange={foodgroupInput.onChange}
+                    onBlur={foodgroupInput.onBlur}
+                    type="text"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label>Food Subgroup *</label>
+                <div class="form-group">
+                  <Input
+                    name={foodsubgroupInput.name}
+                    defaultValue={defaultValue?.FoodSubgroup}
+                    readOnly={showInfo}
+                    innerRef={foodsubgroupInput.ref}
+                    onChange={foodsubgroupInput.onChange}
+                    onBlur={foodsubgroupInput.onBlur}
+                    type="text"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <label>Country</label>
+                <div class="form-group">
+                  <Input
+                    name={countryInput.name}
+                    defaultValue={defaultValue?.Country}
+                    readOnly={showInfo}
+                    innerRef={countryInput.ref}
+                    onChange={countryInput.onChange}
+                    onBlur={countryInput.onBlur}
+                    type="text"
+                  />
+                </div>
+                <label>Energy(Kcal/KJ) *</label>
+                <div class="form-group">
+                  <Input
+                    name={energyInput.name}
+                    defaultValue={defaultValue?.Energy}
+                    readOnly={showInfo}
+                    innerRef={energyInput.ref}
+                    onChange={energyInput.onChange}
+                    onBlur={energyInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
 
-            <label>Food Group*</label>
+                <label>Water</label>
+                <div class="form-group">
+                  <Input
+                    name={waterInput.name}
+                    defaultValue={defaultValue?.Water}
+                    readOnly={showInfo}
+                    innerRef={waterInput.ref}
+                    onChange={waterInput.onChange}
+                    onBlur={waterInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Fibre</label>
+                <div class="form-group">
+                  <Input
+                    name={fibreInput.name}
+                    defaultValue={defaultValue?.Fibre}
+                    readOnly={showInfo}
+                    innerRef={fibreInput.ref}
+                    onChange={fibreInput.onChange}
+                    onBlur={fibreInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <label>Total Proteins *</label>
+                <div class="form-group">
+                  <Input
+                    name={totalproteinsInput.name}
+                    defaultValue={defaultValue?.TotalProteins}
+                    readOnly={showInfo}
+                    innerRef={totalproteinsInput.ref}
+                    onChange={totalproteinsInput.onChange}
+                    onBlur={totalproteinsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label>Total Carbohydrates *</label>
+                <div class="form-group">
+                  <Input
+                    name={totalcarbohydratesInput.name}
+                    defaultValue={defaultValue?.TotalCarbohydrates}
+                    readOnly={showInfo}
+                    innerRef={totalcarbohydratesInput.ref}
+                    onChange={totalcarbohydratesInput.onChange}
+                    onBlur={totalcarbohydratesInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label>Total Sugars *</label>
+                <div class="form-group">
+                  <Input
+                    name={totalsugarsInput.name}
+                    defaultValue={defaultValue?.TotalSugars}
+                    readOnly={showInfo}
+                    innerRef={totalsugarsInput.ref}
+                    onChange={totalsugarsInput.onChange}
+                    onBlur={totalsugarsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label color="red">Total Lipids *</label>
+                <div class="form-group">
+                  <Input
+                    name={totallipidsInput.name}
+                    defaultValue={defaultValue?.TotalLipids}
+                    readOnly={showInfo}
+                    innerRef={totallipidsInput.ref}
+                    onChange={totallipidsInput.onChange}
+                    onBlur={totallipidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+              </div>
+            </div>
+          )}
 
-            <div class="form-group">
-              <Input
-                name={foodgroupInput.name}
-                defaultValue={defaultValue?.FoodGroup}
-                readOnly={showInfo}
-                innerRef={foodgroupInput.ref}
-                onChange={foodgroupInput.onChange}
-                onBlur={foodgroupInput.onBlur}
-                type="text"
-              />
-            </div>
+          {page === 2 && (
+            <div class="row">
+              <div class="col-sm-6 col-lg-6">
+                <label>Saturated Fatty Acids*</label>
+                <div class="form-group">
+                  <Input
+                    name={saturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.SaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={saturatedfattyacidsInput.ref}
+                    onChange={saturatedfattyacidsInput.onChange}
+                    onBlur={saturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                  <label class="error">
+                    <code>Field required</code>
+                  </label>
+                </div>
+                <label>Monounsaturated Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={monounsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.MonounsaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={monounsaturatedfattyacidsInput.ref}
+                    onChange={monounsaturatedfattyacidsInput.onChange}
+                    onBlur={monounsaturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>{" "}
+                <label>Polyunsaturated Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={polyunsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={polyunsaturatedfattyacidsInput.ref}
+                    onChange={polyunsaturatedfattyacidsInput.onChange}
+                    onBlur={polyunsaturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
 
-            <label>Food Subgroup *</label>
-            <div class="form-group">
-              <Input
-                name={foodsubgroupInput.name}
-                defaultValue={defaultValue?.FoodSubgroup}
-                readOnly={showInfo}
-                innerRef={foodsubgroupInput.ref}
-                onChange={foodsubgroupInput.onChange}
-                onBlur={foodsubgroupInput.onBlur}
-                type="text"
-              />
-            </div>
+              <div col="col-sm-6 col-lg-4">
+                <label>Unsaturated Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={unsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.UnsaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={unsaturatedfattyacidsInput.ref}
+                    onChange={unsaturatedfattyacidsInput.onChange}
+                    onBlur={unsaturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Trans Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={transfattyacidsInput.name}
+                    defaultValue={defaultValue?.TransFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={transfattyacidsInput.ref}
+                    onChange={transfattyacidsInput.onChange}
+                    onBlur={transfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
 
-            <label>Country</label>
-            <div class="form-group">
-              <Input
-                name={countryInput.name}
-                defaultValue={defaultValue?.Country}
-                readOnly={showInfo}
-                innerRef={countryInput.ref}
-                onChange={countryInput.onChange}
-                onBlur={countryInput.onBlur}
-                type="text"
-              />
-            </div>
+                <label>Cholesterol</label>
 
-            <label>Energy(Kcal/KJ) *</label>
-            <div class="form-group">
-              <Input
-                name={energyInput.name}
-                defaultValue={defaultValue?.Energy}
-                readOnly={showInfo}
-                innerRef={energyInput.ref}
-                onChange={energyInput.onChange}
-                onBlur={energyInput.onBlur}
-                type="number"
-                min="0"
-              />
+                <div class="form-group">
+                  <Input
+                    name={cholesterolInput.name}
+                    defaultValue={defaultValue?.Cholesterol}
+                    readOnly={showInfo}
+                    innerRef={cholesterolInput.ref}
+                    onChange={cholesterolInput.onChange}
+                    onBlur={cholesterolInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
             </div>
+          )}
 
-            <label>Water</label>
-            <div class="form-group">
-              <Input
-                name={waterInput.name}
-                defaultValue={defaultValue?.Water}
-                readOnly={showInfo}
-                innerRef={waterInput.ref}
-                onChange={waterInput.onChange}
-                onBlur={waterInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+          {page === 3 && (
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <label>Ash</label>
+                <div class="form-group">
+                  <Input
+                    name={ashInput.name}
+                    defaultValue={defaultValue?.Ash}
+                    readOnly={showInfo}
+                    innerRef={ashInput.ref}
+                    onChange={ashInput.onChange}
+                    onBlur={ashInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>A: Retinol</label>
+                <div class="form-group">
+                  <Input
+                    name={aInput.name}
+                    defaultValue={defaultValue?.A}
+                    readOnly={showInfo}
+                    innerRef={aInput.ref}
+                    onChange={aInput.onChange}
+                    onBlur={aInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
 
-            <label>Total Proteins *</label>
-            <div class="form-group">
-              <Input
-                name={totalproteinsInput.name}
-                defaultValue={defaultValue?.TotalProteins}
-                readOnly={showInfo}
-                innerRef={totalproteinsInput.ref}
-                onChange={totalproteinsInput.onChange}
-                onBlur={totalproteinsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+                <label>Beta-carotenes</label>
+                <div class="form-group">
+                  <Input
+                    name={betacarotenesInput.name}
+                    defaultValue={defaultValue?.BetaCarotenes}
+                    readOnly={showInfo}
+                    innerRef={betacarotenesInput.ref}
+                    onChange={betacarotenesInput.onChange}
+                    onBlur={betacarotenesInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>B1: Thiamine</label>
+                <div class="form-group">
+                  <Input
+                    name={b1Input.name}
+                    defaultValue={defaultValue?.B1}
+                    readOnly={showInfo}
+                    innerRef={b1Input.ref}
+                    onChange={b1Input.onChange}
+                    onBlur={b1Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
 
-            <label>Total Carbohydrates *</label>
-            <div class="form-group">
-              <Input
-                name={totalcarbohydratesInput.name}
-                defaultValue={defaultValue?.TotalCarbohydrates}
-                readOnly={showInfo}
-                innerRef={totalcarbohydratesInput.ref}
-                onChange={totalcarbohydratesInput.onChange}
-                onBlur={totalcarbohydratesInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+                <label>B2: Riboflavin</label>
+                <div class="form-group">
+                  <Input
+                    name={b2Input.name}
+                    defaultValue={defaultValue?.B2}
+                    readOnly={showInfo}
+                    innerRef={b2Input.ref}
+                    onChange={b2Input.onChange}
+                    onBlur={b2Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
 
-            <label>Total Sugars *</label>
-            <div class="form-group">
-              <Input
-                name={totalsugarsInput.name}
-                defaultValue={defaultValue?.TotalSugars}
-                readOnly={showInfo}
-                innerRef={totalsugarsInput.ref}
-                onChange={totalsugarsInput.onChange}
-                onBlur={totalsugarsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Total Lipids *</label>
-            <div class="form-group">
-              <Input
-                name={totallipidsInput.name}
-                defaultValue={defaultValue?.TotalLipids}
-                readOnly={showInfo}
-                innerRef={totallipidsInput.ref}
-                onChange={totallipidsInput.onChange}
-                onBlur={totallipidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+              <div class="col-sm-6 col-lg-4">
+                <label>B3: Niacin</label>
+                <div class="form-group">
+                  <Input
+                    name={b3Input.name}
+                    defaultValue={defaultValue?.B3}
+                    readOnly={showInfo}
+                    innerRef={b3Input.ref}
+                    onChange={b3Input.onChange}
+                    onBlur={b3Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>B5: Pantothenic Acid</label>
+                <div class="form-group">
+                  <Input
+                    name={b5Input.name}
+                    defaultValue={defaultValue?.B5}
+                    readOnly={showInfo}
+                    innerRef={b5Input.ref}
+                    onChange={b5Input.onChange}
+                    onBlur={b5Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>B6: Pyridoxine</label>
+                <div class="form-group">
+                  <Input
+                    name={b6Input.name}
+                    defaultValue={defaultValue?.B6}
+                    readOnly={showInfo}
+                    innerRef={b6Input.ref}
+                    onChange={b6Input.onChange}
+                    onBlur={b6Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>B8: Biotin</label>
+                <div class="form-group">
+                  <Input
+                    name={b8Input.name}
+                    defaultValue={defaultValue?.B8}
+                    readOnly={showInfo}
+                    innerRef={b8Input.ref}
+                    onChange={b8Input.onChange}
+                    onBlur={b8Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>B9: Folic Acid</label>
+                <div class="form-group">
+                  <Input
+                    name={b9Input.name}
+                    defaultValue={defaultValue?.B9}
+                    readOnly={showInfo}
+                    innerRef={b9Input.ref}
+                    onChange={b9Input.onChange}
+                    onBlur={b9Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
 
-            <label>Fibre</label>
-            <div class="form-group">
-              <Input
-                name={fibreInput.name}
-                defaultValue={defaultValue?.Fibre}
-                readOnly={showInfo}
-                innerRef={fibreInput.ref}
-                onChange={fibreInput.onChange}
-                onBlur={fibreInput.onBlur}
-                type="number"
-                min="0"
-              />
+              <div class="col-sm-6 col-lg-4">
+                <label>B12: Cobalamin</label>
+                <div class="form-group">
+                  <Input
+                    name={b12Input.name}
+                    defaultValue={defaultValue?.B12}
+                    readOnly={showInfo}
+                    innerRef={b12Input.ref}
+                    onChange={b12Input.onChange}
+                    onBlur={b12Input.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>C: Ascorbic Acid</label>
+                <div class="form-group">
+                  <Input
+                    name={cInput.name}
+                    defaultValue={defaultValue?.C}
+                    readOnly={showInfo}
+                    innerRef={cInput.ref}
+                    onChange={cInput.onChange}
+                    onBlur={cInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>D: Calciferol</label>
+                <div class="form-group">
+                  <Input
+                    name={dInput.name}
+                    defaultValue={defaultValue?.D}
+                    readOnly={showInfo}
+                    innerRef={dInput.ref}
+                    onChange={dInput.onChange}
+                    onBlur={dInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>E: Tocopherol</label>
+                <div class="form-group">
+                  <Input
+                    name={eInput.name}
+                    defaultValue={defaultValue?.E}
+                    readOnly={showInfo}
+                    innerRef={eInput.ref}
+                    onChange={eInput.onChange}
+                    onBlur={eInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>K</label>
+                <div class="form-group">
+                  <Input
+                    name={kInput.name}
+                    defaultValue={defaultValue?.K}
+                    readOnly={showInfo}
+                    innerRef={kInput.ref}
+                    onChange={kInput.onChange}
+                    onBlur={kInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
             </div>
-            <label>Saturated Fatty Acids*</label>
-            <div class="form-group">
-              <Input
-                name={saturatedfattyacidsInput.name}
-                defaultValue={defaultValue?.SaturatedFattyAcids}
-                readOnly={showInfo}
-                innerRef={saturatedfattyacidsInput.ref}
-                onChange={saturatedfattyacidsInput.onChange}
-                onBlur={saturatedfattyacidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Monounsaturated Fatty Acids</label>
-            <div class="form-group">
-              <Input
-                name={monounsaturatedfattyacidsInput.name}
-                defaultValue={defaultValue?.MonounsaturatedFattyAcids}
-                readOnly={showInfo}
-                innerRef={monounsaturatedfattyacidsInput.ref}
-                onChange={monounsaturatedfattyacidsInput.onChange}
-                onBlur={monounsaturatedfattyacidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Polyunsaturated Fatty Acids</label>
-            <div class="form-group">
-              <Input
-                name={polyunsaturatedfattyacidsInput.name}
-                defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
-                readOnly={showInfo}
-                innerRef={polyunsaturatedfattyacidsInput.ref}
-                onChange={polyunsaturatedfattyacidsInput.onChange}
-                onBlur={polyunsaturatedfattyacidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Unsaturated Fatty Acids</label>
-            <div class="form-group">
-              <Input
-                name={unsaturatedfattyacidsInput.name}
-                defaultValue={defaultValue?.UnsaturatedFattyAcids}
-                readOnly={showInfo}
-                innerRef={unsaturatedfattyacidsInput.ref}
-                onChange={unsaturatedfattyacidsInput.onChange}
-                onBlur={unsaturatedfattyacidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Trans Fatty Acids</label>
-            <div class="form-group">
-              <Input
-                name={transfattyacidsInput.name}
-                defaultValue={defaultValue?.TransFattyAcids}
-                readOnly={showInfo}
-                innerRef={transfattyacidsInput.ref}
-                onChange={transfattyacidsInput.onChange}
-                onBlur={transfattyacidsInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-          </div>
-          <div clas="col-sm-6 col-lg-3">
-            <label>Cholesterol</label>
+          )}
 
-            <div class="form-group">
-              <Input
-                name={cholesterolInput.name}
-                defaultValue={defaultValue?.Cholesterol}
-                readOnly={showInfo}
-                innerRef={cholesterolInput.ref}
-                onChange={cholesterolInput.onChange}
-                onBlur={cholesterolInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Ash</label>
-            <div class="form-group">
-              <Input
-                name={ashInput.name}
-                defaultValue={defaultValue?.Ash}
-                readOnly={showInfo}
-                innerRef={ashInput.ref}
-                onChange={ashInput.onChange}
-                onBlur={ashInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>A: Retinol</label>
-            <div class="form-group">
-              <Input
-                name={aInput.name}
-                defaultValue={defaultValue?.A}
-                readOnly={showInfo}
-                innerRef={aInput.ref}
-                onChange={aInput.onChange}
-                onBlur={aInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Beta-carotenes</label>
-            <div class="form-group">
-              <Input
-                name={betacarotenesInput.name}
-                defaultValue={defaultValue?.BetaCarotenes}
-                readOnly={showInfo}
-                innerRef={betacarotenesInput.ref}
-                onChange={betacarotenesInput.onChange}
-                onBlur={betacarotenesInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B1: Thiamine</label>
-            <div class="form-group">
-              <Input
-                name={b1Input.name}
-                defaultValue={defaultValue?.B1}
-                readOnly={showInfo}
-                innerRef={b1Input.ref}
-                onChange={b1Input.onChange}
-                onBlur={b1Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B2: Riboflavin</label>
-            <div class="form-group">
-              <Input
-                name={b2Input.name}
-                defaultValue={defaultValue?.B2}
-                readOnly={showInfo}
-                innerRef={b2Input.ref}
-                onChange={b2Input.onChange}
-                onBlur={b2Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B3: Niacin</label>
-            <div class="form-group">
-              <Input
-                name={b3Input.name}
-                defaultValue={defaultValue?.B3}
-                readOnly={showInfo}
-                innerRef={b3Input.ref}
-                onChange={b3Input.onChange}
-                onBlur={b3Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B5: Pantothenic Acid</label>
-            <div class="form-group">
-              <Input
-                name={b5Input.name}
-                defaultValue={defaultValue?.B5}
-                readOnly={showInfo}
-                innerRef={b5Input.ref}
-                onChange={b5Input.onChange}
-                onBlur={b5Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B6: Pyridoxine</label>
-            <div class="form-group">
-              <Input
-                name={b6Input.name}
-                defaultValue={defaultValue?.B6}
-                readOnly={showInfo}
-                innerRef={b6Input.ref}
-                onChange={b6Input.onChange}
-                onBlur={b6Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B8: Biotin</label>
-            <div class="form-group">
-              <Input
-                name={b8Input.name}
-                defaultValue={defaultValue?.B8}
-                readOnly={showInfo}
-                innerRef={b8Input.ref}
-                onChange={b8Input.onChange}
-                onBlur={b8Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B9: Folic Acid</label>
-            <div class="form-group">
-              <Input
-                name={b9Input.name}
-                defaultValue={defaultValue?.B9}
-                readOnly={showInfo}
-                innerRef={b9Input.ref}
-                onChange={b9Input.onChange}
-                onBlur={b9Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>B12: Cobalamin</label>
-            <div class="form-group">
-              <Input
-                name={b12Input.name}
-                defaultValue={defaultValue?.B12}
-                readOnly={showInfo}
-                innerRef={b12Input.ref}
-                onChange={b12Input.onChange}
-                onBlur={b12Input.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>C: Ascorbic Acid</label>
-            <div class="form-group">
-              <Input
-                name={cInput.name}
-                defaultValue={defaultValue?.C}
-                readOnly={showInfo}
-                innerRef={cInput.ref}
-                onChange={cInput.onChange}
-                onBlur={cInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>d: Calciferol</label>
-            <div class="form-group">
-              <Input
-                name={dInput.name}
-                defaultValue={defaultValue?.D}
-                readOnly={showInfo}
-                innerRef={dInput.ref}
-                onChange={dInput.onChange}
-                onBlur={dInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>E: Tocopherol</label>
-            <div class="form-group">
-              <Input
-                name={eInput.name}
-                defaultValue={defaultValue?.E}
-                readOnly={showInfo}
-                innerRef={eInput.ref}
-                onChange={eInput.onChange}
-                onBlur={eInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>K</label>
-            <div class="form-group">
-              <Input
-                name={kInput.name}
-                defaultValue={defaultValue?.K}
-                readOnly={showInfo}
-                innerRef={kInput.ref}
-                onChange={kInput.onChange}
-                onBlur={kInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+          {page === 4 && (
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <label>Ethanol</label>
 
-            <label>Ethanol</label>
+                <div class="form-group">
+                  <Input
+                    name={ethanolInput.name}
+                    defaultValue={defaultValue?.Ethanol}
+                    readOnly={showInfo}
+                    innerRef={ethanolInput.ref}
+                    onChange={ethanolInput.onChange}
+                    onBlur={ethanolInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
 
-            <div class="form-group">
-              <Input
-                name={ethanolInput.name}
-                defaultValue={defaultValue?.Ethanol}
-                readOnly={showInfo}
-                innerRef={ethanolInput.ref}
-                onChange={ethanolInput.onChange}
-                onBlur={ethanolInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-          </div>
+                <label>Sodium</label>
+                <div class="form-group">
+                  <Input
+                    name={sodiumInput.name}
+                    defaultValue={defaultValue?.Sodium}
+                    readOnly={showInfo}
+                    innerRef={sodiumInput.ref}
+                    onChange={sodiumInput.onChange}
+                    onBlur={sodiumInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
 
-          <div class="col-md-3 ml-auto">
-            <label>Sodium</label>
-            <div class="form-group">
-              <Input
-                name={sodiumInput.name}
-                defaultValue={defaultValue?.Sodium}
-                readOnly={showInfo}
-                innerRef={sodiumInput.ref}
-                onChange={sodiumInput.onChange}
-                onBlur={sodiumInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
+                <label>Calcium</label>
+                <div class="form-group">
+                  <Input
+                    name={calciumInput.name}
+                    defaultValue={defaultValue?.Calcium}
+                    readOnly={showInfo}
+                    innerRef={calciumInput.ref}
+                    onChange={calciumInput.onChange}
+                    onBlur={calciumInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Potassium</label>
+                <div class="form-group">
+                  <Input
+                    name={potassiumInput.name}
+                    defaultValue={defaultValue?.Potassium}
+                    readOnly={showInfo}
+                    innerRef={potassiumInput.ref}
+                    onChange={potassiumInput.onChange}
+                    onBlur={potassiumInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Phosphorus</label>
+                <div class="form-group">
+                  <Input
+                    name={phosphorusInput.name}
+                    defaultValue={defaultValue?.Phosphorus}
+                    readOnly={showInfo}
+                    innerRef={phosphorusInput.ref}
+                    onChange={phosphorusInput.onChange}
+                    onBlur={phosphorusInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
 
-            <label>Calcium</label>
-            <div class="form-group">
-              <Input
-                name={calciumInput.name}
-                defaultValue={defaultValue?.Calcium}
-                readOnly={showInfo}
-                innerRef={calciumInput.ref}
-                onChange={calciumInput.onChange}
-                onBlur={calciumInput.onBlur}
-                type="number"
-                min="0"
-              />
+              <div class="col-sm-6 col-lg-4">
+                <label>Iron</label>
+                <div class="form-group">
+                  <Input
+                    name={ironInput.name}
+                    defaultValue={defaultValue?.Iron}
+                    readOnly={showInfo}
+                    innerRef={ironInput.ref}
+                    onChange={ironInput.onChange}
+                    onBlur={ironInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Magnesium</label>
+                <div class="form-group">
+                  <Input
+                    name={magnesiumInput.name}
+                    defaultValue={defaultValue?.Magnesium}
+                    readOnly={showInfo}
+                    innerRef={magnesiumInput.ref}
+                    onChange={magnesiumInput.onChange}
+                    onBlur={magnesiumInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Zinc</label>
+                <div class="form-group">
+                  <Input
+                    name={zincInput.name}
+                    defaultValue={defaultValue?.Zinc}
+                    readOnly={showInfo}
+                    innerRef={zincInput.ref}
+                    onChange={zincInput.onChange}
+                    onBlur={zincInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Copper</label>
+                <div class="form-group">
+                  <Input
+                    name={copperInput.name}
+                    defaultValue={defaultValue?.Copper}
+                    readOnly={showInfo}
+                    innerRef={copperInput.ref}
+                    onChange={copperInput.onChange}
+                    onBlur={copperInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Fluorine</label>
+                <div class="form-group">
+                  <Input
+                    name={fluorineInput.name}
+                    defaultValue={defaultValue?.Fluorine}
+                    readOnly={showInfo}
+                    innerRef={fluorineInput.ref}
+                    onChange={fluorineInput.onChange}
+                    onBlur={fluorineInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-4">
+                <label>Iodine</label>
+                <div class="form-group">
+                  <Input
+                    name={iodineInput.name}
+                    defaultValue={defaultValue?.Iodine}
+                    readOnly={showInfo}
+                    innerRef={iodineInput.ref}
+                    onChange={iodineInput.onChange}
+                    onBlur={iodineInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Manganese</label>
+                <div class="form-group">
+                  <Input
+                    name={manganeseInput.name}
+                    defaultValue={defaultValue?.Manganese}
+                    readOnly={showInfo}
+                    innerRef={manganeseInput.ref}
+                    onChange={manganeseInput.onChange}
+                    onBlur={manganeseInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+
+                <label>Selenium</label>
+                <div class="form-group">
+                  <Input
+                    name={seleniumInput.name}
+                    defaultValue={defaultValue?.Selenium}
+                    readOnly={showInfo}
+                    innerRef={seleniumInput.ref}
+                    onChange={seleniumInput.onChange}
+                    onBlur={seleniumInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Edible Portion</label>
+                <div class="form-group">
+                  <Input
+                    name={edibleportionInput.name}
+                    defaultValue={defaultValue?.EdiblePortion}
+                    readOnly={showInfo}
+                    innerRef={edibleportionInput.ref}
+                    onChange={edibleportionInput.onChange}
+                    onBlur={edibleportionInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+              </div>
             </div>
-            <label>Potassium</label>
-            <div class="form-group">
-              <Input
-                name={potassiumInput.name}
-                defaultValue={defaultValue?.Potassium}
-                readOnly={showInfo}
-                innerRef={potassiumInput.ref}
-                onChange={potassiumInput.onChange}
-                onBlur={potassiumInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Phosphorus</label>
-            <div class="form-group">
-              <Input
-                name={phosphorusInput.name}
-                defaultValue={defaultValue?.Phosphorus}
-                readOnly={showInfo}
-                innerRef={phosphorusInput.ref}
-                onChange={phosphorusInput.onChange}
-                onBlur={phosphorusInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Iron</label>
-            <div class="form-group">
-              <Input
-                name={ironInput.name}
-                defaultValue={defaultValue?.Iron}
-                readOnly={showInfo}
-                innerRef={ironInput.ref}
-                onChange={ironInput.onChange}
-                onBlur={ironInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Magnesium</label>
-            <div class="form-group">
-              <Input
-                name={magnesiumInput.name}
-                defaultValue={defaultValue?.Magnesium}
-                readOnly={showInfo}
-                innerRef={magnesiumInput.ref}
-                onChange={magnesiumInput.onChange}
-                onBlur={magnesiumInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Zinc</label>
-            <div class="form-group">
-              <Input
-                name={zincInput.name}
-                defaultValue={defaultValue?.Zinc}
-                readOnly={showInfo}
-                innerRef={zincInput.ref}
-                onChange={zincInput.onChange}
-                onBlur={zincInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Copper</label>
-            <div class="form-group">
-              <Input
-                name={copperInput.name}
-                defaultValue={defaultValue?.Copper}
-                readOnly={showInfo}
-                innerRef={copperInput.ref}
-                onChange={copperInput.onChange}
-                onBlur={copperInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Fluorine</label>
-            <div class="form-group">
-              <Input
-                name={fluorineInput.name}
-                defaultValue={defaultValue?.Fluorine}
-                readOnly={showInfo}
-                innerRef={fluorineInput.ref}
-                onChange={fluorineInput.onChange}
-                onBlur={fluorineInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Iodine</label>
-            <div class="form-group">
-              <Input
-                name={iodineInput.name}
-                defaultValue={defaultValue?.Iodine}
-                readOnly={showInfo}
-                innerRef={iodineInput.ref}
-                onChange={iodineInput.onChange}
-                onBlur={iodineInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Manganese</label>
-            <div class="form-group">
-              <Input
-                name={manganeseInput.name}
-                defaultValue={defaultValue?.Manganese}
-                readOnly={showInfo}
-                innerRef={manganeseInput.ref}
-                onChange={manganeseInput.onChange}
-                onBlur={manganeseInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Selenium</label>
-            <div class="form-group">
-              <Input
-                name={seleniumInput.name}
-                defaultValue={defaultValue?.Selenium}
-                readOnly={showInfo}
-                innerRef={seleniumInput.ref}
-                onChange={seleniumInput.onChange}
-                onBlur={seleniumInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-            <label>Edible Portion</label>
-            <div class="form-group">
-              <Input
-                name={edibleportionInput.name}
-                defaultValue={defaultValue?.EdiblePortion}
-                readOnly={showInfo}
-                innerRef={edibleportionInput.ref}
-                onChange={edibleportionInput.onChange}
-                onBlur={edibleportionInput.onBlur}
-                type="number"
-                min="0"
-              />
-            </div>
-          </div>
+          )}
         </div>
-
-        {/*
-         */}
       </CardBody>
       <CardFooter>
         <div class="row">
@@ -1086,7 +1200,7 @@ export default function MyForm({
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="form group">
-              {!showInfo && (
+              {!showInfo && page === 4 && (
                 <Button
                   type="submit"
                   color="info"
@@ -1095,10 +1209,31 @@ export default function MyForm({
                   ADD
                 </Button>
               )}
+              {page !== 4 && (
+                <Button
+                  onClick={goNextPage}
+                  type="submit"
+                  color="warning"
+                  class="btn-round btn btn-info"
+                >
+                  NEXT
+                </Button>
+              )}
+            </div>
+          </div>
+          <div class="col-md-3 ml-auto">
+            <div class="form group">
+              <Button
+                onClick={goPrevPage}
+                color="default"
+                class="btn-round btn btn-info"
+              >
+                BACK
+              </Button>
             </div>
           </div>
         </div>
       </CardFooter>
-    </Form>
+    </form>
   );
 }

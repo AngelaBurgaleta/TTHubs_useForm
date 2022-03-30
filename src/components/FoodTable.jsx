@@ -263,7 +263,7 @@ const cargarDocumentos = () => {
                               title="Toggle SortBy"
                               onClick={() => sorting("Name")}
                             >
-                              <div class="rt-resizable-header-content::after">
+                              <div class="rt-resizable-header-content::after" caret>
                                 Name
                               </div>
                             </th>
