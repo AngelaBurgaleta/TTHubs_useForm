@@ -2,6 +2,8 @@ import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import data from "./mock-data.json";
 import { useForm } from "react-hook-form";
+//import {ChakraProvider, extendTheme} from "@chakra-ui/react";
+//import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
 import {
   Dropdown,
   DropdownItem,
@@ -54,7 +56,13 @@ export default function MyForm({
   setFoods,
   showInfo,
 }) {
-  const { handleSubmit, register, reset, trigger } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    trigger,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -452,14 +460,12 @@ export default function MyForm({
     required: false,
   });
 
-
-
   const [page, setPage] = useState(1);
 
   function goNextPage() {
     if (page === 4) return;
     setPage((page) => page + 1);
-    trigger(["Name", "FoodGroup"])
+    trigger(["Name", "FoodGroup"]);
   }
 
   function goPrevPage() {
@@ -467,7 +473,11 @@ export default function MyForm({
     setPage((page) => page - 1);
   }
 
-
+  //stepper
+  /* 
+  const {activeStep} = useSteps({
+    initialStep: 0,
+  });*/
 
   return (
     <form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -512,7 +522,9 @@ export default function MyForm({
               <div class="col-sm-6 col-lg-4">
                 <label>Food Name*</label>
 
-                <div class="has-danger form-group">
+                <div
+                  class={errors.Name ? "has-danger form-group" : "form-group"}
+                >
                   <Input
                     name={nameInput.name}
                     defaultValue={defaultValue?.Name}
@@ -522,12 +534,18 @@ export default function MyForm({
                     onBlur={nameInput.onBlur}
                     type="text"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.Name && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
                 <label>Food Group*</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.FoodGroup ? "has-danger form-group" : "form-group"
+                  }
+                >
                   <Input
                     name={foodgroupInput.name}
                     defaultValue={defaultValue?.FoodGroup}
@@ -537,12 +555,18 @@ export default function MyForm({
                     onBlur={foodgroupInput.onBlur}
                     type="text"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.FoodGroup && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
                 <label>Food Subgroup *</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.FoodSubgroup ? "has-danger form-group" : "form-group"
+                  }
+                >
                   <Input
                     name={foodsubgroupInput.name}
                     defaultValue={defaultValue?.FoodSubgroup}
@@ -552,9 +576,11 @@ export default function MyForm({
                     onBlur={foodsubgroupInput.onBlur}
                     type="text"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.FoodSubgroup && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
               </div>
               <div class="col-sm-6 col-lg-4">
@@ -571,7 +597,9 @@ export default function MyForm({
                   />
                 </div>
                 <label>Energy(Kcal/KJ) *</label>
-                <div class="form-group">
+                <div
+                  class={errors.Energy ? "has-danger form-group" : "form-group"}
+                >
                   <Input
                     name={energyInput.name}
                     defaultValue={defaultValue?.Energy}
@@ -582,9 +610,11 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.Energy && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
 
                 <label>Water</label>
@@ -616,7 +646,13 @@ export default function MyForm({
               </div>
               <div class="col-sm-6 col-lg-4">
                 <label>Total Proteins *</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.TotalProteins
+                      ? "has-danger form-group"
+                      : "form-group"
+                  }
+                >
                   <Input
                     name={totalproteinsInput.name}
                     defaultValue={defaultValue?.TotalProteins}
@@ -627,12 +663,20 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.TotalProteins && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
                 <label>Total Carbohydrates *</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.TotalCarbohydrates
+                      ? "has-danger form-group"
+                      : "form-group"
+                  }
+                >
                   <Input
                     name={totalcarbohydratesInput.name}
                     defaultValue={defaultValue?.TotalCarbohydrates}
@@ -643,12 +687,18 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.TotalCarbohydrates && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
                 <label>Total Sugars *</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.TotalSugars ? "has-danger form-group" : "form-group"
+                  }
+                >
                   <Input
                     name={totalsugarsInput.name}
                     defaultValue={defaultValue?.TotalSugars}
@@ -659,12 +709,18 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.TotalSugars && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
                 <label color="red">Total Lipids *</label>
-                <div class="form-group">
+                <div
+                  class={
+                    errors.TotalLipids ? "has-danger form-group" : "form-group"
+                  }
+                >
                   <Input
                     name={totallipidsInput.name}
                     defaultValue={defaultValue?.TotalLipids}
@@ -675,9 +731,11 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {errors.TotalLipids && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
                 </div>
               </div>
             </div>
@@ -698,9 +756,12 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                  <label class="error">
-                    <code>Field required</code>
-                  </label>
+                  {/* 
+                  {errors.SaturatedFattyAcids && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}*/}
                 </div>
                 <label>Monounsaturated Fatty Acids</label>
                 <div class="form-group">
@@ -714,7 +775,7 @@ export default function MyForm({
                     type="number"
                     min="0"
                   />
-                </div>{" "}
+                </div>
                 <label>Polyunsaturated Fatty Acids</label>
                 <div class="form-group">
                   <Input
@@ -1209,6 +1270,7 @@ export default function MyForm({
                   ADD
                 </Button>
               )}
+
               {page !== 4 && (
                 <Button
                   onClick={goNextPage}
@@ -1233,6 +1295,18 @@ export default function MyForm({
             </div>
           </div>
         </div>
+        {(errors.Name ||
+          errors.FoodGroup ||
+          errors.FoodSubgroup ||
+          errors.Energy ||
+          errors.TotalCarbohydrates ||
+          errors.TotalLipids ||
+          errors.TotalProteins ||
+          errors.TotalSugars) && (
+            <label class="error">
+              <code>Missing fields to fill</code>
+            </label>
+          )}
       </CardFooter>
     </form>
   );
