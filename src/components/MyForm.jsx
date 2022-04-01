@@ -11,6 +11,8 @@ import {
   DropdownMenu,
 } from "reactstrap";
 
+import Creatable, { useCreatable } from "react-select/creatable";
+
 //https://bluuweb.github.io/react-udemy/07-crud-firestore/#agregar-documentos
 import {
   doc,
@@ -463,7 +465,7 @@ export default function MyForm({
   const [page, setPage] = useState(1);
 
   function goNextPage() {
-    if (page === 4) return;
+    if (page === 3) return;
     setPage((page) => page + 1);
     trigger(["Name", "FoodGroup"]);
   }
@@ -473,12 +475,17 @@ export default function MyForm({
     setPage((page) => page - 1);
   }
 
-  //stepper
-  /* 
-  const {activeStep} = useSteps({
-    initialStep: 0,
-  });*/
+  //DROPDOWN COUNTRY
 
+  const ciudades = [
+    { value: "Spain", label: "Spain" },
+    { value: "Italy", label: "Italy" },
+  ];
+  const [dropdown, setDropdown] = useState(false);
+
+  const abrirCerrarDropdown = () => {
+    setDropdown(!dropdown);
+  };
   return (
     <form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
@@ -585,15 +592,18 @@ export default function MyForm({
               </div>
               <div class="col-sm-6 col-lg-4">
                 <label>Country</label>
+
                 <div class="form-group">
-                  <Input
+                  <div></div>
+                  {console.log(countryInput)}
+                  <Creatable
+                    isClearable
                     name={countryInput.name}
+                    options={ciudades}
                     defaultValue={defaultValue?.Country}
                     readOnly={showInfo}
                     innerRef={countryInput.ref}
                     onChange={countryInput.onChange}
-                    onBlur={countryInput.onBlur}
-                    type="text"
                   />
                 </div>
                 <label>Energy(Kcal/KJ) *</label>
@@ -639,6 +649,53 @@ export default function MyForm({
                     innerRef={fibreInput.ref}
                     onChange={fibreInput.onChange}
                     onBlur={fibreInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Saturated Fatty Acids*</label>
+                <div
+                  class={errors.Name ? "has-danger form-group" : "form-group"}
+                >
+                  <Input
+                    name={saturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.SaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={saturatedfattyacidsInput.ref}
+                    onChange={saturatedfattyacidsInput.onChange}
+                    onBlur={saturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+
+                  {errors.SaturatedFattyAcids && (
+                    <label class="error">
+                      <code>Field required</code>
+                    </label>
+                  )}
+                </div>
+                <label>Monounsaturated Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={monounsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.MonounsaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={monounsaturatedfattyacidsInput.ref}
+                    onChange={monounsaturatedfattyacidsInput.onChange}
+                    onBlur={monounsaturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Polyunsaturated Fatty Acids</label>
+                <div class="form-group">
+                  <Input
+                    name={polyunsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={polyunsaturatedfattyacidsInput.ref}
+                    onChange={polyunsaturatedfattyacidsInput.onChange}
+                    onBlur={polyunsaturatedfattyacidsInput.onBlur}
                     type="number"
                     min="0"
                   />
@@ -737,107 +794,55 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
+
+                <div col="col-md-6 ml-auto mr-auto">
+                  <label>Unsaturated Fatty Acids</label>
+                  <div class="form-group">
+                    <Input
+                      name={unsaturatedfattyacidsInput.name}
+                      defaultValue={defaultValue?.UnsaturatedFattyAcids}
+                      readOnly={showInfo}
+                      innerRef={unsaturatedfattyacidsInput.ref}
+                      onChange={unsaturatedfattyacidsInput.onChange}
+                      onBlur={unsaturatedfattyacidsInput.onBlur}
+                      type="number"
+                      min="0"
+                    />
+                  </div>
+                  <label>Trans Fatty Acids</label>
+                  <div class="form-group">
+                    <Input
+                      name={transfattyacidsInput.name}
+                      defaultValue={defaultValue?.TransFattyAcids}
+                      readOnly={showInfo}
+                      innerRef={transfattyacidsInput.ref}
+                      onChange={transfattyacidsInput.onChange}
+                      onBlur={transfattyacidsInput.onBlur}
+                      type="number"
+                      min="0"
+                    />
+                  </div>
+
+                  <label>Cholesterol</label>
+
+                  <div class="form-group">
+                    <Input
+                      name={cholesterolInput.name}
+                      defaultValue={defaultValue?.Cholesterol}
+                      readOnly={showInfo}
+                      innerRef={cholesterolInput.ref}
+                      onChange={cholesterolInput.onChange}
+                      onBlur={cholesterolInput.onBlur}
+                      type="number"
+                      min="0"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           )}
 
           {page === 2 && (
-            <div class="row">
-              <div class="col-sm-6 col-lg-6">
-                <label>Saturated Fatty Acids*</label>
-                <div class="form-group">
-                  <Input
-                    name={saturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.SaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={saturatedfattyacidsInput.ref}
-                    onChange={saturatedfattyacidsInput.onChange}
-                    onBlur={saturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {/* 
-                  {errors.SaturatedFattyAcids && (
-                    <label class="error">
-                      <code>Field required</code>
-                    </label>
-                  )}*/}
-                </div>
-                <label>Monounsaturated Fatty Acids</label>
-                <div class="form-group">
-                  <Input
-                    name={monounsaturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.MonounsaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={monounsaturatedfattyacidsInput.ref}
-                    onChange={monounsaturatedfattyacidsInput.onChange}
-                    onBlur={monounsaturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Polyunsaturated Fatty Acids</label>
-                <div class="form-group">
-                  <Input
-                    name={polyunsaturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={polyunsaturatedfattyacidsInput.ref}
-                    onChange={polyunsaturatedfattyacidsInput.onChange}
-                    onBlur={polyunsaturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-              </div>
-
-              <div col="col-sm-6 col-lg-4">
-                <label>Unsaturated Fatty Acids</label>
-                <div class="form-group">
-                  <Input
-                    name={unsaturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.UnsaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={unsaturatedfattyacidsInput.ref}
-                    onChange={unsaturatedfattyacidsInput.onChange}
-                    onBlur={unsaturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Trans Fatty Acids</label>
-                <div class="form-group">
-                  <Input
-                    name={transfattyacidsInput.name}
-                    defaultValue={defaultValue?.TransFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={transfattyacidsInput.ref}
-                    onChange={transfattyacidsInput.onChange}
-                    onBlur={transfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-
-                <label>Cholesterol</label>
-
-                <div class="form-group">
-                  <Input
-                    name={cholesterolInput.name}
-                    defaultValue={defaultValue?.Cholesterol}
-                    readOnly={showInfo}
-                    innerRef={cholesterolInput.ref}
-                    onChange={cholesterolInput.onChange}
-                    onBlur={cholesterolInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-
-          {page === 3 && (
             <div class="row">
               <div class="col-sm-6 col-lg-4">
                 <label>Ash</label>
@@ -1047,7 +1052,7 @@ export default function MyForm({
             </div>
           )}
 
-          {page === 4 && (
+          {page === 3 && (
             <div class="row">
               <div class="col-sm-6 col-lg-4">
                 <label>Ethanol</label>
@@ -1261,7 +1266,7 @@ export default function MyForm({
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="form group">
-              {!showInfo && page === 4 && (
+              {!showInfo && page === 3 && (
                 <Button
                   type="submit"
                   color="info"
@@ -1271,7 +1276,7 @@ export default function MyForm({
                 </Button>
               )}
 
-              {page !== 4 && (
+              {page !== 3 && (
                 <Button
                   onClick={goNextPage}
                   type="submit"
@@ -1303,10 +1308,10 @@ export default function MyForm({
           errors.TotalLipids ||
           errors.TotalProteins ||
           errors.TotalSugars) && (
-            <label class="error">
-              <code>Missing fields to fill</code>
-            </label>
-          )}
+          <label class="error">
+            <code>Missing fields to fill</code>
+          </label>
+        )}
       </CardFooter>
     </form>
   );

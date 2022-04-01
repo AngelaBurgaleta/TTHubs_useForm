@@ -50,6 +50,10 @@ export function FoodTable() {
   const foodsCollectionRefs = collection(db, "data");
 
   //PAGINACION
+
+
+
+  //PAGINACION
   /*
   const btnNext = document.createElement('button');
   btn.innerText = 'Next Page';
@@ -371,7 +375,7 @@ const cargarDocumentos = () => {
                     </CardFooter>
                   </Card>
 
-                  <Modal isOpen={show}>
+                  <Modal isOpen={show} style= {{maxWidth: "100%", width: "90%"}}>
                     <ModalHeader>
                       {showInfo ? "Show" : openFood ? "Edit" : "Create"} food
                     </ModalHeader>
