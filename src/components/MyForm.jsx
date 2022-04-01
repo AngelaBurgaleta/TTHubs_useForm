@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import data from "./mock-data.json";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 //import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
 import {
@@ -59,6 +59,7 @@ export default function MyForm({
   showInfo,
 }) {
   const {
+    control,
     handleSubmit,
     register,
     reset,
@@ -595,15 +596,18 @@ export default function MyForm({
 
                 <div class="form-group">
                   <div></div>
-                  {console.log(countryInput)}
-                  <Creatable
-                    isClearable
+                  <Controller
+                    control={control}
                     name={countryInput.name}
-                    options={ciudades}
-                    defaultValue={defaultValue?.Country}
                     readOnly={showInfo}
-                    innerRef={countryInput.ref}
-                    onChange={countryInput.onChange}
+                    render={({ field }) => (
+                      <Creatable
+                        defaultInputValue={defaultValue?.Country}
+                        isClearable
+                        options={ciudades}
+                        {...field}
+                      />
+                    )}
                   />
                 </div>
                 <label>Energy(Kcal/KJ) *</label>
