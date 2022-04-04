@@ -63,6 +63,7 @@ export default function MyForm({
     handleSubmit,
     register,
     reset,
+    watch,
     trigger,
     formState: { errors },
   } = useForm();
@@ -97,6 +98,7 @@ export default function MyForm({
     reset({ FoodSubgroup: "" });
     reset({ Country: "" });
     reset({ Energy: " " });
+    reset({ Energykj: " " });
     reset({ Water: " " });
     reset({ TotalProteins: " " });
     reset({ TotalCarbohydrates: " " });
@@ -140,6 +142,22 @@ export default function MyForm({
     reset({ EdiblePortion: " " }); //46
   };
 
+  const styleDanger = {
+    //backgroundColor: "#FFC0A4",
+    border: "1px solid #ef8157",
+    color: "#ef8157",
+    display: 'block',
+    width: '100%',
+    fontWeight: '400',
+    lineHeight: 'normal',
+    fontSize: '14px',
+    boxShadow: 'none',
+    borderRadius: '4px',
+   padding: "0px 0px 0px 0px",
+   height: "unset",
+   backgroundClip: "paddingBox"
+  };
+
   const nameInput = register("Name", { required: "Required field" });
 
   const foodgroupInput = register("FoodGroup", {
@@ -160,7 +178,7 @@ export default function MyForm({
     required: "Required field",
   });
 
-  const waterInput = register("Energy", {
+  const waterInput = register("Water", {
     min: {
       value: 0,
       message: "Only numbers are accepted",
@@ -181,7 +199,7 @@ export default function MyForm({
       value: 0,
       message: "Only numbers are accepted",
     },
-    required: "Required field",
+    required: true,
   });
 
   const totalsugarsInput = register("TotalSugars", {
@@ -468,7 +486,25 @@ export default function MyForm({
   function goNextPage() {
     if (page === 2) return;
     setPage((page) => page + 1);
-    trigger(["Name", "FoodGroup"]);
+    trigger([
+      "Name",
+      "FoodGroup",
+      "FoodSubgroup",
+      "Energy",
+      "SaturatedFattyAcids",
+      "TotalProteins",
+      "TotalCarbohydrates",
+      "TotalSugars",
+      "TotalLipids",
+      "Country",
+      "Water",
+      "Fibre",
+      "MonounsaturatedFattyAcids",
+      "PolyunsaturatedFattyAcids",
+      "UnsaturatedFattyAcids",
+      "TransFattyAcids",
+      "Cholesterol",
+    ]);
   }
 
   function goPrevPage() {
@@ -561,69 +597,163 @@ export default function MyForm({
     },
   ];
 
-  const foodsubgroupSelect= [
-
-    { value: "100% fruit and vegetable juices ", label: "100% fruit and vegetable juices " },
+  const foodsubgroupSelect = [
+    {
+      value: "100% fruit and vegetable juices ",
+      label: "100% fruit and vegetable juices ",
+    },
     { value: "Alcoholic drinks ", label: "Alcoholic drinks " },
-    { value: "Amphibians, reptiles, snails and insects", label: "Amphibians, reptiles, snails and insects" },
-    { value: "Animal and vegetable oils and fats", label: "Animal and vegetable oils and fats" },
+    {
+      value: "Amphibians, reptiles, snails and insects",
+      label: "Amphibians, reptiles, snails and insects",
+    },
+    {
+      value: "Animal and vegetable oils and fats",
+      label: "Animal and vegetable oils and fats",
+    },
     { value: "Animal blood", label: "Animal blood" },
     { value: "Animal fat and oil ", label: "Animal fat and oil " },
 
     { value: "Animal kidney ", label: "Animal kidney " },
     { value: "Animal liver ", label: "Animal liver " },
-    { value: "Birds (excluding offal): fresh and processed (excluding dried) ", label: "Birds (excluding offal): fresh and processed (excluding dried) " },
-    { value: "Bread and similar products", label: "Bread and similar products" },
-    { value: "Bread-based dishes and finger foods ", label: "Bread-based dishes and finger foods " },
+    {
+      value: "Birds (excluding offal): fresh and processed (excluding dried) ",
+      label: "Birds (excluding offal): fresh and processed (excluding dried) ",
+    },
+    {
+      value: "Bread and similar products",
+      label: "Bread and similar products",
+    },
+    {
+      value: "Bread-based dishes and finger foods ",
+      label: "Bread-based dishes and finger foods ",
+    },
     { value: "Breakfast Cereals", label: "Breakfast Cereals" },
 
     { value: "Bulbs ", label: "Bulbs " },
-    { value: "Cassava and similar roots (excluding taro) and their products  ", label: "Cassava and similar roots (excluding taro) and their products  " },
-    { value: "Cereal-based foods for infants and young children", label: "Cereal-based foods for infants and young children" },
-    { value: "Cereals and Its Primary Derivatives", label: "Cereals and Its Primary Derivatives" },
+    {
+      value: "Cassava and similar roots (excluding taro) and their products  ",
+      label: "Cassava and similar roots (excluding taro) and their products  ",
+    },
+    {
+      value: "Cereal-based foods for infants and young children",
+      label: "Cereal-based foods for infants and young children",
+    },
+    {
+      value: "Cereals and Its Primary Derivatives",
+      label: "Cereals and Its Primary Derivatives",
+    },
     { value: "Cheese ", label: "Cheese " },
     { value: "Chocolate-based sweets ", label: "Chocolate-based sweets " },
 
-    { value: "Concentrated or dehydrated fruit/vegetable juices", label: "Concentrated or dehydrated fruit/vegetable juices" },
+    {
+      value: "Concentrated or dehydrated fruit/vegetable juices",
+      label: "Concentrated or dehydrated fruit/vegetable juices",
+    },
     { value: "Condiments  ", label: "Condiments  " },
-    { value: "Condiments (including table formats)", label: "Condiments (including table formats)" },
-    { value: "Cream, whey and any other milk products excluding fermented milk products and cheese ", label: "Cream, whey and any other milk products excluding fermented milk products and cheese " },
+    {
+      value: "Condiments (including table formats)",
+      label: "Condiments (including table formats)",
+    },
+    {
+      value:
+        "Cream, whey and any other milk products excluding fermented milk products and cheese ",
+      label:
+        "Cream, whey and any other milk products excluding fermented milk products and cheese ",
+    },
     { value: "Crisps and curls ", label: "Crisps and curls " },
     { value: "Crustaceans ", label: "Crustaceans " },
 
-    { value: "Dairy or dairy imitate based sweets ", label: "Dairy or dairy imitate based sweets " },
-    { value: "Diadromous fish (excluding offal): fresh and processed (excluding dried)  ", label: "Diadromous fish (excluding offal): fresh and processed (excluding dried)  " },
-    { value: "Diversos agentes auxiliares para o processamento de alimentos", label: "Diversos agentes auxiliares para o processamento de alimentos" },
+    {
+      value: "Dairy or dairy imitate based sweets ",
+      label: "Dairy or dairy imitate based sweets ",
+    },
+    {
+      value:
+        "Diadromous fish (excluding offal): fresh and processed (excluding dried)  ",
+      label:
+        "Diadromous fish (excluding offal): fresh and processed (excluding dried)  ",
+    },
+    {
+      value: "Diversos agentes auxiliares para o processamento de alimentos",
+      label: "Diversos agentes auxiliares para o processamento de alimentos",
+    },
     { value: "Dough-based sweets ", label: "Dough-based sweets " },
     { value: "Drinking water  ", label: "Drinking water  " },
-    { value: "Eggs: fresh and processed ", label: "Eggs: fresh and processed " },
+    {
+      value: "Eggs: fresh and processed ",
+      label: "Eggs: fresh and processed ",
+    },
 
-    { value: "Extracts of vegetable origin ", label: "Extracts of vegetable origin " },
-    { value: "Fat emulsions and blended fats", label: "Fat emulsions and blended fats" },
+    {
+      value: "Extracts of vegetable origin ",
+      label: "Extracts of vegetable origin ",
+    },
+    {
+      value: "Fat emulsions and blended fats",
+      label: "Fat emulsions and blended fats",
+    },
     { value: "Fermented milk or cream", label: "Fermented milk or cream" },
     { value: "Fine bakery products", label: "Fine bakery products" },
     { value: "Fish (muscle) ", label: "Fish (muscle) " },
-    { value: "Fish and seafood-based dishes ", label: "Fish and seafood-based dishes " },
+    {
+      value: "Fish and seafood-based dishes ",
+      label: "Fish and seafood-based dishes ",
+    },
 
-    { value: "Fish and shellfish - mixed or unspecified: fresh and processed (excluding dried) ", label: "Fish and shellfish - mixed or unspecified: fresh and processed (excluding dried) " },
-    { value: "Fish and shellfish (including offal) - all types: dried ", label: "Fish and shellfish (including offal) - all types: dried " },
+    {
+      value:
+        "Fish and shellfish - mixed or unspecified: fresh and processed (excluding dried) ",
+      label:
+        "Fish and shellfish - mixed or unspecified: fresh and processed (excluding dried) ",
+    },
+    {
+      value: "Fish and shellfish (including offal) - all types: dried ",
+      label: "Fish and shellfish (including offal) - all types: dried ",
+    },
     { value: "Fish visceras", label: "Fish visceras" },
     { value: "Fresh animal fat tissues", label: "Fresh animal fat tissues" },
-    { value: "Freshwater fish (excluding offal): fresh and processed (excluding dried) ", label: "Freshwater fish (excluding offal): fresh and processed (excluding dried) " },
-    { value: "Fried or extruded cereal, seed or root products", label: "Fried or extruded cereal, seed or root products" },
+    {
+      value:
+        "Freshwater fish (excluding offal): fresh and processed (excluding dried) ",
+      label:
+        "Freshwater fish (excluding offal): fresh and processed (excluding dried) ",
+    },
+    {
+      value: "Fried or extruded cereal, seed or root products",
+      label: "Fried or extruded cereal, seed or root products",
+    },
 
-    { value: "Fried or extruded cereal, seed or root products", label: "Fried or extruded cereal, seed or root products" },
+    {
+      value: "Fried or extruded cereal, seed or root products",
+      label: "Fried or extruded cereal, seed or root products",
+    },
     { value: "Fruit", label: "Fruit" },
-    { value: "Fruit and nut-based sweets", label: "Fruit and nut-based sweets" },
+    {
+      value: "Fruit and nut-based sweets",
+      label: "Fruit and nut-based sweets",
+    },
     { value: "Fresh animal fat tissues", label: "Fresh animal fat tissues" },
-    { value: "Fruit and vegetable drinks ", label: "Fruit and vegetable drinks " },
-    { value: "Fruit and vegetable juices and nectars", label: "Fruit and vegetable juices and nectars" },
+    {
+      value: "Fruit and vegetable drinks ",
+      label: "Fruit and vegetable drinks ",
+    },
+    {
+      value: "Fruit and vegetable juices and nectars",
+      label: "Fruit and vegetable juices and nectars",
+    },
 
     { value: "Fruits: dried ", label: "Fruits: dried " },
     { value: "Fruits: fresh ", label: "Fruits: fresh " },
-    { value: "Fruits: processed (excluding dried and candied) ", label: "Fruits: processed (excluding dried and candied) " },
+    {
+      value: "Fruits: processed (excluding dried and candied) ",
+      label: "Fruits: processed (excluding dried and candied) ",
+    },
     { value: "Fungi, mosses and lichens", label: "Fungi, mosses and lichens" },
-    { value: "Germinated, sprouted and similar", label: "Germinated, sprouted and similar" },
+    {
+      value: "Germinated, sprouted and similar",
+      label: "Germinated, sprouted and similar",
+    },
     { value: "Herbs and edible flowers", label: "Herbs and edible flowers" },
 
     { value: "Inflowering cabbage ", label: "Inflowering cabbage " },
@@ -633,89 +763,238 @@ export default function MyForm({
     { value: "Legume-based dishes ", label: "Legume-based dishes " },
     { value: "Legumes", label: "Legumes" },
 
-    { value: "Legumes, nuts, oil seeds and spices - Processed", label: "Legumes, nuts, oil seeds and spices - Processed" },
-    { value: "Maize and maize-based products ", label: "Maize and maize-based products " },
-    { value: "Mammalian and poultry meat", label: "Mammalian and poultry meat" },
-    { value: "Mammals, reptiles and amphibians (excluding offal): fresh and processed (excluding dried) ", label: "Mammals, reptiles and amphibians (excluding offal): fresh and processed (excluding dried) " },
-    { value: "Marine fish (excluding offal): fresh and processed (excluding dried)", label: "Marine fish (excluding offal): fresh and processed (excluding dried)" },
+    {
+      value: "Legumes, nuts, oil seeds and spices - Processed",
+      label: "Legumes, nuts, oil seeds and spices - Processed",
+    },
+    {
+      value: "Maize and maize-based products ",
+      label: "Maize and maize-based products ",
+    },
+    {
+      value: "Mammalian and poultry meat",
+      label: "Mammalian and poultry meat",
+    },
+    {
+      value:
+        "Mammals, reptiles and amphibians (excluding offal): fresh and processed (excluding dried) ",
+      label:
+        "Mammals, reptiles and amphibians (excluding offal): fresh and processed (excluding dried) ",
+    },
+    {
+      value:
+        "Marine fish (excluding offal): fresh and processed (excluding dried)",
+      label:
+        "Marine fish (excluding offal): fresh and processed (excluding dried)",
+    },
     { value: "Meat - all types: dried ", label: "Meat - all types: dried " },
 
-    
-    { value: "Meat and dairy substitutes", label: "Meat and dairy substitutes" },
+    {
+      value: "Meat and dairy substitutes",
+      label: "Meat and dairy substitutes",
+    },
     { value: "Meat specialities", label: "Meat specialities" },
     { value: "Meat-based dishes", label: "Meat-based dishes" },
-    { value: "Microbiological or enzymatic ingredients ", label: "Microbiological or enzymatic ingredients " },
-    { value: "Milk-based desserts and similar", label: "Milk-based desserts and similar" },
-    { value: "Milk, milk products and concentrates", label: "Milk, milk products and concentrates" },
+    {
+      value: "Microbiological or enzymatic ingredients ",
+      label: "Microbiological or enzymatic ingredients ",
+    },
+    {
+      value: "Milk-based desserts and similar",
+      label: "Milk-based desserts and similar",
+    },
+    {
+      value: "Milk, milk products and concentrates",
+      label: "Milk, milk products and concentrates",
+    },
 
-    
     { value: "Milk, whey and cream", label: "Milk, whey and cream" },
-    { value: "Milk: fresh and processed (excluding fermented milk products, cream, whey, cheese and other milk products) ", label: "Milk: fresh and processed (excluding fermented milk products, cream, whey, cheese and other milk products) " },
-    { value: "Millet and millet-based products ", label: "Millet and millet-based products " },
+    {
+      value:
+        "Milk: fresh and processed (excluding fermented milk products, cream, whey, cheese and other milk products) ",
+      label:
+        "Milk: fresh and processed (excluding fermented milk products, cream, whey, cheese and other milk products) ",
+    },
+    {
+      value: "Millet and millet-based products ",
+      label: "Millet and millet-based products ",
+    },
     { value: "Mollusks", label: "Mollusks" },
-    { value: "Nuts, seeds and their products ", label: "Nuts, seeds and their products " },
-    { value: "Offal - all types: fresh and processed (excluding dried) ", label: "Offal - all types: fresh and processed (excluding dried) " },
+    {
+      value: "Nuts, seeds and their products ",
+      label: "Nuts, seeds and their products ",
+    },
+    {
+      value: "Offal - all types: fresh and processed (excluding dried) ",
+      label: "Offal - all types: fresh and processed (excluding dried) ",
+    },
 
-    { value: "Oilseeds, oilseeds and oleaginous fruit", label: "Oilseeds, oilseeds and oleaginous fruit" },
-    { value: "Other and unspecified starchy roots and tubers (excluding sugary roots and tubers) and their products", label: "Other and unspecified starchy roots and tubers (excluding sugary roots and tubers) and their products" },
+    {
+      value: "Oilseeds, oilseeds and oleaginous fruit",
+      label: "Oilseeds, oilseeds and oleaginous fruit",
+    },
+    {
+      value:
+        "Other and unspecified starchy roots and tubers (excluding sugary roots and tubers) and their products",
+      label:
+        "Other and unspecified starchy roots and tubers (excluding sugary roots and tubers) and their products",
+    },
     { value: "Other animal products", label: "Other animal products" },
-    { value: "Other cereals, mixed cereals or unspecified cereals and their products ", label: "Other cereals, mixed cereals or unspecified cereals and their products " },
-    { value: "Other non-flavoring food additives, colorings and sweeteners", label: "Other non-flavoring food additives, colorings and sweeteners" },
+    {
+      value:
+        "Other cereals, mixed cereals or unspecified cereals and their products ",
+      label:
+        "Other cereals, mixed cereals or unspecified cereals and their products ",
+    },
+    {
+      value: "Other non-flavoring food additives, colorings and sweeteners",
+      label: "Other non-flavoring food additives, colorings and sweeteners",
+    },
     { value: "Other snacks ", label: "Other snacks " },
 
     { value: "Other sweets ", label: "Other sweets " },
-    { value: "Pasta and noodle-based dishes ", label: "Pasta and noodle-based dishes " },
-    { value: "Pasta, noodles and similar products", label: "Pasta, noodles and similar products" },
-    { value: "Plates, incl. ready-to-eat meals (excluding soups and salads)", label: "Plates, incl. ready-to-eat meals (excluding soups and salads)" },
-    { value: "Potato, sweet potato and their products ", label: "Potato, sweet potato and their products " },
+    {
+      value: "Pasta and noodle-based dishes ",
+      label: "Pasta and noodle-based dishes ",
+    },
+    {
+      value: "Pasta, noodles and similar products",
+      label: "Pasta, noodles and similar products",
+    },
+    {
+      value: "Plates, incl. ready-to-eat meals (excluding soups and salads)",
+      label: "Plates, incl. ready-to-eat meals (excluding soups and salads)",
+    },
+    {
+      value: "Potato, sweet potato and their products ",
+      label: "Potato, sweet potato and their products ",
+    },
     { value: "Processed eggs", label: "Processed eggs" },
 
-    { value: "Processed fish and fishery products", label: "Processed fish and fishery products" },
+    {
+      value: "Processed fish and fishery products",
+      label: "Processed fish and fishery products",
+    },
     { value: "Processed Fruit Products", label: "Processed Fruit Products" },
     { value: "Processed meat products", label: "Processed meat products" },
-    { value: "Processed or preserved vegetables and similar products", label: "Processed or preserved vegetables and similar products" },
-    { value: "Protein isolates and other protein products", label: "Protein isolates and other protein products" },
-    { value: "Pulses (excluding soybeans) and their products", label: "Pulses (excluding soybeans) and their products" },
+    {
+      value: "Processed or preserved vegetables and similar products",
+      label: "Processed or preserved vegetables and similar products",
+    },
+    {
+      value: "Protein isolates and other protein products",
+      label: "Protein isolates and other protein products",
+    },
+    {
+      value: "Pulses (excluding soybeans) and their products",
+      label: "Pulses (excluding soybeans) and their products",
+    },
 
-    { value: "Rice and rice-based products ", label: "Rice and rice-based products " },
-    { value: "Roots and tubers (excluding starchy and sugary)", label: "Roots and tubers (excluding starchy and sugary)" },
-    { value: "Salty extracts and ingredients for sauces", label: "Salty extracts and ingredients for sauces" },
+    {
+      value: "Rice and rice-based products ",
+      label: "Rice and rice-based products ",
+    },
+    {
+      value: "Roots and tubers (excluding starchy and sugary)",
+      label: "Roots and tubers (excluding starchy and sugary)",
+    },
+    {
+      value: "Salty extracts and ingredients for sauces",
+      label: "Salty extracts and ingredients for sauces",
+    },
     { value: "Sausages ", label: "Sausages " },
     { value: "Seasonings and extracts", label: "Seasonings and extracts" },
-    { value: "Shellfish (excluding offal) - all types: fresh and processed (excluding dried)", label: "Shellfish (excluding offal) - all types: fresh and processed (excluding dried)" },
+    {
+      value:
+        "Shellfish (excluding offal) - all types: fresh and processed (excluding dried)",
+      label:
+        "Shellfish (excluding offal) - all types: fresh and processed (excluding dried)",
+    },
 
     { value: "Soft drink", label: "Soft drink" },
-    { value: "Sorghum and sorghum-based products ", label: "Sorghum and sorghum-based products " },
+    {
+      value: "Sorghum and sorghum-based products ",
+      label: "Sorghum and sorghum-based products ",
+    },
     { value: "Soups ", label: "Soups " },
     { value: "Soups and salads", label: "Soups and salads" },
-    { value: "Soybean and soy-based products ", label: "Soybean and soy-based products " },
+    {
+      value: "Soybean and soy-based products ",
+      label: "Soybean and soy-based products ",
+    },
     { value: "Spices", label: "Spices" },
 
-    { value: "Spoon desserts and ice cream (generic)", label: "Spoon desserts and ice cream (generic)" },
+    {
+      value: "Spoon desserts and ice cream (generic)",
+      label: "Spoon desserts and ice cream (generic)",
+    },
     { value: "Starch", label: "Starch" },
     { value: "Starchy roots and tubers", label: "Starchy roots and tubers" },
     { value: "Sugars", label: "Sugars" },
-    { value: "Taro and taro-based products ", label: "Taro and taro-based products " },
-    { value: "Tea, herbal tea, coffee and cocoa ", label: "Tea, herbal tea, coffee and cocoa " },
+    {
+      value: "Taro and taro-based products ",
+      label: "Taro and taro-based products ",
+    },
+    {
+      value: "Tea, herbal tea, coffee and cocoa ",
+      label: "Tea, herbal tea, coffee and cocoa ",
+    },
 
     { value: "Unprocessed eggs", label: "Unprocessed eggs" },
-    { value: "Various auxiliary agents for food processing", label: "Various auxiliary agents for food processing" },
-    { value: "Vegetable fat and oil (excluding red palm oil) ", label: "Vegetable fat and oil (excluding red palm oil) " },
+    {
+      value: "Various auxiliary agents for food processing",
+      label: "Various auxiliary agents for food processing",
+    },
+    {
+      value: "Vegetable fat and oil (excluding red palm oil) ",
+      label: "Vegetable fat and oil (excluding red palm oil) ",
+    },
     { value: "Vegetable fruits", label: "Vegetable fruits" },
-    { value: "Vegetable stems and stems ", label: "Vegetable stems and stems " },
+    {
+      value: "Vegetable stems and stems ",
+      label: "Vegetable stems and stems ",
+    },
     { value: "Vegetable-based dishes ", label: "Vegetable-based dishes " },
 
-    { value: "Vegetables - all types, mixed and unspecified: processed (excluding dried) ", label: "Vegetables - all types, mixed and unspecified: processed (excluding dried) " },
-    { value: "Vegetables - all types: dried ", label: "Vegetables - all types: dried " },
-    { value: "Vegetables (excluding leafy vegetables and including fresh legumes): fresh", label: "Vegetables (excluding leafy vegetables and including fresh legumes): fresh" },
+    {
+      value:
+        "Vegetables - all types, mixed and unspecified: processed (excluding dried) ",
+      label:
+        "Vegetables - all types, mixed and unspecified: processed (excluding dried) ",
+    },
+    {
+      value: "Vegetables - all types: dried ",
+      label: "Vegetables - all types: dried ",
+    },
+    {
+      value:
+        "Vegetables (excluding leafy vegetables and including fresh legumes): fresh",
+      label:
+        "Vegetables (excluding leafy vegetables and including fresh legumes): fresh",
+    },
     { value: "Visceras", label: "Visceras" },
-    { value: "Wheat and wheat-based products ", label: "Wheat and wheat-based products " },
+    {
+      value: "Wheat and wheat-based products ",
+      label: "Wheat and wheat-based products ",
+    },
     { value: "Others...", label: "Others..." },
-
-
-
-
   ];
+
+  //WATCH
+  const energykjValue = watch("Energy");
+
+  /*
+useEffect (() => {
+  const subscription = watch((data) => {
+    console.log(data)
+  })
+
+  return () =>  {
+    subscription.unsubscribe();
+  }
+
+}, [energykjValue])
+*/
 
   return (
     <form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -780,12 +1059,11 @@ export default function MyForm({
                 </div>
                 <label>Food Group*</label>
                 <div
-                  class={
-                    errors.FoodGroup ? "has-danger form-group" : "form-group"
-                  }
+                  className="form-group"
+                  style={errors.FoodGroup ? styleDanger : null}
                 >
                   <Controller
-                  control={control}
+                    control={control}
                     name={foodgroupInput.name}
                     defaultValue={defaultValue?.FoodGroup}
                     render={({ field }) => (
@@ -795,7 +1073,7 @@ export default function MyForm({
                         options={foodgroupSelect}
                         {...field}
                       />
-                      )}
+                    )}
                   />
                   {errors.FoodGroup && (
                     <label class="error">
@@ -809,8 +1087,8 @@ export default function MyForm({
                     errors.FoodSubgroup ? "has-danger form-group" : "form-group"
                   }
                 >
-                 <Controller
-                  control={control}
+                  <Controller
+                    control={control}
                     name={foodsubgroupInput.name}
                     defaultValue={defaultValue?.FoodSubgroup}
                     render={({ field }) => (
@@ -820,7 +1098,7 @@ export default function MyForm({
                         options={foodsubgroupSelect}
                         {...field}
                       />
-                      )}
+                    )}
                   />
                   {errors.FoodSubgroup && (
                     <label class="error">
@@ -848,7 +1126,7 @@ export default function MyForm({
                     )}
                   />
                 </div>
-                <label>Energy(Kcal/KJ) *</label>
+                <label>Energy(Kcal/100g) *</label>
                 <div
                   class={errors.Energy ? "has-danger form-group" : "form-group"}
                 >
@@ -869,7 +1147,12 @@ export default function MyForm({
                   )}
                 </div>
 
-                <label>Water</label>
+                <label>Energy(KJ/100g) *</label>
+                <div class={"form-group"}>
+                  <Input value={energykjValue * 4.184} readOnly={true} />
+                </div>
+
+                <label>Water(g/100g)</label>
                 <div class="form-group">
                   <Input
                     name={waterInput.name}
@@ -882,7 +1165,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Fibre</label>
+                <label>Fibre(g/100g)</label>
                 <div class="form-group">
                   <Input
                     name={fibreInput.name}
@@ -895,9 +1178,13 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Saturated Fatty Acids*</label>
+                <label>Saturated Fatty Acids(g/100g)*</label>
                 <div
-                  class={errors.Name ? "has-danger form-group" : "form-group"}
+                  class={
+                    errors.SaturatedFattyAcids
+                      ? "has-danger form-group"
+                      : "form-group"
+                  }
                 >
                   <Input
                     name={saturatedfattyacidsInput.name}
@@ -916,7 +1203,7 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
-                <label>Monounsaturated Fatty Acids</label>
+                <label>Monounsaturated Fatty Acids(g/100g)</label>
                 <div class="form-group">
                   <Input
                     name={monounsaturatedfattyacidsInput.name}
@@ -929,7 +1216,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Polyunsaturated Fatty Acids</label>
+                <label>Polyunsaturated Fatty Acids(g/100g)</label>
                 <div class="form-group">
                   <Input
                     name={polyunsaturatedfattyacidsInput.name}
@@ -944,7 +1231,7 @@ export default function MyForm({
                 </div>
               </div>
               <div class="col-sm-6 col-lg-4">
-                <label>Total Proteins *</label>
+                <label>Total Proteins(g/100g) *</label>
                 <div
                   class={
                     errors.TotalProteins
@@ -968,7 +1255,7 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
-                <label>Total Carbohydrates *</label>
+                <label>Total Carbohydrates(g/100g) *</label>
                 <div
                   class={
                     errors.TotalCarbohydrates
@@ -992,7 +1279,7 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
-                <label>Total Sugars *</label>
+                <label>Total Sugars (g/100g)*</label>
                 <div
                   class={
                     errors.TotalSugars ? "has-danger form-group" : "form-group"
@@ -1014,7 +1301,7 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
-                <label color="red">Total Lipids *</label>
+                <label color="red">Total Lipids(gr/100gr) *</label>
                 <div
                   class={
                     errors.TotalLipids ? "has-danger form-group" : "form-group"
@@ -1038,7 +1325,7 @@ export default function MyForm({
                 </div>
 
                 <div col="col-md-6 ml-auto mr-auto">
-                  <label>Unsaturated Fatty Acids</label>
+                  <label>Unsaturated Fatty Acids(g/100g)</label>
                   <div class="form-group">
                     <Input
                       name={unsaturatedfattyacidsInput.name}
@@ -1051,7 +1338,7 @@ export default function MyForm({
                       min="0"
                     />
                   </div>
-                  <label>Trans Fatty Acids</label>
+                  <label>Trans Fatty Acids(g/100g)</label>
                   <div class="form-group">
                     <Input
                       name={transfattyacidsInput.name}
@@ -1065,7 +1352,7 @@ export default function MyForm({
                     />
                   </div>
 
-                  <label>Cholesterol</label>
+                  <label>Cholesterol(g/100g)</label>
 
                   <div class="form-group">
                     <Input
@@ -1087,7 +1374,7 @@ export default function MyForm({
           {page === 2 && (
             <div class="row">
               <div class="col-sm-6 col-lg-4">
-                <label>Ash</label>
+                <label>Ash(g/100g)</label>
                 <div class="form-group">
                   <Input
                     name={ashInput.name}
@@ -1100,7 +1387,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>A: Retinol</label>
+                <label>A: Retinol(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={aInput.name}
@@ -1114,7 +1401,7 @@ export default function MyForm({
                   />
                 </div>
 
-                <label>Beta-carotenes</label>
+                <label>Beta-carotenes(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={betacarotenesInput.name}
@@ -1127,7 +1414,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>B1: Thiamine</label>
+                <label>B1: Thiamine(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b1Input.name}
@@ -1141,7 +1428,7 @@ export default function MyForm({
                   />
                 </div>
 
-                <label>B2: Riboflavin</label>
+                <label>B2: Riboflavin(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b2Input.name}
@@ -1157,7 +1444,7 @@ export default function MyForm({
               </div>
 
               <div class="col-sm-6 col-lg-4">
-                <label>B3: Niacin</label>
+                <label>B3: Niacin(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b3Input.name}
@@ -1170,7 +1457,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>B5: Pantothenic Acid</label>
+                <label>B5: Pantothenic Acid(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b5Input.name}
@@ -1183,7 +1470,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>B6: Pyridoxine</label>
+                <label>B6: Pyridoxine(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b6Input.name}
@@ -1196,7 +1483,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>B8: Biotin</label>
+                <label>B8: Biotin(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b8Input.name}
@@ -1209,7 +1496,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>B9: Folic Acid</label>
+                <label>B9: Folic Acid(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b9Input.name}
@@ -1225,7 +1512,7 @@ export default function MyForm({
               </div>
 
               <div class="col-sm-6 col-lg-4">
-                <label>B12: Cobalamin</label>
+                <label>B12: Cobalamin(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={b12Input.name}
@@ -1238,7 +1525,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>C: Ascorbic Acid</label>
+                <label>C: Ascorbic Acid(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={cInput.name}
@@ -1251,7 +1538,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>D: Calciferol</label>
+                <label>D: Calciferol(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={dInput.name}
@@ -1264,7 +1551,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>E: Tocopherol</label>
+                <label>E: Tocopherol(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={eInput.name}
@@ -1277,7 +1564,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>K</label>
+                <label>K(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={kInput.name}
@@ -1293,7 +1580,7 @@ export default function MyForm({
               </div>
 
               <div class="col-sm-6 col-lg-4">
-                <label>Ethanol</label>
+                <label>Ethanol(g/100g)</label>
 
                 <div class="form-group">
                   <Input
@@ -1308,7 +1595,7 @@ export default function MyForm({
                   />
                 </div>
 
-                <label>Sodium</label>
+                <label>Sodium(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={sodiumInput.name}
@@ -1322,7 +1609,7 @@ export default function MyForm({
                   />
                 </div>
 
-                <label>Calcium</label>
+                <label>Calcium(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={calciumInput.name}
@@ -1335,7 +1622,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Potassium</label>
+                <label>Potassium(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={potassiumInput.name}
@@ -1348,7 +1635,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Phosphorus</label>
+                <label>Phosphorus(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={phosphorusInput.name}
@@ -1364,7 +1651,7 @@ export default function MyForm({
               </div>
 
               <div class="col-sm-6 col-lg-4">
-                <label>Iron</label>
+                <label>Iron(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={ironInput.name}
@@ -1377,7 +1664,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Magnesium</label>
+                <label>Magnesium(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={magnesiumInput.name}
@@ -1390,7 +1677,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Zinc</label>
+                <label>Zinc(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={zincInput.name}
@@ -1403,7 +1690,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Copper</label>
+                <label>Copper(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={copperInput.name}
@@ -1416,7 +1703,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Fluorine</label>
+                <label>Fluorine(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={fluorineInput.name}
@@ -1432,7 +1719,7 @@ export default function MyForm({
               </div>
 
               <div class="col-sm-6 col-lg-4">
-                <label>Iodine</label>
+                <label>Iodine(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={iodineInput.name}
@@ -1445,7 +1732,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Manganese</label>
+                <label>Manganese(mg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={manganeseInput.name}
@@ -1459,7 +1746,7 @@ export default function MyForm({
                   />
                 </div>
 
-                <label>Selenium</label>
+                <label>Selenium(µg/100g)</label>
                 <div class="form-group">
                   <Input
                     name={seleniumInput.name}
@@ -1472,7 +1759,7 @@ export default function MyForm({
                     min="0"
                   />
                 </div>
-                <label>Edible Portion</label>
+                <label>Edible Portion(%)</label>
                 <div class="form-group">
                   <Input
                     name={edibleportionInput.name}
@@ -1542,6 +1829,7 @@ export default function MyForm({
           errors.FoodGroup ||
           errors.FoodSubgroup ||
           errors.Energy ||
+          errors.Energykj ||
           errors.TotalCarbohydrates ||
           errors.TotalLipids ||
           errors.TotalProteins ||
