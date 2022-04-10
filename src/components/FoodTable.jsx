@@ -124,12 +124,14 @@ const cargarDocumentos = () => {
   //Para que la vista se renderice a la tabla de foods
 
   useEffect(() => {
-    const getFoods = async () => {
+    const getFoods = async() => {
       const data = await getDocs(foodsCollectionRefs);
 
       console.log(data);
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
     };
+
 
     getFoods();
   }, []);
@@ -140,6 +142,7 @@ const cargarDocumentos = () => {
 
   const deleteFood = async (food) => {
     await deleteDoc(doc(db, "data", food.id));
+    
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
 
@@ -258,20 +261,20 @@ const cargarDocumentos = () => {
                     </InputGroup>
                   </form>
                   <Card id="cards">
-                    <CardBody>
+                     <CardBody>
                       <Table striped>
                         <thead className="text-success">
                           <tr>
                             <th
-                              class="rt-th rt-resizable-header -cursor-pointer -sort-asc"
+                              className="rt-th rt-resizable-header -cursor-pointer -sort-asc"
                               title="Toggle SortBy"
                               onClick={() => sorting("Name")}
                             >
-                              <div class="rt-resizable-header-content::after" caret>
+                              <div className="rt-resizable-header-content::after" caret>
                                 Name
                               </div>
                             </th>
-                            {/*<Button onClick={() => sorting("Name")}>Ordenar</Button>*/}
+                            
                             <th>Food Group</th>
                             <th>Food Subgroup</th>
                             <th>Country</th>
@@ -279,7 +282,7 @@ const cargarDocumentos = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {foods
+                         {foods
                             .filter((val) => {
                               if (search === "") {
                                 return val;
@@ -290,8 +293,9 @@ const cargarDocumentos = () => {
                               ) {
                                 return val;
                               }
-                            })
-                            .map((food) => (
+                            }) 
+
+                             .map((food) => (
                               <tr key={food.id}>
                                 <th>{food.Name}</th>
                                 <th>{food.FoodGroup}</th>

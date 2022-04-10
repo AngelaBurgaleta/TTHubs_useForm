@@ -8,7 +8,7 @@
     "@chakra-ui/react": "^1.8.7",
     "bootstrap": "4.6.0",
     "chart.js": "3.2.1",
-    "firebase": "^9.6.7",
+    "firebase": "^9.6.10",
     "jquery": "3.6.0",
     "node-sass": "6.0.0",
     "perfect-scrollbar": "1.5.1",
@@ -29,6 +29,7 @@
     "styled-components": "^5.3.3"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
@@ -50,8 +51,12 @@
   "optionalDependencies": {
     "typescript": "4.2.4"
   },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+},
   "devDependencies": {
     "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.9"
+    "gulp-append-prepend": "1.0.9",
+    "react-error-overlay": "6.0.9"
   }
 }

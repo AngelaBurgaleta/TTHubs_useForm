@@ -74,6 +74,9 @@ export default function MyForm({
 
   const addFood = async (datos) => {
     console.log(datos);
+    datos.FoodGroup = datos.FoodGroup.value;
+    datos.FoodSubgroup = datos.FoodSubgroup.value;
+    datos.Country = datos.Country.value;
 
     if (defaultValue) {
       const foodDocRef = doc(db, "data", defaultValue.id);
@@ -146,16 +149,16 @@ export default function MyForm({
     //backgroundColor: "#FFC0A4",
     border: "1px solid #ef8157",
     color: "#ef8157",
-    display: 'block',
-    width: '100%',
-    fontWeight: '400',
-    lineHeight: 'normal',
-    fontSize: '14px',
-    boxShadow: 'none',
-    borderRadius: '4px',
-   padding: "0px 0px 0px 0px",
-   height: "unset",
-   backgroundClip: "paddingBox"
+    display: "block",
+    width: "100%",
+    fontWeight: "400",
+    lineHeight: "normal",
+    fontSize: "14px",
+    boxShadow: "none",
+    borderRadius: "4px",
+    padding: "0px 0px 0px 0px",
+    height: "unset",
+    backgroundClip: "paddingBox",
   };
 
   const nameInput = register("Name", { required: "Required field" });
