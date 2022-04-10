@@ -36,9 +36,9 @@ export function Navigation() {
   return (
   
 
-            <div class="container-fluid">
-              <div class="navbar-wrapper">
-                <div class="navbar-brand">Nutritional Profile Module</div>
+            <div className="container-fluid">
+              <div className="navbar-wrapper">
+                <div className="navbar-brand">Nutritional Profile Module</div>
               </div>
             </div>
 

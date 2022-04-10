@@ -14,7 +14,7 @@ import { FoodTable } from "components/FoodTable";
 export function App() {
   function NotFound() {
     return (
-      <div class="main-panel ps">
+      <div className="main-panel ps">
         <h1>Página no encontrada </h1>
       </div>
     );

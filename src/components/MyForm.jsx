@@ -4,7 +4,6 @@ import { citySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 //import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
 
-
 import Creatable, { useCreatable } from "react-select/creatable";
 
 //https://bluuweb.github.io/react-udemy/07-crud-firestore/#agregar-documentos
@@ -529,50 +528,18 @@ useEffect (() => {
 */
 
   return (
-    <form class="form" onSubmit={handleSubmit(addFood, onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
         <div>
-          {/* 
-            <Dropdown
-              isOpen={dropdown}
-              toggle={openCloseDropdown}
-              direction="right"
-              size="large"
-            >
-              {}
-              <DropdownToggle caret>Dropdown ejemplo</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={() => accionPrueba()} header>
-                  Accion1
-                </DropdownItem>
-                <DropdownItem>
-                
-                  <label>Food Name*</label>
-                  
-                  <div class="form-group">
-                    <Input
-                      name={nameInput.name}
-                      placeholder=".col-xs-6"
-                      defaultValue={defaultValue?.Name}
-                      readOnly={showInfo}
-                      innerRef={nameInput.ref}
-                      onChange={nameInput.onChange}
-                      onBlur={nameInput.onBlur}
-                      type="text"
-                    />
-                  </div>
-                </DropdownItem>
-                <DropdownItem>Accion1</DropdownItem>
-                <DropdownItem disabled>Acciondes</DropdownItem>
-              </DropdownMenu>{" "}
-            </Dropdown>*/}
           {page === 1 && (
-            <div class="row">
-              <div class="col-sm-6 col-lg-4">
+            <div className="row">
+              <div className="col-sm-6 col-lg-4">
                 <label>Food Name*</label>
 
                 <div
-                  class={errors.Name ? "has-danger form-group" : "form-group"}
+                  className={
+                    errors.Name ? "has-danger form-group" : "form-group"
+                  }
                 >
                   <Input
                     name={nameInput.name}
@@ -584,7 +551,7 @@ useEffect (() => {
                     type="text"
                   />
                   {errors.Name && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
@@ -608,14 +575,14 @@ useEffect (() => {
                     )}
                   />
                   {errors.FoodGroup && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
                 <label>Food Subgroup *</label>
                 <div
-                  class={
+                  className={
                     errors.FoodSubgroup ? "has-danger form-group" : "form-group"
                   }
                 >
@@ -633,16 +600,16 @@ useEffect (() => {
                     )}
                   />
                   {errors.FoodSubgroup && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>Country</label>
 
-                <div class="form-group">
+                <div className="form-group">
                   <div></div>
                   <Controller
                     control={control}
@@ -660,7 +627,9 @@ useEffect (() => {
                 </div>
                 <label>Energy(Kcal/100g) *</label>
                 <div
-                  class={errors.Energy ? "has-danger form-group" : "form-group"}
+                  className={
+                    errors.Energy ? "has-danger form-group" : "form-group"
+                  }
                 >
                   <Input
                     name={energyInput.name}
@@ -673,19 +642,19 @@ useEffect (() => {
                     min="0"
                   />
                   {errors.Energy && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
 
                 <label>Energy(KJ/100g) *</label>
-                <div class={"form-group"}>
+                <div className={"form-group"}>
                   <Input value={energykjValue * 4.184} readOnly={true} />
                 </div>
 
                 <label>Water(g/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={waterInput.name}
                     defaultValue={defaultValue?.Water}
@@ -698,7 +667,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Fibre(g/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={fibreInput.name}
                     defaultValue={defaultValue?.Fibre}
@@ -712,7 +681,7 @@ useEffect (() => {
                 </div>
                 <label>Saturated Fatty Acids(g/100g)*</label>
                 <div
-                  class={
+                  className={
                     errors.SaturatedFattyAcids
                       ? "has-danger form-group"
                       : "form-group"
@@ -730,13 +699,13 @@ useEffect (() => {
                   />
 
                   {errors.SaturatedFattyAcids && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
                 <label>Monounsaturated Fatty Acids(g/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={monounsaturatedfattyacidsInput.name}
                     defaultValue={defaultValue?.MonounsaturatedFattyAcids}
@@ -749,7 +718,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Polyunsaturated Fatty Acids(g/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={polyunsaturatedfattyacidsInput.name}
                     defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
@@ -762,10 +731,10 @@ useEffect (() => {
                   />
                 </div>
               </div>
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>Total Proteins(g/100g) *</label>
                 <div
-                  class={
+                  className={
                     errors.TotalProteins
                       ? "has-danger form-group"
                       : "form-group"
@@ -782,14 +751,14 @@ useEffect (() => {
                     min="0"
                   />
                   {errors.TotalProteins && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
                 <label>Total Carbohydrates(g/100g) *</label>
                 <div
-                  class={
+                  className={
                     errors.TotalCarbohydrates
                       ? "has-danger form-group"
                       : "form-group"
@@ -806,14 +775,14 @@ useEffect (() => {
                     min="0"
                   />
                   {errors.TotalCarbohydrates && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
                 <label>Total Sugars (g/100g)*</label>
                 <div
-                  class={
+                  className={
                     errors.TotalSugars ? "has-danger form-group" : "form-group"
                   }
                 >
@@ -828,14 +797,14 @@ useEffect (() => {
                     min="0"
                   />
                   {errors.TotalSugars && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
                 </div>
                 <label color="red">Total Lipids(gr/100gr) *</label>
                 <div
-                  class={
+                  className={
                     errors.TotalLipids ? "has-danger form-group" : "form-group"
                   }
                 >
@@ -850,7 +819,7 @@ useEffect (() => {
                     min="0"
                   />
                   {errors.TotalLipids && !showInfo && (
-                    <label class="error">
+                    <label className="error">
                       <code>Field required</code>
                     </label>
                   )}
@@ -858,7 +827,7 @@ useEffect (() => {
 
                 <div col="col-md-6 ml-auto mr-auto">
                   <label>Unsaturated Fatty Acids(g/100g)</label>
-                  <div class="form-group">
+                  <div className="form-group">
                     <Input
                       name={unsaturatedfattyacidsInput.name}
                       defaultValue={defaultValue?.UnsaturatedFattyAcids}
@@ -871,7 +840,7 @@ useEffect (() => {
                     />
                   </div>
                   <label>Trans Fatty Acids(g/100g)</label>
-                  <div class="form-group">
+                  <div className="form-group">
                     <Input
                       name={transfattyacidsInput.name}
                       defaultValue={defaultValue?.TransFattyAcids}
@@ -886,7 +855,7 @@ useEffect (() => {
 
                   <label>Cholesterol(g/100g)</label>
 
-                  <div class="form-group">
+                  <div className="form-group">
                     <Input
                       name={cholesterolInput.name}
                       defaultValue={defaultValue?.Cholesterol}
@@ -904,10 +873,10 @@ useEffect (() => {
           )}
 
           {page === 2 && (
-            <div class="row">
-              <div class="col-sm-6 col-lg-4">
+            <div className="row">
+              <div className="col-sm-6 col-lg-4">
                 <label>Ash(g/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={ashInput.name}
                     defaultValue={defaultValue?.Ash}
@@ -920,7 +889,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>A: Retinol(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={aInput.name}
                     defaultValue={defaultValue?.A}
@@ -934,7 +903,7 @@ useEffect (() => {
                 </div>
 
                 <label>Beta-carotenes(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={betacarotenesInput.name}
                     defaultValue={defaultValue?.BetaCarotenes}
@@ -947,7 +916,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>B1: Thiamine(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b1Input.name}
                     defaultValue={defaultValue?.B1}
@@ -961,7 +930,7 @@ useEffect (() => {
                 </div>
 
                 <label>B2: Riboflavin(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b2Input.name}
                     defaultValue={defaultValue?.B2}
@@ -975,9 +944,9 @@ useEffect (() => {
                 </div>
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>B3: Niacin(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b3Input.name}
                     defaultValue={defaultValue?.B3}
@@ -990,7 +959,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>B5: Pantothenic Acid(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b5Input.name}
                     defaultValue={defaultValue?.B5}
@@ -1003,7 +972,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>B6: Pyridoxine(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b6Input.name}
                     defaultValue={defaultValue?.B6}
@@ -1016,7 +985,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>B8: Biotin(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b8Input.name}
                     defaultValue={defaultValue?.B8}
@@ -1029,7 +998,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>B9: Folic Acid(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b9Input.name}
                     defaultValue={defaultValue?.B9}
@@ -1043,9 +1012,9 @@ useEffect (() => {
                 </div>
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>B12: Cobalamin(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={b12Input.name}
                     defaultValue={defaultValue?.B12}
@@ -1058,7 +1027,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>C: Ascorbic Acid(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={cInput.name}
                     defaultValue={defaultValue?.C}
@@ -1071,7 +1040,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>D: Calciferol(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={dInput.name}
                     defaultValue={defaultValue?.D}
@@ -1084,7 +1053,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>E: Tocopherol(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={eInput.name}
                     defaultValue={defaultValue?.E}
@@ -1097,7 +1066,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>K(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={kInput.name}
                     defaultValue={defaultValue?.K}
@@ -1111,10 +1080,10 @@ useEffect (() => {
                 </div>
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>Ethanol(g/100g)</label>
 
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={ethanolInput.name}
                     defaultValue={defaultValue?.Ethanol}
@@ -1128,7 +1097,7 @@ useEffect (() => {
                 </div>
 
                 <label>Sodium(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={sodiumInput.name}
                     defaultValue={defaultValue?.Sodium}
@@ -1142,7 +1111,7 @@ useEffect (() => {
                 </div>
 
                 <label>Calcium(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={calciumInput.name}
                     defaultValue={defaultValue?.Calcium}
@@ -1155,7 +1124,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Potassium(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={potassiumInput.name}
                     defaultValue={defaultValue?.Potassium}
@@ -1168,7 +1137,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Phosphorus(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={phosphorusInput.name}
                     defaultValue={defaultValue?.Phosphorus}
@@ -1182,9 +1151,9 @@ useEffect (() => {
                 </div>
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>Iron(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={ironInput.name}
                     defaultValue={defaultValue?.Iron}
@@ -1197,7 +1166,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Magnesium(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={magnesiumInput.name}
                     defaultValue={defaultValue?.Magnesium}
@@ -1210,7 +1179,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Zinc(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={zincInput.name}
                     defaultValue={defaultValue?.Zinc}
@@ -1223,7 +1192,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Copper(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={copperInput.name}
                     defaultValue={defaultValue?.Copper}
@@ -1236,7 +1205,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Fluorine(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={fluorineInput.name}
                     defaultValue={defaultValue?.Fluorine}
@@ -1250,9 +1219,9 @@ useEffect (() => {
                 </div>
               </div>
 
-              <div class="col-sm-6 col-lg-4">
+              <div className="col-sm-6 col-lg-4">
                 <label>Iodine(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={iodineInput.name}
                     defaultValue={defaultValue?.Iodine}
@@ -1265,7 +1234,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Manganese(mg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={manganeseInput.name}
                     defaultValue={defaultValue?.Manganese}
@@ -1279,7 +1248,7 @@ useEffect (() => {
                 </div>
 
                 <label>Selenium(µg/100g)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={seleniumInput.name}
                     defaultValue={defaultValue?.Selenium}
@@ -1292,7 +1261,7 @@ useEffect (() => {
                   />
                 </div>
                 <label>Edible Portion(%)</label>
-                <div class="form-group">
+                <div className="form-group">
                   <Input
                     name={edibleportionInput.name}
                     defaultValue={defaultValue?.EdiblePortion}
@@ -1310,24 +1279,24 @@ useEffect (() => {
         </div>
       </CardBody>
       <CardFooter>
-        <div class="row">
+        <div className="row">
           {" "}
-          <div class="form group">
+          <div className="form group">
             <Button
               color="danger"
-              class="btn-round btn btn-info"
+              className="btn-round btn btn-info"
               onClick={handleClose}
             >
               Close
             </Button>
           </div>
-          <div class="col-sm-6 col-lg-3">
-            <div class="form group">
+          <div className="col-sm-6 col-lg-3">
+            <div className="form group">
               {!showInfo && page === 2 && (
                 <Button
                   type="submit"
                   color="info"
-                  class="btn-round btn btn-info"
+                  className="btn-round btn btn-info"
                 >
                   ADD
                 </Button>
@@ -1338,19 +1307,19 @@ useEffect (() => {
                   onClick={goNextPage}
                   type="submit"
                   color="warning"
-                  class="btn-round btn btn-info"
+                  className="btn-round btn btn-info"
                 >
                   NEXT
                 </Button>
               )}
             </div>
           </div>
-          <div class="col-md-3 ml-auto">
-            <div class="form group">
+          <div className="col-md-3 ml-auto">
+            <div className="form group">
               <Button
                 onClick={goPrevPage}
                 color="default"
-                class="btn-round btn btn-info"
+                className="btn-round btn btn-info"
               >
                 BACK
               </Button>
@@ -1366,7 +1335,7 @@ useEffect (() => {
           errors.TotalLipids ||
           errors.TotalProteins ||
           errors.TotalSugars) && (
-          <label class="error">
+          <label className="error">
             <code>Missing fields to fill</code>
           </label>
         )}

@@ -1,6 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
-
-
+import React, { useState, useEffect } from "react";
 
 //https://bluuweb.github.io/react-udemy/07-crud-firestore/#agregar-documentos
 import {
@@ -49,8 +47,6 @@ export function FoodTable() {
   const foodsCollectionRefs = collection(db, "data");
 
   //PAGINACION
-
-
 
   //PAGINACION
   /*
@@ -123,14 +119,15 @@ const cargarDocumentos = () => {
   //Para que la vista se renderice a la tabla de foods
 
   useEffect(() => {
-    const getFoods = async() => {
+    const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
 
       console.log(data);
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      console.log(setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))))
+      console.log(
+        setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      );
     };
-
 
     getFoods();
   }, []);
@@ -141,7 +138,7 @@ const cargarDocumentos = () => {
 
   const deleteFood = async (food) => {
     await deleteDoc(doc(db, "data", food.id));
-    
+
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
 
@@ -199,13 +196,13 @@ const cargarDocumentos = () => {
 
   return (
     <>
-      <html class="nav-open">
-        <body class="perfect-scrollbar-on">
-          <div class="main-panel ps ps--active-y">
+      <html className="nav-open">
+        <body className="perfect-scrollbar-on">
+          <div className="main-panel ps ps--active-y">
             <Navbar expand="lg" className="navbar-absolute fixed-top">
-              <div class="container-fluid">
-                <div class="navbar-wrapper">
-                  <div class="row">
+              <div className="container-fluid">
+                <div className="navbar-wrapper">
+                  <div className="row">
                     <Button
                       className="btn-round btn-icon btn"
                       color="success"
@@ -214,30 +211,18 @@ const cargarDocumentos = () => {
                     >
                       <i className="nc-icon nc-simple-add"></i>
                     </Button>
-                    <div class="navbar-brand">Food Table </div>
+                    <div className="navbar-brand">Food Table </div>
                   </div>
                 </div>
 
-                <div class="justify-content-end collapse navbar-collapse">
-                  <button class="btn-round btn btn-warning btn-sm">
+                <div className="justify-content-end collapse navbar-collapse">
+                  <button className="btn-round btn btn-warning btn-sm">
                     Light
                   </button>
-                  <button class="btn-round btn btn-warning btn-sm">
+                  <button className="btn-round btn btn-warning btn-sm">
                     Gluten free
                   </button>
                 </div>
-                {/* 
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <Button
-                      className="btn-round btn-icon btn"
-                      color="success"
-                      onClick={handleShow}
-                    >
-                      <i className="nc-icon nc-simple-add"></i>
-                    </Button>
-                  </li>
-                </ul>*/}
               </div>
             </Navbar>
 
@@ -260,7 +245,7 @@ const cargarDocumentos = () => {
                     </InputGroup>
                   </form>
                   <Card id="cards">
-                     <CardBody>
+                    <CardBody>
                       <Table striped>
                         <thead className="text-success">
                           <tr>
@@ -269,11 +254,14 @@ const cargarDocumentos = () => {
                               title="Toggle SortBy"
                               onClick={() => sorting("Name")}
                             >
-                              <div className="rt-resizable-header-content::after" caret>
+                              <div
+                                className="rt-resizable-header-content::after"
+                                caret
+                              >
                                 Name
                               </div>
                             </th>
-                            
+
                             <th>Food Group</th>
                             <th>Food Subgroup</th>
                             <th>Country</th>
@@ -281,7 +269,7 @@ const cargarDocumentos = () => {
                           </tr>
                         </thead>
                         <tbody>
-                         {foods
+                          {foods
                             .filter((val) => {
                               if (search === "") {
                                 return val;
@@ -292,9 +280,9 @@ const cargarDocumentos = () => {
                               ) {
                                 return val;
                               }
-                            }) 
+                            })
 
-                             .map((food) => (
+                            .map((food) => (
                               <tr key={food.id}>
                                 <th>{food.Name}</th>
                                 <th>{food.FoodGroup}</th>
@@ -302,12 +290,12 @@ const cargarDocumentos = () => {
                                 <th>{food.Country}</th>
                                 <th>{food.Energy}</th>
 
-                                <div class="card-body">
+                                <div className="card-body">
                                   <Button
                                     className="btn-icon btn-link edit btn btn-danger btn-sm"
                                     onClick={() => deleteFood(food)}
                                   >
-                                    <i class="fa fa-times"></i>
+                                    <i className="fa fa-times"></i>
                                   </Button>
 
                                   <Button
@@ -330,43 +318,43 @@ const cargarDocumentos = () => {
                     </CardBody>
 
                     <CardFooter>
-                      <nav class aral-label="pagination">
-                        <div class="row">
-                          <div class="col-sm-5"></div>
-                          <div class="col-sm-4">
-                            <ul class="pagination text-center">
-                              <li class="page-item">
-                                <a arial-label="Previous" class="page-link">
+                      <nav className aral-label="pagination">
+                        <div className="row">
+                          <div className="col-sm-5"></div>
+                          <div className="col-sm-4">
+                            <ul className="pagination text-center">
+                              <li className="page-item">
+                                <a arial-label="Previous" className="page-link">
                                   <span aria-hidden="true" color="success">
                                     <i
                                       aria-hidden="true"
-                                      class="fa fa-angle-double-left"
+                                      className="fa fa-angle-double-left"
                                     ></i>
                                   </span>
                                 </a>
                               </li>
-                              <li class="page-item">
-                                <a href="#pablo" class="page-link">
+                              <li className="page-item">
+                                <a href="#pablo" className="page-link">
                                   1
                                 </a>
                               </li>
-                              <li class="page-item">
-                                <a href="#pablo" class="page-link">
+                              <li className="page-item">
+                                <a href="#pablo" className="page-link">
                                   2
                                 </a>
                               </li>
-                              <li class="page-item" color="success">
-                                <a href="#pablo" class="page-link">
+                              <li className="page-item" color="success">
+                                <a href="#pablo" className="page-link">
                                   3
                                 </a>
                               </li>
 
-                              <li class="page-item">
-                                <a arial-label="Next" class="page-link">
+                              <li className="page-item">
+                                <a arial-label="Next" className="page-link">
                                   <span aria-hidden="true">
                                     <i
                                       aria-hidden="true"
-                                      class="fa fa-angle-double-right"
+                                      className="fa fa-angle-double-right"
                                     ></i>
                                   </span>
                                 </a>
@@ -378,7 +366,10 @@ const cargarDocumentos = () => {
                     </CardFooter>
                   </Card>
 
-                  <Modal isOpen={show} style= {{maxWidth: "100%", width: "90%"}}>
+                  <Modal
+                    isOpen={show}
+                    style={{ maxWidth: "100%", width: "90%" }}
+                  >
                     <ModalHeader>
                       {showInfo ? "Show" : openFood ? "Edit" : "Create"} food
                     </ModalHeader>
