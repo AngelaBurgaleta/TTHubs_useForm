@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import data from "./mock-data.json";
+
 import { FoodTable } from "./FoodTable";
 
 import {

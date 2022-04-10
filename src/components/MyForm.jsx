@@ -1,16 +1,9 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
-import data from "./mock-data.json";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {citySelect, foodgroupSelect, foodsubgroupSelect} from './Selects'
+import { citySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 //import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-} from "reactstrap";
+
 
 import Creatable, { useCreatable } from "react-select/creatable";
 
@@ -150,7 +143,7 @@ export default function MyForm({
   const styleDanger = {
     //backgroundColor: "#FFC0A4",
     border: "1px solid #ef8157",
-    color: "#ef8157",
+    //color: "#ef8157",
     display: "block",
     width: "100%",
     fontWeight: "400",
@@ -519,8 +512,6 @@ export default function MyForm({
 
   //SELECTS
 
-  
-
   //WATCH
   const energykjValue = watch("Energy");
 
@@ -616,7 +607,7 @@ useEffect (() => {
                       />
                     )}
                   />
-                  {errors.FoodGroup && (
+                  {errors.FoodGroup && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -641,7 +632,7 @@ useEffect (() => {
                       />
                     )}
                   />
-                  {errors.FoodSubgroup && (
+                  {errors.FoodSubgroup && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -681,7 +672,7 @@ useEffect (() => {
                     type="number"
                     min="0"
                   />
-                  {errors.Energy && (
+                  {errors.Energy && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -738,7 +729,7 @@ useEffect (() => {
                     min="0"
                   />
 
-                  {errors.SaturatedFattyAcids && (
+                  {errors.SaturatedFattyAcids && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -790,7 +781,7 @@ useEffect (() => {
                     type="number"
                     min="0"
                   />
-                  {errors.TotalProteins && (
+                  {errors.TotalProteins && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -814,7 +805,7 @@ useEffect (() => {
                     type="number"
                     min="0"
                   />
-                  {errors.TotalCarbohydrates && (
+                  {errors.TotalCarbohydrates && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>
@@ -858,7 +849,7 @@ useEffect (() => {
                     type="number"
                     min="0"
                   />
-                  {errors.TotalLipids && (
+                  {errors.TotalLipids && !showInfo && (
                     <label class="error">
                       <code>Field required</code>
                     </label>

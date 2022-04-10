@@ -1,14 +1,8 @@
 import React, { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Nav, Button } from "reactstrap";
+import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
-import PerfectScrollbar from "perfect-scrollbar";
-import Home from "./pages/Home";
-import { Mock_table } from "./pages/Mock_table";
-import { FoodTable } from "./FoodTable";
-import { AddFood } from "./AddFood";
-import Statistics from "./pages/Statistics";
-import Admin from "../layouts/Admin";
+
 
 //import logo from "logo.svg";
 import logoTT from "./logoTT.png";
@@ -18,20 +12,7 @@ var ps;
 export function Sidebar(props) {
   // verifies if routeName is the one active (in browser input)
 
-  /*React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps = new PerfectScrollbar(sidebar.current, {
-        suppressScrollX: true,
-        suppressScrollY: false,
-      });
-    }
 
-    return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
-        ps.destroy();
-      }
-    };
-  });*/
 
   const sidebar = useRef();
 

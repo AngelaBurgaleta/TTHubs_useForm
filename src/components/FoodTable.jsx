@@ -1,7 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
-import data from "./mock-data.json";
-import { useForm } from "react-hook-form";
+
+
 
 //https://bluuweb.github.io/react-udemy/07-crud-firestore/#agregar-documentos
 import {

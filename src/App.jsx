@@ -1,38 +1,13 @@
-import React, { useEffect, useRef, useState, Fragment } from "react";
-import {
-  doc,
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import React, { Fragment } from "react";
+
 import Home from "./components/pages/Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Statistics from "./components/pages/Statistics";
 
 import { Sidebar } from "./components/Sidebar";
 
-import { db } from "./firebase/firebaseConfig";
-import {
-  CardTitle,
-  Card,
-  CardBody,
-  Table,
-  Col,
-  Row,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Form,
-  Button,
-} from "reactstrap";
-import { nanoid } from "nanoid";
+
+
 import { FoodTable } from "components/FoodTable";
 //import { FoodTable_hookform } from "components/FoodTable_hookform";
 
