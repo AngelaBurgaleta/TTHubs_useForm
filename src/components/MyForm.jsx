@@ -60,7 +60,7 @@ export default function MyForm({
     watch,
     trigger,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: { FoodGroup: "food.FoodGroup", FoodSubgroup: "food.FoodSubgroup" } })
 
   const onSubmit = (data) => {
     console.log(data);
@@ -1306,7 +1306,7 @@ useEffect (() => {
                 <Button
                   onClick={goNextPage}
                   type="submit"
-                  color="warning"
+                  color="info"
                   className="btn-round btn btn-info"
                 >
                   NEXT
@@ -1319,7 +1319,7 @@ useEffect (() => {
               <Button
                 onClick={goPrevPage}
                 color="default"
-                className="btn-round btn btn-info"
+                className="btn-round btn btn-default"
               >
                 BACK
               </Button>
