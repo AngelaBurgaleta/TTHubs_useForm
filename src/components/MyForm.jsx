@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { citySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
+import { countrySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 //import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
 
@@ -60,31 +60,38 @@ export default function MyForm({
     watch,
     trigger,
     formState: { errors },
-  } = useForm({ defaultValues: { FoodGroup: "food.FoodGroup", FoodSubgroup: "food.FoodSubgroup" } })
+  } = useForm({ defaultValues: { FoodGroup: defaultValue?.FoodGroup || "", FoodSubgroup: defaultValue?.FoodSubgroup || "", Country: defaultValue?.Country || "" } })
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
   const addFood = async (datos) => {
-    console.log(datos);
-    datos.FoodGroup = datos.FoodGroup.value;
-    datos.FoodSubgroup = datos.FoodSubgroup.value;
-    datos.Country = datos.Country.value;
+    console.log(1, datos);
+     
+    datos.FoodGroup = typeof datos.FoodGroup === 'string' ? datos.FoodGroup : datos.FoodGroup.value
+    datos.FoodSubgroup = typeof datos.FoodSubgroup === 'string' ? datos.FoodSubgroup : datos.FoodSubgroup.value
+    if(datos.Country) {datos.Country = typeof datos.Country === 'string' ? datos.Country : datos.Country.value}  
+ 
 
     if (defaultValue) {
+      console.log(defaultValue);
       const foodDocRef = doc(db, "data", defaultValue.id);
-      await updateDoc(foodDocRef, datos);
+      await updateDoc(foodDocRef, datos)
     } else {
       await addDoc(foodsCollectionRefs, datos);
+      
     }
 
+    
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
+      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
 
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       handleClose();
     };
+
 
     getFoods();
     //Hay 46 registros
@@ -137,6 +144,8 @@ export default function MyForm({
     reset({ Manganese: " " });
     reset({ Selenium: " " });
     reset({ EdiblePortion: " " }); //46
+
+    console.log(2, datos)
   };
 
   const styleDanger = {
@@ -619,7 +628,7 @@ useEffect (() => {
                       <Creatable
                         defaultInputValue={defaultValue?.Country}
                         isClearable
-                        options={citySelect}
+                        options={countrySelect}
                         {...field}
                       />
                     )}

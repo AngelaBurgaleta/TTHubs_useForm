@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const citySelect = [
+export const countrySelect = [
     { value: "Spain", label: "Spain" },
     { value: "Italy", label: "Italy" },
     { value: "Portugal", label: "Portugal" },
