@@ -105,104 +105,104 @@ export default function MyForm({
     }
     if (datos.MonounsaturatedFattyAcids) {
       datos.MonounsaturatedFattyAcids = parseInt(datos.MonounsaturatedFattyAcids);
-    }
+    } 
     if (datos.PolyunsaturatedFattyAcids) {
       datos.PolyunsaturatedFattyAcids = parseInt(datos.PolyunsaturatedFattyAcids);
     }
     if (datos.UnsaturatedFattyAcids) {
-      parseInt(datos.UnsaturatedFattyAcids);
+      datos.UnsaturatedFattyAcids = parseInt(datos.UnsaturatedFattyAcids);
     }
-    if (datos.TranFattyAcids) {
-      parseInt(datos.TranFattyAcids);
+    if (datos.TransFattyAcids) {
+      datos.TransFattyAcids = parseInt(datos.TransFattyAcids);
     }
 
     if (datos.Cholesterol) {
-      parseInt(datos.Cholesterol);
+      datos.Cholesterol = parseInt(datos.Cholesterol);
     }
     if (datos.Ash) {
-      parseInt(datos.Ash);
+      datos.Ash = parseInt(datos.Ash);
     }
     if (datos.A) {
-      parseInt(datos.A);
+     datos.A =  parseInt(datos.A);
     }
     if (datos.BetaCarotenes) {
-      parseInt(datos.BetaCarotenes);
+      datos.BetaCarotenes = parseInt(datos.BetaCarotenes);
     }
     if (datos.B1) {
-      parseInt(datos.B1);
+     datos.B1 = parseInt(datos.B1);
     }
     if (datos.B2) {
-      parseInt(datos.B2);
+      datos.B2 = parseInt(datos.B2);
     }
     if (datos.B3) {
-      parseInt(datos.B3);
+      datos.B3 = parseInt(datos.B3);
     }
     if (datos.B5) {
-      parseInt(datos.B5);
+      datos.B5 = parseInt(datos.B5);
     }
     if (datos.B6) {
-      parseInt(datos.B6);
+      datos.B6 = parseInt(datos.B6);
     }
     if (datos.B8) {
-      parseInt(datos.B8);
+      datos.B8 = parseInt(datos.B8);
     }
     if (datos.B9) {
-      parseInt(datos.B9);
+      datos.B9 = parseInt(datos.B9);
     }
     if (datos.B12) {
-      parseInt(datos.B12);
+      datos.B12 = parseInt(datos.B12);
     }
     if (datos.C) {
-      parseInt(datos.C);
+      datos.C = parseInt(datos.C);
     }
     if (datos.D) {
-      parseInt(datos.D);
+      datos.D = parseInt(datos.D);
     }
     if (datos.E) {
-      parseInt(datos.E);
+      datos.E = parseInt(datos.E);
     }
     if (datos.K) {
-      parseInt(datos.K);
+      datos.K = parseInt(datos.K);
     }
     if (datos.Ethanol) {
-      parseInt(datos.Ethanol);
+      datos.Ethanol = parseInt(datos.Ethanol);
     }
     if (datos.Sodium) {
-      parseInt(datos.Sodium);
+      datos.Sodium = parseInt(datos.Sodium);
     }
     if (datos.Calcium) {
-      parseInt(datos.Calcium);
+      datos.Calcium = parseInt(datos.Calcium);
     }
     if (datos.Potassium) {
-      parseInt(datos.Potassium);
+      datos.Potassium = parseInt(datos.Potassium);
     }
     if (datos.Phosphorus) {
-      parseInt(datos.Phosphorus);
+      datos.Phosphorus = parseInt(datos.Phosphorus);
     }
     if (datos.Iron) {
-      parseInt(datos.Iron);
+      datos.Iron = parseInt(datos.Iron);
     }
     if (datos.Magnesium) {
-      parseInt(datos.Magnesium);
+      datos.Magnesium = parseInt(datos.Magnesium);
     }
     if (datos.Zinc) {
-      parseInt(datos.Zinc);
+      datos.Zinc = parseInt(datos.Zinc);
     }
 
     if (datos.Copper) {
-      parseInt(datos.Copper);
+     datos.Copper = parseInt(datos.Copper);
     }
     if (datos.Fluorine) {
-      parseInt(datos.Fluorine);
+     datos.Fluorine = parseInt(datos.Fluorine);
     }
     if (datos.Iodine) {
-      parseInt(datos.Iodine);
+      datos.Iodine = parseInt(datos.Iodine);
     }
     if (datos.Manganese) {
-      parseInt(datos.Manganese);
+     datos.Manganese = parseInt(datos.Manganese);
     }
     if (datos.Selenium) {
-      parseInt(datos.Selenium);
+      datos.Selenium = parseInt(datos.Selenium);
     }
 
     if (defaultValue) {
@@ -646,23 +646,12 @@ export default function MyForm({
     setPage((page) => page - 1);
   }
 
-  //SELECTS
+
 
   //WATCH
   const energykjValue = watch("Energy");
 
-  /*
-useEffect (() => {
-  const subscription = watch((data) => {
-    console.log(data)
-  })
 
-  return () =>  {
-    subscription.unsubscribe();
-  }
-
-}, [energykjValue])
-*/
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
