@@ -42,6 +42,7 @@ import {
   ModalHeader,
   Navbar,
 } from "reactstrap";
+import { displayPartsToString } from "typescript";
 
 //import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
@@ -60,7 +61,13 @@ export default function MyForm({
     watch,
     trigger,
     formState: { errors },
-  } = useForm({ defaultValues: { FoodGroup: defaultValue?.FoodGroup || "", FoodSubgroup: defaultValue?.FoodSubgroup || "", Country: defaultValue?.Country || "" } })
+  } = useForm({
+    defaultValues: {
+      FoodGroup: defaultValue?.FoodGroup || "",
+      FoodSubgroup: defaultValue?.FoodSubgroup || "",
+      Country: defaultValue?.Country || "",
+    },
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -68,30 +75,151 @@ export default function MyForm({
 
   const addFood = async (datos) => {
     console.log(1, datos);
-     
-    datos.FoodGroup = typeof datos.FoodGroup === 'string' ? datos.FoodGroup : datos.FoodGroup.value
-    datos.FoodSubgroup = typeof datos.FoodSubgroup === 'string' ? datos.FoodSubgroup : datos.FoodSubgroup.value
-    if(datos.Country) {datos.Country = typeof datos.Country === 'string' ? datos.Country : datos.Country.value}  
- 
+
+    datos.FoodGroup =
+      typeof datos.FoodGroup === "string"
+        ? datos.FoodGroup
+        : datos.FoodGroup.value;
+    datos.FoodSubgroup =
+      typeof datos.FoodSubgroup === "string"
+        ? datos.FoodSubgroup
+        : datos.FoodSubgroup.value;
+    if (datos.Country) {
+      datos.Country =
+        typeof datos.Country === "string" ? datos.Country : datos.Country.value;
+    }
+
+    datos.Energy = parseInt(datos.Energy);
+    //datos.Energykj = parseInt(datos.Energykj);
+    datos.TotalCarbohydrates = parseInt(datos.TotalCarbohydrates);
+    datos.TotalLipids = parseInt(datos.TotalLipids);
+    datos.TotalProteins = parseInt(datos.TotalProteins);
+    datos.TotalSugars = parseInt(datos.TotalSugars);
+    datos.SaturatedFattyAcids = parseInt(datos.SaturatedFattyAcids);
+
+    if (datos.Water) {
+      datos.Water = parseInt(datos.Water);
+    }
+    if (datos.Fibre) {
+     datos.Fibre = parseInt(datos.Fibre);
+    }
+    if (datos.MonounsaturatedFattyAcids) {
+      datos.MonounsaturatedFattyAcids = parseInt(datos.MonounsaturatedFattyAcids);
+    }
+    if (datos.PolyunsaturatedFattyAcids) {
+      datos.PolyunsaturatedFattyAcids = parseInt(datos.PolyunsaturatedFattyAcids);
+    }
+    if (datos.UnsaturatedFattyAcids) {
+      parseInt(datos.UnsaturatedFattyAcids);
+    }
+    if (datos.TranFattyAcids) {
+      parseInt(datos.TranFattyAcids);
+    }
+
+    if (datos.Cholesterol) {
+      parseInt(datos.Cholesterol);
+    }
+    if (datos.Ash) {
+      parseInt(datos.Ash);
+    }
+    if (datos.A) {
+      parseInt(datos.A);
+    }
+    if (datos.BetaCarotenes) {
+      parseInt(datos.BetaCarotenes);
+    }
+    if (datos.B1) {
+      parseInt(datos.B1);
+    }
+    if (datos.B2) {
+      parseInt(datos.B2);
+    }
+    if (datos.B3) {
+      parseInt(datos.B3);
+    }
+    if (datos.B5) {
+      parseInt(datos.B5);
+    }
+    if (datos.B6) {
+      parseInt(datos.B6);
+    }
+    if (datos.B8) {
+      parseInt(datos.B8);
+    }
+    if (datos.B9) {
+      parseInt(datos.B9);
+    }
+    if (datos.B12) {
+      parseInt(datos.B12);
+    }
+    if (datos.C) {
+      parseInt(datos.C);
+    }
+    if (datos.D) {
+      parseInt(datos.D);
+    }
+    if (datos.E) {
+      parseInt(datos.E);
+    }
+    if (datos.K) {
+      parseInt(datos.K);
+    }
+    if (datos.Ethanol) {
+      parseInt(datos.Ethanol);
+    }
+    if (datos.Sodium) {
+      parseInt(datos.Sodium);
+    }
+    if (datos.Calcium) {
+      parseInt(datos.Calcium);
+    }
+    if (datos.Potassium) {
+      parseInt(datos.Potassium);
+    }
+    if (datos.Phosphorus) {
+      parseInt(datos.Phosphorus);
+    }
+    if (datos.Iron) {
+      parseInt(datos.Iron);
+    }
+    if (datos.Magnesium) {
+      parseInt(datos.Magnesium);
+    }
+    if (datos.Zinc) {
+      parseInt(datos.Zinc);
+    }
+
+    if (datos.Copper) {
+      parseInt(datos.Copper);
+    }
+    if (datos.Fluorine) {
+      parseInt(datos.Fluorine);
+    }
+    if (datos.Iodine) {
+      parseInt(datos.Iodine);
+    }
+    if (datos.Manganese) {
+      parseInt(datos.Manganese);
+    }
+    if (datos.Selenium) {
+      parseInt(datos.Selenium);
+    }
 
     if (defaultValue) {
       console.log(defaultValue);
       const foodDocRef = doc(db, "data", defaultValue.id);
-      await updateDoc(foodDocRef, datos)
+      await updateDoc(foodDocRef, datos);
     } else {
       await addDoc(foodsCollectionRefs, datos);
-      
     }
 
-    
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       handleClose();
     };
-
 
     getFoods();
     //Hay 46 registros
@@ -129,7 +257,7 @@ export default function MyForm({
     reset({ C: " " });
     reset({ D: " " });
     reset({ E: " " });
-    reset({ K: " " }); //15 + 16 = 31
+    reset({ K: " " }); 
     reset({ Ethanol: " " });
     reset({ Sodium: " " });
     reset({ Calcium: " " });
@@ -143,9 +271,9 @@ export default function MyForm({
     reset({ Iodine: " " });
     reset({ Manganese: " " });
     reset({ Selenium: " " });
-    reset({ EdiblePortion: " " }); //46
+    reset({ EdiblePortion: " " });
 
-    console.log(2, datos)
+    console.log(2, datos);
   };
 
   const styleDanger = {

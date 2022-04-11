@@ -12,6 +12,7 @@ import {
   orderBy,
   onSnapshot,
   query,
+  where,
 } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import {
@@ -37,6 +38,7 @@ import {
   Navbar,
 } from "reactstrap";
 import MyForm from "./MyForm";
+import Query from "./Query";
 //import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 export function FoodTable() {
@@ -45,6 +47,22 @@ export function FoodTable() {
 
   //Referencia a la db
   const foodsCollectionRefs = collection(db, "data");
+
+  //QUERY
+  
+  const getRealValue = (val) => +val || val
+  const q = query(foodsCollectionRefs, where(getRealValue("Energy"), "==", 12));
+
+  onSnapshot(q, (snapshot) => {
+    let data = [];
+    snapshot.docs.forEach((doc) => {
+      data.push({ ...doc.data(), id: doc.id });
+    });
+
+    console.log(data);
+  });
+
+
 
   //PAGINACION
 
@@ -384,6 +402,15 @@ const cargarDocumentos = () => {
                       />
                     </ModalBody>
                   </Modal>
+                  <div>
+                    <Query
+                      defaultValue={openFood}
+                      foodsCollectionRefs={foodsCollectionRefs}
+                      handleClose={handleClose}
+                      setFoods={setFoods}
+                      showInfo={showInfo}
+                    />
+                  </div>
                 </Col>
               </Row>
             </div>
