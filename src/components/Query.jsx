@@ -30,7 +30,7 @@ export default function Query({
   //const [messages, setMessages] = useState(null);
 
   useEffect(() => {
-    const q = query(foodsCollectionRefs, where("FoodGroup", "==", "Beverages"));
+    const q = query(foodsCollectionRefs, where("Energy", "<=", 200));
 
     onSnapshot(q, (snapshot) => {
       const items = [];
@@ -53,10 +53,7 @@ export default function Query({
     <div>
       {beverages.map((food) => (
         <tr key={food.id}>
-          <th>{food.Name}</th>
-          <th>{food.FoodGroup}</th>
-          <th>{food.FoodSubgroup}</th>
-          <th>{food.Country}</th>
+         
           <th>{food.Energy}</th>
         </tr>
       ))}

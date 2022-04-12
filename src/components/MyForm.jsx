@@ -73,6 +73,7 @@ export default function MyForm({
     console.log(data);
   };
 
+  //Añadir nuevo registro de comida
   const addFood = async (datos) => {
     console.log(1, datos);
 
@@ -90,7 +91,7 @@ export default function MyForm({
     }
 
     datos.Energy = parseInt(datos.Energy);
-    //datos.Energykj = parseInt(datos.Energykj);
+    datos.Energykj = energyValue * 4.184;
     datos.TotalCarbohydrates = parseInt(datos.TotalCarbohydrates);
     datos.TotalLipids = parseInt(datos.TotalLipids);
     datos.TotalProteins = parseInt(datos.TotalProteins);
@@ -101,13 +102,17 @@ export default function MyForm({
       datos.Water = parseInt(datos.Water);
     }
     if (datos.Fibre) {
-     datos.Fibre = parseInt(datos.Fibre);
+      datos.Fibre = parseInt(datos.Fibre);
     }
     if (datos.MonounsaturatedFattyAcids) {
-      datos.MonounsaturatedFattyAcids = parseInt(datos.MonounsaturatedFattyAcids);
-    } 
+      datos.MonounsaturatedFattyAcids = parseInt(
+        datos.MonounsaturatedFattyAcids
+      );
+    }
     if (datos.PolyunsaturatedFattyAcids) {
-      datos.PolyunsaturatedFattyAcids = parseInt(datos.PolyunsaturatedFattyAcids);
+      datos.PolyunsaturatedFattyAcids = parseInt(
+        datos.PolyunsaturatedFattyAcids
+      );
     }
     if (datos.UnsaturatedFattyAcids) {
       datos.UnsaturatedFattyAcids = parseInt(datos.UnsaturatedFattyAcids);
@@ -123,13 +128,13 @@ export default function MyForm({
       datos.Ash = parseInt(datos.Ash);
     }
     if (datos.A) {
-     datos.A =  parseInt(datos.A);
+      datos.A = parseInt(datos.A);
     }
     if (datos.BetaCarotenes) {
       datos.BetaCarotenes = parseInt(datos.BetaCarotenes);
     }
     if (datos.B1) {
-     datos.B1 = parseInt(datos.B1);
+      datos.B1 = parseInt(datos.B1);
     }
     if (datos.B2) {
       datos.B2 = parseInt(datos.B2);
@@ -190,16 +195,16 @@ export default function MyForm({
     }
 
     if (datos.Copper) {
-     datos.Copper = parseInt(datos.Copper);
+      datos.Copper = parseInt(datos.Copper);
     }
     if (datos.Fluorine) {
-     datos.Fluorine = parseInt(datos.Fluorine);
+      datos.Fluorine = parseInt(datos.Fluorine);
     }
     if (datos.Iodine) {
       datos.Iodine = parseInt(datos.Iodine);
     }
     if (datos.Manganese) {
-     datos.Manganese = parseInt(datos.Manganese);
+      datos.Manganese = parseInt(datos.Manganese);
     }
     if (datos.Selenium) {
       datos.Selenium = parseInt(datos.Selenium);
@@ -215,15 +220,13 @@ export default function MyForm({
 
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      //console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       handleClose();
     };
 
     getFoods();
-    //Hay 46 registros
-    //A tres columnas 15 + 15 + 16
 
     reset({ Name: "" });
     reset({ FoodGroup: "" });
@@ -257,7 +260,7 @@ export default function MyForm({
     reset({ C: " " });
     reset({ D: " " });
     reset({ E: " " });
-    reset({ K: " " }); 
+    reset({ K: " " });
     reset({ Ethanol: " " });
     reset({ Sodium: " " });
     reset({ Calcium: " " });
@@ -272,6 +275,7 @@ export default function MyForm({
     reset({ Manganese: " " });
     reset({ Selenium: " " });
     reset({ EdiblePortion: " " });
+    
 
     console.log(2, datos);
   };
@@ -310,6 +314,10 @@ export default function MyForm({
       message: "Only numbers are accepted",
     },
     required: "Required field",
+  });
+
+  const energykjInput = register("Energykj", {
+    value: energyValue * 4.184,
   });
 
   const waterInput = register("Water", {
@@ -625,6 +633,7 @@ export default function MyForm({
       "FoodGroup",
       "FoodSubgroup",
       "Energy",
+      "Energykj",
       "SaturatedFattyAcids",
       "TotalProteins",
       "TotalCarbohydrates",
@@ -638,6 +647,7 @@ export default function MyForm({
       "UnsaturatedFattyAcids",
       "TransFattyAcids",
       "Cholesterol",
+      "Light"
     ]);
   }
 
@@ -646,12 +656,8 @@ export default function MyForm({
     setPage((page) => page - 1);
   }
 
-
-
   //WATCH
-  const energykjValue = watch("Energy");
-
-
+  const energyValue = watch("Energy");
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -776,7 +782,13 @@ export default function MyForm({
 
                 <label>Energy(KJ/100g) *</label>
                 <div className={"form-group"}>
-                  <Input value={energykjValue * 4.184} readOnly={true} />
+                  <Input
+                    name={energykjInput.name}
+                    innerRef={energykjInput.ref}
+                    onChange={energykjInput.onChange}
+                    value={energyValue * 4.184}
+                    readOnly={true}
+                  />
                 </div>
 
                 <label>Water(g/100g)</label>
