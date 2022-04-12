@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { countrySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
@@ -60,6 +60,7 @@ export default function MyForm({
     reset,
     watch,
     trigger,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -92,6 +93,8 @@ export default function MyForm({
 
     datos.Energy = parseInt(datos.Energy);
     datos.Energykj = energyValue * 4.184;
+    datos.Light = parseInt(energyValue) < 10 ? true : false;
+
     datos.TotalCarbohydrates = parseInt(datos.TotalCarbohydrates);
     datos.TotalLipids = parseInt(datos.TotalLipids);
     datos.TotalProteins = parseInt(datos.TotalProteins);
@@ -275,7 +278,7 @@ export default function MyForm({
     reset({ Manganese: " " });
     reset({ Selenium: " " });
     reset({ EdiblePortion: " " });
-    
+    reset({ Light: " " });
 
     console.log(2, datos);
   };
@@ -318,6 +321,19 @@ export default function MyForm({
 
   const energykjInput = register("Energykj", {
     value: energyValue * 4.184,
+  });
+
+  //const [light, setLight] = useState(false)
+  useEffect(() => {
+    setValue("Light", parseInt(energyValue) < 10 ? true : false);
+    console.log("Hello");
+    console.log("A veeer", parseInt(energyValue) < 10);
+  }, [energyValue]);
+
+  console.log(lightValue);
+
+  const lightInput = register("Light", {
+    required: false,
   });
 
   const waterInput = register("Water", {
@@ -647,7 +663,7 @@ export default function MyForm({
       "UnsaturatedFattyAcids",
       "TransFattyAcids",
       "Cholesterol",
-      "Light"
+      "Light",
     ]);
   }
 
@@ -658,6 +674,7 @@ export default function MyForm({
 
   //WATCH
   const energyValue = watch("Energy");
+  const lightValue = watch("Light");
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -736,6 +753,16 @@ export default function MyForm({
                       <code>Field required</code>
                     </label>
                   )}
+                </div>
+                <label>Light</label>
+                <div className="form-group">
+                  <Input
+                    name={lightInput.name}
+                    onChange={lightInput.onChange}
+                    readOnly={true}
+                    value={parseInt(energyValue) < 10 ? true : false}
+                    type="boolean"
+                  />
                 </div>
               </div>
               <div className="col-sm-6 col-lg-4">

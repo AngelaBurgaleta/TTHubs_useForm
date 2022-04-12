@@ -48,22 +48,6 @@ export function FoodTable() {
   //Referencia a la db
   const foodsCollectionRefs = collection(db, "data");
 
-  //QUERY
-  
-  /* 
-  const getRealValue = (val) => +val || val
-  const q = query(foodsCollectionRefs, where(getRealValue("Energy"), "==", 12));
-
-  onSnapshot(q, (snapshot) => {
-    let data = [];
-    snapshot.docs.forEach((doc) => {
-      data.push({ ...doc.data(), id: doc.id });
-    });
-
-    console.log(data);
-  });
-*/
-
 
   //PAGINACION
 
