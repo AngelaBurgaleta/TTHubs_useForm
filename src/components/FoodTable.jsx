@@ -50,6 +50,7 @@ export function FoodTable() {
 
   //QUERY
   
+  /* 
   const getRealValue = (val) => +val || val
   const q = query(foodsCollectionRefs, where(getRealValue("Energy"), "==", 12));
 
@@ -61,7 +62,7 @@ export function FoodTable() {
 
     console.log(data);
   });
-
+*/
 
 
   //PAGINACION

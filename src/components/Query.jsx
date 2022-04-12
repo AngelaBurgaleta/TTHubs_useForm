@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   doc,
   collection,
@@ -12,6 +12,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { setConstantValue } from "typescript";
+//https://firebase.google.com/docs/firestore/solutions/aggregation
 
 export default function Query({
   defaultValue,
@@ -21,18 +23,43 @@ export default function Query({
   showInfo,
 }) {
   //QUERYS
-  const getRealValue = (val) => +val || val
-  const q = query(foodsCollectionRefs, where("Energy", "<=", 42));
 
-  onSnapshot(q, (snapshot) => {
-    let data = [];
-    snapshot.docs.forEach((doc) => {
-      data.push({ ...doc.data(), id: doc.id });
+  const [beverages, setBeverages] = useState([]);
+  //const [loading, setLoading] = useState(false);
+  //const [snapShot, setSnapshot] = useState(null);
+  //const [messages, setMessages] = useState(null);
+
+  useEffect(() => {
+    const q = query(foodsCollectionRefs, where("FoodGroup", "==", "Beverages"));
+
+    onSnapshot(q, (snapshot) => {
+      const items = [];
+
+      snapshot.forEach((doc) => {
+        items.push({ ...doc.data(), id: doc.id });
+      });
+
+      setBeverages(items);
     });
 
-    console.log(data);
-  });
+    //console.log("Current cities in CA: ", cities.join(", "));
+    //console.log("Current beverages in CA: ", cities);
+  }, []);
+
+  console.log("Lista bebidas: ", beverages);
 
 
-return <div>data</div>
+  return (
+    <div>
+      {beverages.map((food) => (
+        <tr key={food.id}>
+          <th>{food.Name}</th>
+          <th>{food.FoodGroup}</th>
+          <th>{food.FoodSubgroup}</th>
+          <th>{food.Country}</th>
+          <th>{food.Energy}</th>
+        </tr>
+      ))}
+    </div>
+  ); 
 }
