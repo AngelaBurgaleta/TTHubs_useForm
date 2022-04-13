@@ -71,8 +71,13 @@ export default function MyForm({
   });
 
   const onSubmit = (data) => {
+    console.log("pagina onsubmit: ", page)
     console.log(data);
   };
+
+  useEffect (() => {
+    console.log("pagina useEffect: ", page)
+  })
 
   //Añadir nuevo registro de comida
   const addFood = async (datos) => {
@@ -223,7 +228,7 @@ export default function MyForm({
 
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
-      //console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log("getFoods: ", data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       handleClose();
@@ -329,12 +334,6 @@ export default function MyForm({
     console.log("Hello");
     console.log("A veeer", parseInt(energyValue) < 10);
   }, [energyValue]);
-
-  console.log(lightValue);
-
-  const lightInput = register("Light", {
-    required: false,
-  });
 
   const waterInput = register("Water", {
     min: {
@@ -642,8 +641,10 @@ export default function MyForm({
   const [page, setPage] = useState(1);
 
   function goNextPage() {
-    if (page === 2) return;
+    if (page === 3) return;
+    console.log("pagina: ", page)
     setPage((page) => page + 1);
+
     trigger([
       "Name",
       "FoodGroup",
@@ -663,7 +664,37 @@ export default function MyForm({
       "UnsaturatedFattyAcids",
       "TransFattyAcids",
       "Cholesterol",
-      "Light",
+
+      "Ash",
+      "A",
+      "BetaCarotenes",
+      "B1",
+      "B2",
+      "Ethanol",
+      "Sodium",
+
+      "Calcium",
+      "Potassium",
+      "Phosphorus",
+      "B3",
+      "B5",
+      "B6",
+      "B8",
+      "B9",
+      "Iron",
+      "Magnesium",
+      "Zinc",
+      "Copper",
+      "Fluorine",
+      "B12",
+      "C",
+      "D",
+      "E",
+      "K",
+      "Iodine",
+      "Manganese",
+      "Selenium",
+      "EdiblePortion",
     ]);
   }
 
@@ -674,14 +705,15 @@ export default function MyForm({
 
   //WATCH
   const energyValue = watch("Energy");
-  const lightValue = watch("Light");
+
+  
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
         <div>
-          {page === 1 && (
-            <div className="row">
+          
+            <div style={{ display: page === 1 ? 'flex' : 'none' }} className="row">
               <div className="col-sm-6 col-lg-4">
                 <label>Food Name*</label>
 
@@ -754,16 +786,6 @@ export default function MyForm({
                     </label>
                   )}
                 </div>
-                <label>Light</label>
-                <div className="form-group">
-                  <Input
-                    name={lightInput.name}
-                    onChange={lightInput.onChange}
-                    readOnly={true}
-                    value={parseInt(energyValue) < 10 ? true : false}
-                    type="boolean"
-                  />
-                </div>
               </div>
               <div className="col-sm-6 col-lg-4">
                 <label>Country</label>
@@ -809,13 +831,7 @@ export default function MyForm({
 
                 <label>Energy(KJ/100g) *</label>
                 <div className={"form-group"}>
-                  <Input
-                    name={energykjInput.name}
-                    innerRef={energykjInput.ref}
-                    onChange={energykjInput.onChange}
-                    value={energyValue * 4.184}
-                    readOnly={true}
-                  />
+                  <Input value={energyValue * 4.184} readOnly={true} />
                 </div>
 
                 <label>Water(g/100g)</label>
@@ -1035,10 +1051,10 @@ export default function MyForm({
                 </div>
               </div>
             </div>
-          )}
+          
 
-          {page === 2 && (
-            <div className="row">
+          
+            <div style={{display: page ===2 ? 'flex' : 'none'}} className="row">
               <div className="col-sm-6 col-lg-4">
                 <label>Ash(g/100g)</label>
                 <div className="form-group">
@@ -1440,7 +1456,69 @@ export default function MyForm({
                 </div>
               </div>
             </div>
+
+            <div style={{ display: page === 3 ? 'flex' : 'none' }} className="row">
+              Tercera pagina
+            </div>
+            
+          
+          {/* 
+          {page === 3 && (
+            <div className="checkbox-radios col-sm-3">
+              <div className="row">
+                <div className="col-sm-10">
+                  <label>Energy Levels</label>
+
+                  <div className="checkbox-radios col-sm-10">
+                    <Input
+                      type="checkbox"
+                      className="form-check-input"
+                      checked={parseInt(energyValue) < 10 ? true : false}
+                      readOnly={true}
+                    />
+
+                    <span className="form-check-sign">Light</span>
+                  </div>
+                  <div className="checkbox-radios col-sm-10">
+                    <Input
+                      type="checkbox"
+                      className="form-check-input"
+                      checked={parseInt(energyValue) < 10 ? true : false}
+                      readOnly={true}
+                    />
+
+                    <span className="form-check-sign">Light</span>
+                  </div>
+                </div>
+                <div className="col-sm-10">
+                  <label>Energy Levels</label>
+
+                  <div className="col-sm-6 col-lg-3">
+                    <Input
+                      type="checkbox"
+                      className="form-check-input"
+                      checked={parseInt(energyValue) < 10 ? true : false}
+                      readOnly={true}
+                    />
+
+                    <span className="form-check-sign">Light</span>
+                  </div>
+                  <div className="checkbox-radios col-sm-10">
+                    <Input
+                      type="checkbox"
+                      className="form-check-input"
+                      checked={parseInt(energyValue) < 10 ? true : false}
+                      readOnly={true}
+                    />
+
+                    <span className="form-check-sign">Light</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
+          
+           */}
         </div>
       </CardBody>
       <CardFooter>
@@ -1457,7 +1535,7 @@ export default function MyForm({
           </div>
           <div className="col-sm-6 col-lg-3">
             <div className="form group">
-              {!showInfo && page === 2 && (
+              {!showInfo && page === 3 && (
                 <Button
                   type="submit"
                   color="info"
@@ -1467,10 +1545,10 @@ export default function MyForm({
                 </Button>
               )}
 
-              {page !== 2 && (
+              {page !== 3 && (
                 <Button
                   onClick={goNextPage}
-                  type="submit"
+                  type = 'button'
                   color="info"
                   className="btn-round btn btn-info"
                 >
