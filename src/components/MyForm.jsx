@@ -71,13 +71,13 @@ export default function MyForm({
   });
 
   const onSubmit = (data) => {
-    console.log("pagina onsubmit: ", page)
+    console.log("pagina onsubmit: ", page);
     console.log(data);
   };
 
-  useEffect (() => {
-    console.log("pagina useEffect: ", page)
-  })
+  useEffect(() => {
+    console.log("pagina useEffect: ", page);
+  });
 
   //Añadir nuevo registro de comida
   const addFood = async (datos) => {
@@ -96,10 +96,14 @@ export default function MyForm({
         typeof datos.Country === "string" ? datos.Country : datos.Country.value;
     }
 
+    
+    
+    datos.Light = parseInt(energyValue) < 10 ? true : false;
+    
+    
+    
     datos.Energy = parseInt(datos.Energy);
     datos.Energykj = energyValue * 4.184;
-    datos.Light = parseInt(energyValue) < 10 ? true : false;
-
     datos.TotalCarbohydrates = parseInt(datos.TotalCarbohydrates);
     datos.TotalLipids = parseInt(datos.TotalLipids);
     datos.TotalProteins = parseInt(datos.TotalProteins);
@@ -228,7 +232,10 @@ export default function MyForm({
 
     const getFoods = async () => {
       const data = await getDocs(foodsCollectionRefs);
-      console.log("getFoods: ", data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(
+        "getFoods: ",
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
 
       setFoods(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       handleClose();
@@ -324,16 +331,19 @@ export default function MyForm({
     required: "Required field",
   });
 
+
+ /*
   const energykjInput = register("Energykj", {
     value: energyValue * 4.184,
   });
 
-  //const [light, setLight] = useState(false)
+  
   useEffect(() => {
     setValue("Light", parseInt(energyValue) < 10 ? true : false);
     console.log("Hello");
     console.log("A veeer", parseInt(energyValue) < 10);
   }, [energyValue]);
+  */
 
   const waterInput = register("Water", {
     min: {
@@ -642,7 +652,7 @@ export default function MyForm({
 
   function goNextPage() {
     if (page === 3) return;
-    console.log("pagina: ", page)
+    console.log("pagina: ", page);
     setPage((page) => page + 1);
 
     trigger([
@@ -706,819 +716,961 @@ export default function MyForm({
   //WATCH
   const energyValue = watch("Energy");
 
-  
-
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
       <CardBody>
         <div>
-          
-            <div style={{ display: page === 1 ? 'flex' : 'none' }} className="row">
-              <div className="col-sm-6 col-lg-4">
-                <label>Food Name*</label>
+          <div
+            style={{ display: page === 1 ? "flex" : "none" }}
+            className="row"
+          >
+            <div className="col-sm-6 col-lg-4">
+              <label>Food Name*</label>
 
-                <div
-                  className={
-                    errors.Name ? "has-danger form-group" : "form-group"
-                  }
-                >
-                  <Input
-                    name={nameInput.name}
-                    defaultValue={defaultValue?.Name}
-                    readOnly={showInfo}
-                    innerRef={nameInput.ref}
-                    onChange={nameInput.onChange}
-                    onBlur={nameInput.onBlur}
-                    type="text"
-                  />
-                  {errors.Name && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label>Food Group*</label>
-                <div
-                  className="form-group"
-                  style={errors.FoodGroup ? styleDanger : null}
-                >
-                  <Controller
-                    control={control}
-                    name={foodgroupInput.name}
-                    defaultValue={defaultValue?.FoodGroup}
-                    render={({ field }) => (
-                      <Creatable
-                        defaultInputValue={defaultValue?.FoodGroup}
-                        isClearable
-                        options={foodgroupSelect}
-                        {...field}
-                      />
-                    )}
-                  />
-                  {errors.FoodGroup && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label>Food Subgroup *</label>
-                <div
-                  className={
-                    errors.FoodSubgroup ? "has-danger form-group" : "form-group"
-                  }
-                >
-                  <Controller
-                    control={control}
-                    name={foodsubgroupInput.name}
-                    defaultValue={defaultValue?.FoodSubgroup}
-                    render={({ field }) => (
-                      <Creatable
-                        defaultInputValue={defaultValue?.FoodSubgroup}
-                        isClearable
-                        options={foodsubgroupSelect}
-                        {...field}
-                      />
-                    )}
-                  />
-                  {errors.FoodSubgroup && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
+              <div
+                className={errors.Name ? "has-danger form-group" : "form-group"}
+              >
+                <Input
+                  name={nameInput.name}
+                  defaultValue={defaultValue?.Name}
+                  readOnly={showInfo}
+                  innerRef={nameInput.ref}
+                  onChange={nameInput.onChange}
+                  onBlur={nameInput.onBlur}
+                  type="text"
+                />
+                {errors.Name && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
               </div>
-              <div className="col-sm-6 col-lg-4">
-                <label>Country</label>
-
-                <div className="form-group">
-                  <div></div>
-                  <Controller
-                    control={control}
-                    name={countryInput.name}
-                    readOnly={showInfo}
-                    render={({ field }) => (
-                      <Creatable
-                        defaultInputValue={defaultValue?.Country}
-                        isClearable
-                        options={countrySelect}
-                        {...field}
-                      />
-                    )}
-                  />
-                </div>
-                <label>Energy(Kcal/100g) *</label>
-                <div
-                  className={
-                    errors.Energy ? "has-danger form-group" : "form-group"
-                  }
-                >
-                  <Input
-                    name={energyInput.name}
-                    defaultValue={defaultValue?.Energy}
-                    readOnly={showInfo}
-                    innerRef={energyInput.ref}
-                    onChange={energyInput.onChange}
-                    onBlur={energyInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {errors.Energy && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
+              <label>Food Group*</label>
+              <div
+                className="form-group"
+                style={errors.FoodGroup ? styleDanger : null}
+              >
+                <Controller
+                  control={control}
+                  name={foodgroupInput.name}
+                  defaultValue={defaultValue?.FoodGroup}
+                  render={({ field }) => (
+                    <Creatable
+                      defaultInputValue={defaultValue?.FoodGroup}
+                      isClearable
+                      options={foodgroupSelect}
+                      {...field}
+                    />
                   )}
-                </div>
-
-                <label>Energy(KJ/100g) *</label>
-                <div className={"form-group"}>
-                  <Input value={energyValue * 4.184} readOnly={true} />
-                </div>
-
-                <label>Water(g/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={waterInput.name}
-                    defaultValue={defaultValue?.Water}
-                    readOnly={showInfo}
-                    innerRef={waterInput.ref}
-                    onChange={waterInput.onChange}
-                    onBlur={waterInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Fibre(g/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={fibreInput.name}
-                    defaultValue={defaultValue?.Fibre}
-                    readOnly={showInfo}
-                    innerRef={fibreInput.ref}
-                    onChange={fibreInput.onChange}
-                    onBlur={fibreInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Saturated Fatty Acids(g/100g)*</label>
-                <div
-                  className={
-                    errors.SaturatedFattyAcids
-                      ? "has-danger form-group"
-                      : "form-group"
-                  }
-                >
-                  <Input
-                    name={saturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.SaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={saturatedfattyacidsInput.ref}
-                    onChange={saturatedfattyacidsInput.onChange}
-                    onBlur={saturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-
-                  {errors.SaturatedFattyAcids && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label>Monounsaturated Fatty Acids(g/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={monounsaturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.MonounsaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={monounsaturatedfattyacidsInput.ref}
-                    onChange={monounsaturatedfattyacidsInput.onChange}
-                    onBlur={monounsaturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Polyunsaturated Fatty Acids(g/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={polyunsaturatedfattyacidsInput.name}
-                    defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
-                    readOnly={showInfo}
-                    innerRef={polyunsaturatedfattyacidsInput.ref}
-                    onChange={polyunsaturatedfattyacidsInput.onChange}
-                    onBlur={polyunsaturatedfattyacidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
+                />
+                {errors.FoodGroup && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
               </div>
-              <div className="col-sm-6 col-lg-4">
-                <label>Total Proteins(g/100g) *</label>
-                <div
-                  className={
-                    errors.TotalProteins
-                      ? "has-danger form-group"
-                      : "form-group"
-                  }
-                >
-                  <Input
-                    name={totalproteinsInput.name}
-                    defaultValue={defaultValue?.TotalProteins}
-                    readOnly={showInfo}
-                    innerRef={totalproteinsInput.ref}
-                    onChange={totalproteinsInput.onChange}
-                    onBlur={totalproteinsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {errors.TotalProteins && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label>Total Carbohydrates(g/100g) *</label>
-                <div
-                  className={
-                    errors.TotalCarbohydrates
-                      ? "has-danger form-group"
-                      : "form-group"
-                  }
-                >
-                  <Input
-                    name={totalcarbohydratesInput.name}
-                    defaultValue={defaultValue?.TotalCarbohydrates}
-                    readOnly={showInfo}
-                    innerRef={totalcarbohydratesInput.ref}
-                    onChange={totalcarbohydratesInput.onChange}
-                    onBlur={totalcarbohydratesInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {errors.TotalCarbohydrates && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label>Total Sugars (g/100g)*</label>
-                <div
-                  className={
-                    errors.TotalSugars ? "has-danger form-group" : "form-group"
-                  }
-                >
-                  <Input
-                    name={totalsugarsInput.name}
-                    defaultValue={defaultValue?.TotalSugars}
-                    readOnly={showInfo}
-                    innerRef={totalsugarsInput.ref}
-                    onChange={totalsugarsInput.onChange}
-                    onBlur={totalsugarsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {errors.TotalSugars && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-                <label color="red">Total Lipids(gr/100gr) *</label>
-                <div
-                  className={
-                    errors.TotalLipids ? "has-danger form-group" : "form-group"
-                  }
-                >
-                  <Input
-                    name={totallipidsInput.name}
-                    defaultValue={defaultValue?.TotalLipids}
-                    readOnly={showInfo}
-                    innerRef={totallipidsInput.ref}
-                    onChange={totallipidsInput.onChange}
-                    onBlur={totallipidsInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                  {errors.TotalLipids && !showInfo && (
-                    <label className="error">
-                      <code>Field required</code>
-                    </label>
-                  )}
-                </div>
-
-                <div col="col-md-6 ml-auto mr-auto">
-                  <label>Unsaturated Fatty Acids(g/100g)</label>
-                  <div className="form-group">
-                    <Input
-                      name={unsaturatedfattyacidsInput.name}
-                      defaultValue={defaultValue?.UnsaturatedFattyAcids}
-                      readOnly={showInfo}
-                      innerRef={unsaturatedfattyacidsInput.ref}
-                      onChange={unsaturatedfattyacidsInput.onChange}
-                      onBlur={unsaturatedfattyacidsInput.onBlur}
-                      type="number"
-                      min="0"
+              <label>Food Subgroup *</label>
+              <div
+                className={
+                  errors.FoodSubgroup ? "has-danger form-group" : "form-group"
+                }
+              >
+                <Controller
+                  control={control}
+                  name={foodsubgroupInput.name}
+                  defaultValue={defaultValue?.FoodSubgroup}
+                  render={({ field }) => (
+                    <Creatable
+                      defaultInputValue={defaultValue?.FoodSubgroup}
+                      isClearable
+                      options={foodsubgroupSelect}
+                      {...field}
                     />
-                  </div>
-                  <label>Trans Fatty Acids(g/100g)</label>
-                  <div className="form-group">
-                    <Input
-                      name={transfattyacidsInput.name}
-                      defaultValue={defaultValue?.TransFattyAcids}
-                      readOnly={showInfo}
-                      innerRef={transfattyacidsInput.ref}
-                      onChange={transfattyacidsInput.onChange}
-                      onBlur={transfattyacidsInput.onBlur}
-                      type="number"
-                      min="0"
-                    />
-                  </div>
-
-                  <label>Cholesterol(g/100g)</label>
-
-                  <div className="form-group">
-                    <Input
-                      name={cholesterolInput.name}
-                      defaultValue={defaultValue?.Cholesterol}
-                      readOnly={showInfo}
-                      innerRef={cholesterolInput.ref}
-                      onChange={cholesterolInput.onChange}
-                      onBlur={cholesterolInput.onBlur}
-                      type="number"
-                      min="0"
-                    />
-                  </div>
-                </div>
+                  )}
+                />
+                {errors.FoodSubgroup && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
               </div>
             </div>
-          
+            <div className="col-sm-6 col-lg-4">
+              <label>Country</label>
 
-          
-            <div style={{display: page ===2 ? 'flex' : 'none'}} className="row">
-              <div className="col-sm-6 col-lg-4">
-                <label>Ash(g/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={ashInput.name}
-                    defaultValue={defaultValue?.Ash}
-                    readOnly={showInfo}
-                    innerRef={ashInput.ref}
-                    onChange={ashInput.onChange}
-                    onBlur={ashInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>A: Retinol(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={aInput.name}
-                    defaultValue={defaultValue?.A}
-                    readOnly={showInfo}
-                    innerRef={aInput.ref}
-                    onChange={aInput.onChange}
-                    onBlur={aInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-
-                <label>Beta-carotenes(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={betacarotenesInput.name}
-                    defaultValue={defaultValue?.BetaCarotenes}
-                    readOnly={showInfo}
-                    innerRef={betacarotenesInput.ref}
-                    onChange={betacarotenesInput.onChange}
-                    onBlur={betacarotenesInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>B1: Thiamine(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b1Input.name}
-                    defaultValue={defaultValue?.B1}
-                    readOnly={showInfo}
-                    innerRef={b1Input.ref}
-                    onChange={b1Input.onChange}
-                    onBlur={b1Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-
-                <label>B2: Riboflavin(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b2Input.name}
-                    defaultValue={defaultValue?.B2}
-                    readOnly={showInfo}
-                    innerRef={b2Input.ref}
-                    onChange={b2Input.onChange}
-                    onBlur={b2Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
+              <div className="form-group">
+                <div></div>
+                <Controller
+                  control={control}
+                  name={countryInput.name}
+                  readOnly={showInfo}
+                  render={({ field }) => (
+                    <Creatable
+                      defaultInputValue={defaultValue?.Country}
+                      isClearable
+                      options={countrySelect}
+                      {...field}
+                    />
+                  )}
+                />
+              </div>
+              <label>Energy(Kcal/100g) *</label>
+              <div
+                className={
+                  errors.Energy ? "has-danger form-group" : "form-group"
+                }
+              >
+                <Input
+                  name={energyInput.name}
+                  defaultValue={defaultValue?.Energy}
+                  readOnly={showInfo}
+                  innerRef={energyInput.ref}
+                  onChange={energyInput.onChange}
+                  onBlur={energyInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+                {errors.Energy && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
               </div>
 
-              <div className="col-sm-6 col-lg-4">
-                <label>B3: Niacin(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b3Input.name}
-                    defaultValue={defaultValue?.B3}
-                    readOnly={showInfo}
-                    innerRef={b3Input.ref}
-                    onChange={b3Input.onChange}
-                    onBlur={b3Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>B5: Pantothenic Acid(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b5Input.name}
-                    defaultValue={defaultValue?.B5}
-                    readOnly={showInfo}
-                    innerRef={b5Input.ref}
-                    onChange={b5Input.onChange}
-                    onBlur={b5Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>B6: Pyridoxine(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b6Input.name}
-                    defaultValue={defaultValue?.B6}
-                    readOnly={showInfo}
-                    innerRef={b6Input.ref}
-                    onChange={b6Input.onChange}
-                    onBlur={b6Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>B8: Biotin(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b8Input.name}
-                    defaultValue={defaultValue?.B8}
-                    readOnly={showInfo}
-                    innerRef={b8Input.ref}
-                    onChange={b8Input.onChange}
-                    onBlur={b8Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>B9: Folic Acid(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b9Input.name}
-                    defaultValue={defaultValue?.B9}
-                    readOnly={showInfo}
-                    innerRef={b9Input.ref}
-                    onChange={b9Input.onChange}
-                    onBlur={b9Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
+              <label>Energy(KJ/100g) *</label>
+              <div className={"form-group"}>
+                <Input value={energyValue * 4.184} readOnly={true} />
               </div>
 
-              <div className="col-sm-6 col-lg-4">
-                <label>B12: Cobalamin(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={b12Input.name}
-                    defaultValue={defaultValue?.B12}
-                    readOnly={showInfo}
-                    innerRef={b12Input.ref}
-                    onChange={b12Input.onChange}
-                    onBlur={b12Input.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>C: Ascorbic Acid(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={cInput.name}
-                    defaultValue={defaultValue?.C}
-                    readOnly={showInfo}
-                    innerRef={cInput.ref}
-                    onChange={cInput.onChange}
-                    onBlur={cInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>D: Calciferol(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={dInput.name}
-                    defaultValue={defaultValue?.D}
-                    readOnly={showInfo}
-                    innerRef={dInput.ref}
-                    onChange={dInput.onChange}
-                    onBlur={dInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>E: Tocopherol(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={eInput.name}
-                    defaultValue={defaultValue?.E}
-                    readOnly={showInfo}
-                    innerRef={eInput.ref}
-                    onChange={eInput.onChange}
-                    onBlur={eInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>K(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={kInput.name}
-                    defaultValue={defaultValue?.K}
-                    readOnly={showInfo}
-                    innerRef={kInput.ref}
-                    onChange={kInput.onChange}
-                    onBlur={kInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
+              <label>Water(g/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={waterInput.name}
+                  defaultValue={defaultValue?.Water}
+                  readOnly={showInfo}
+                  innerRef={waterInput.ref}
+                  onChange={waterInput.onChange}
+                  onBlur={waterInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Fibre(g/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={fibreInput.name}
+                  defaultValue={defaultValue?.Fibre}
+                  readOnly={showInfo}
+                  innerRef={fibreInput.ref}
+                  onChange={fibreInput.onChange}
+                  onBlur={fibreInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Saturated Fatty Acids(g/100g)*</label>
+              <div
+                className={
+                  errors.SaturatedFattyAcids
+                    ? "has-danger form-group"
+                    : "form-group"
+                }
+              >
+                <Input
+                  name={saturatedfattyacidsInput.name}
+                  defaultValue={defaultValue?.SaturatedFattyAcids}
+                  readOnly={showInfo}
+                  innerRef={saturatedfattyacidsInput.ref}
+                  onChange={saturatedfattyacidsInput.onChange}
+                  onBlur={saturatedfattyacidsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+
+                {errors.SaturatedFattyAcids && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
+              </div>
+              <label>Monounsaturated Fatty Acids(g/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={monounsaturatedfattyacidsInput.name}
+                  defaultValue={defaultValue?.MonounsaturatedFattyAcids}
+                  readOnly={showInfo}
+                  innerRef={monounsaturatedfattyacidsInput.ref}
+                  onChange={monounsaturatedfattyacidsInput.onChange}
+                  onBlur={monounsaturatedfattyacidsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Polyunsaturated Fatty Acids(g/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={polyunsaturatedfattyacidsInput.name}
+                  defaultValue={defaultValue?.PolyunsaturatedFattyAcids}
+                  readOnly={showInfo}
+                  innerRef={polyunsaturatedfattyacidsInput.ref}
+                  onChange={polyunsaturatedfattyacidsInput.onChange}
+                  onBlur={polyunsaturatedfattyacidsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
+            <div className="col-sm-6 col-lg-4">
+              <label>Total Proteins(g/100g) *</label>
+              <div
+                className={
+                  errors.TotalProteins ? "has-danger form-group" : "form-group"
+                }
+              >
+                <Input
+                  name={totalproteinsInput.name}
+                  defaultValue={defaultValue?.TotalProteins}
+                  readOnly={showInfo}
+                  innerRef={totalproteinsInput.ref}
+                  onChange={totalproteinsInput.onChange}
+                  onBlur={totalproteinsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+                {errors.TotalProteins && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
+              </div>
+              <label>Total Carbohydrates(g/100g) *</label>
+              <div
+                className={
+                  errors.TotalCarbohydrates
+                    ? "has-danger form-group"
+                    : "form-group"
+                }
+              >
+                <Input
+                  name={totalcarbohydratesInput.name}
+                  defaultValue={defaultValue?.TotalCarbohydrates}
+                  readOnly={showInfo}
+                  innerRef={totalcarbohydratesInput.ref}
+                  onChange={totalcarbohydratesInput.onChange}
+                  onBlur={totalcarbohydratesInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+                {errors.TotalCarbohydrates && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
+              </div>
+              <label>Total Sugars (g/100g)*</label>
+              <div
+                className={
+                  errors.TotalSugars ? "has-danger form-group" : "form-group"
+                }
+              >
+                <Input
+                  name={totalsugarsInput.name}
+                  defaultValue={defaultValue?.TotalSugars}
+                  readOnly={showInfo}
+                  innerRef={totalsugarsInput.ref}
+                  onChange={totalsugarsInput.onChange}
+                  onBlur={totalsugarsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+                {errors.TotalSugars && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
+              </div>
+              <label color="red">Total Lipids(gr/100gr) *</label>
+              <div
+                className={
+                  errors.TotalLipids ? "has-danger form-group" : "form-group"
+                }
+              >
+                <Input
+                  name={totallipidsInput.name}
+                  defaultValue={defaultValue?.TotalLipids}
+                  readOnly={showInfo}
+                  innerRef={totallipidsInput.ref}
+                  onChange={totallipidsInput.onChange}
+                  onBlur={totallipidsInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+                {errors.TotalLipids && !showInfo && (
+                  <label className="error">
+                    <code>Field required</code>
+                  </label>
+                )}
               </div>
 
-              <div className="col-sm-6 col-lg-4">
-                <label>Ethanol(g/100g)</label>
-
+              <div col="col-md-6 ml-auto mr-auto">
+                <label>Unsaturated Fatty Acids(g/100g)</label>
                 <div className="form-group">
                   <Input
-                    name={ethanolInput.name}
-                    defaultValue={defaultValue?.Ethanol}
+                    name={unsaturatedfattyacidsInput.name}
+                    defaultValue={defaultValue?.UnsaturatedFattyAcids}
                     readOnly={showInfo}
-                    innerRef={ethanolInput.ref}
-                    onChange={ethanolInput.onChange}
-                    onBlur={ethanolInput.onBlur}
+                    innerRef={unsaturatedfattyacidsInput.ref}
+                    onChange={unsaturatedfattyacidsInput.onChange}
+                    onBlur={unsaturatedfattyacidsInput.onBlur}
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <label>Trans Fatty Acids(g/100g)</label>
+                <div className="form-group">
+                  <Input
+                    name={transfattyacidsInput.name}
+                    defaultValue={defaultValue?.TransFattyAcids}
+                    readOnly={showInfo}
+                    innerRef={transfattyacidsInput.ref}
+                    onChange={transfattyacidsInput.onChange}
+                    onBlur={transfattyacidsInput.onBlur}
                     type="number"
                     min="0"
                   />
                 </div>
 
-                <label>Sodium(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={sodiumInput.name}
-                    defaultValue={defaultValue?.Sodium}
-                    readOnly={showInfo}
-                    innerRef={sodiumInput.ref}
-                    onChange={sodiumInput.onChange}
-                    onBlur={sodiumInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
+                <label>Cholesterol(g/100g)</label>
 
-                <label>Calcium(mg/100g)</label>
                 <div className="form-group">
                   <Input
-                    name={calciumInput.name}
-                    defaultValue={defaultValue?.Calcium}
+                    name={cholesterolInput.name}
+                    defaultValue={defaultValue?.Cholesterol}
                     readOnly={showInfo}
-                    innerRef={calciumInput.ref}
-                    onChange={calciumInput.onChange}
-                    onBlur={calciumInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Potassium(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={potassiumInput.name}
-                    defaultValue={defaultValue?.Potassium}
-                    readOnly={showInfo}
-                    innerRef={potassiumInput.ref}
-                    onChange={potassiumInput.onChange}
-                    onBlur={potassiumInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Phosphorus(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={phosphorusInput.name}
-                    defaultValue={defaultValue?.Phosphorus}
-                    readOnly={showInfo}
-                    innerRef={phosphorusInput.ref}
-                    onChange={phosphorusInput.onChange}
-                    onBlur={phosphorusInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-              </div>
-
-              <div className="col-sm-6 col-lg-4">
-                <label>Iron(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={ironInput.name}
-                    defaultValue={defaultValue?.Iron}
-                    readOnly={showInfo}
-                    innerRef={ironInput.ref}
-                    onChange={ironInput.onChange}
-                    onBlur={ironInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Magnesium(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={magnesiumInput.name}
-                    defaultValue={defaultValue?.Magnesium}
-                    readOnly={showInfo}
-                    innerRef={magnesiumInput.ref}
-                    onChange={magnesiumInput.onChange}
-                    onBlur={magnesiumInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Zinc(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={zincInput.name}
-                    defaultValue={defaultValue?.Zinc}
-                    readOnly={showInfo}
-                    innerRef={zincInput.ref}
-                    onChange={zincInput.onChange}
-                    onBlur={zincInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Copper(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={copperInput.name}
-                    defaultValue={defaultValue?.Copper}
-                    readOnly={showInfo}
-                    innerRef={copperInput.ref}
-                    onChange={copperInput.onChange}
-                    onBlur={copperInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Fluorine(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={fluorineInput.name}
-                    defaultValue={defaultValue?.Fluorine}
-                    readOnly={showInfo}
-                    innerRef={fluorineInput.ref}
-                    onChange={fluorineInput.onChange}
-                    onBlur={fluorineInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-              </div>
-
-              <div className="col-sm-6 col-lg-4">
-                <label>Iodine(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={iodineInput.name}
-                    defaultValue={defaultValue?.Iodine}
-                    readOnly={showInfo}
-                    innerRef={iodineInput.ref}
-                    onChange={iodineInput.onChange}
-                    onBlur={iodineInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Manganese(mg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={manganeseInput.name}
-                    defaultValue={defaultValue?.Manganese}
-                    readOnly={showInfo}
-                    innerRef={manganeseInput.ref}
-                    onChange={manganeseInput.onChange}
-                    onBlur={manganeseInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-
-                <label>Selenium(µg/100g)</label>
-                <div className="form-group">
-                  <Input
-                    name={seleniumInput.name}
-                    defaultValue={defaultValue?.Selenium}
-                    readOnly={showInfo}
-                    innerRef={seleniumInput.ref}
-                    onChange={seleniumInput.onChange}
-                    onBlur={seleniumInput.onBlur}
-                    type="number"
-                    min="0"
-                  />
-                </div>
-                <label>Edible Portion(%)</label>
-                <div className="form-group">
-                  <Input
-                    name={edibleportionInput.name}
-                    defaultValue={defaultValue?.EdiblePortion}
-                    readOnly={showInfo}
-                    innerRef={edibleportionInput.ref}
-                    onChange={edibleportionInput.onChange}
-                    onBlur={edibleportionInput.onBlur}
+                    innerRef={cholesterolInput.ref}
+                    onChange={cholesterolInput.onChange}
+                    onBlur={cholesterolInput.onBlur}
                     type="number"
                     min="0"
                   />
                 </div>
               </div>
             </div>
+          </div>
 
-            <div style={{ display: page === 3 ? 'flex' : 'none' }} className="row">
-              Tercera pagina
+          <div
+            style={{ display: page === 2 ? "flex" : "none" }}
+            className="row"
+          >
+            <div className="col-sm-6 col-lg-4">
+              <label>Ash(g/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={ashInput.name}
+                  defaultValue={defaultValue?.Ash}
+                  readOnly={showInfo}
+                  innerRef={ashInput.ref}
+                  onChange={ashInput.onChange}
+                  onBlur={ashInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>A: Retinol(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={aInput.name}
+                  defaultValue={defaultValue?.A}
+                  readOnly={showInfo}
+                  innerRef={aInput.ref}
+                  onChange={aInput.onChange}
+                  onBlur={aInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+
+              <label>Beta-carotenes(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={betacarotenesInput.name}
+                  defaultValue={defaultValue?.BetaCarotenes}
+                  readOnly={showInfo}
+                  innerRef={betacarotenesInput.ref}
+                  onChange={betacarotenesInput.onChange}
+                  onBlur={betacarotenesInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>B1: Thiamine(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b1Input.name}
+                  defaultValue={defaultValue?.B1}
+                  readOnly={showInfo}
+                  innerRef={b1Input.ref}
+                  onChange={b1Input.onChange}
+                  onBlur={b1Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+
+              <label>B2: Riboflavin(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b2Input.name}
+                  defaultValue={defaultValue?.B2}
+                  readOnly={showInfo}
+                  innerRef={b2Input.ref}
+                  onChange={b2Input.onChange}
+                  onBlur={b2Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
             </div>
-            
-          
-          {/* 
-          {page === 3 && (
-            <div className="checkbox-radios col-sm-3">
-              <div className="row">
-                <div className="col-sm-10">
-                  <label>Energy Levels</label>
 
-                  <div className="checkbox-radios col-sm-10">
-                    <Input
-                      type="checkbox"
-                      className="form-check-input"
-                      checked={parseInt(energyValue) < 10 ? true : false}
-                      readOnly={true}
-                    />
+            <div className="col-sm-6 col-lg-4">
+              <label>B3: Niacin(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b3Input.name}
+                  defaultValue={defaultValue?.B3}
+                  readOnly={showInfo}
+                  innerRef={b3Input.ref}
+                  onChange={b3Input.onChange}
+                  onBlur={b3Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>B5: Pantothenic Acid(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b5Input.name}
+                  defaultValue={defaultValue?.B5}
+                  readOnly={showInfo}
+                  innerRef={b5Input.ref}
+                  onChange={b5Input.onChange}
+                  onBlur={b5Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>B6: Pyridoxine(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b6Input.name}
+                  defaultValue={defaultValue?.B6}
+                  readOnly={showInfo}
+                  innerRef={b6Input.ref}
+                  onChange={b6Input.onChange}
+                  onBlur={b6Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>B8: Biotin(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b8Input.name}
+                  defaultValue={defaultValue?.B8}
+                  readOnly={showInfo}
+                  innerRef={b8Input.ref}
+                  onChange={b8Input.onChange}
+                  onBlur={b8Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>B9: Folic Acid(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b9Input.name}
+                  defaultValue={defaultValue?.B9}
+                  readOnly={showInfo}
+                  innerRef={b9Input.ref}
+                  onChange={b9Input.onChange}
+                  onBlur={b9Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
 
-                    <span className="form-check-sign">Light</span>
-                  </div>
-                  <div className="checkbox-radios col-sm-10">
-                    <Input
-                      type="checkbox"
-                      className="form-check-input"
-                      checked={parseInt(energyValue) < 10 ? true : false}
-                      readOnly={true}
-                    />
+            <div className="col-sm-6 col-lg-4">
+              <label>B12: Cobalamin(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={b12Input.name}
+                  defaultValue={defaultValue?.B12}
+                  readOnly={showInfo}
+                  innerRef={b12Input.ref}
+                  onChange={b12Input.onChange}
+                  onBlur={b12Input.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>C: Ascorbic Acid(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={cInput.name}
+                  defaultValue={defaultValue?.C}
+                  readOnly={showInfo}
+                  innerRef={cInput.ref}
+                  onChange={cInput.onChange}
+                  onBlur={cInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>D: Calciferol(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={dInput.name}
+                  defaultValue={defaultValue?.D}
+                  readOnly={showInfo}
+                  innerRef={dInput.ref}
+                  onChange={dInput.onChange}
+                  onBlur={dInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>E: Tocopherol(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={eInput.name}
+                  defaultValue={defaultValue?.E}
+                  readOnly={showInfo}
+                  innerRef={eInput.ref}
+                  onChange={eInput.onChange}
+                  onBlur={eInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>K(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={kInput.name}
+                  defaultValue={defaultValue?.K}
+                  readOnly={showInfo}
+                  innerRef={kInput.ref}
+                  onChange={kInput.onChange}
+                  onBlur={kInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
 
-                    <span className="form-check-sign">Light</span>
-                  </div>
+            <div className="col-sm-6 col-lg-4">
+              <label>Ethanol(g/100g)</label>
+
+              <div className="form-group">
+                <Input
+                  name={ethanolInput.name}
+                  defaultValue={defaultValue?.Ethanol}
+                  readOnly={showInfo}
+                  innerRef={ethanolInput.ref}
+                  onChange={ethanolInput.onChange}
+                  onBlur={ethanolInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+
+              <label>Sodium(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={sodiumInput.name}
+                  defaultValue={defaultValue?.Sodium}
+                  readOnly={showInfo}
+                  innerRef={sodiumInput.ref}
+                  onChange={sodiumInput.onChange}
+                  onBlur={sodiumInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+
+              <label>Calcium(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={calciumInput.name}
+                  defaultValue={defaultValue?.Calcium}
+                  readOnly={showInfo}
+                  innerRef={calciumInput.ref}
+                  onChange={calciumInput.onChange}
+                  onBlur={calciumInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Potassium(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={potassiumInput.name}
+                  defaultValue={defaultValue?.Potassium}
+                  readOnly={showInfo}
+                  innerRef={potassiumInput.ref}
+                  onChange={potassiumInput.onChange}
+                  onBlur={potassiumInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Phosphorus(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={phosphorusInput.name}
+                  defaultValue={defaultValue?.Phosphorus}
+                  readOnly={showInfo}
+                  innerRef={phosphorusInput.ref}
+                  onChange={phosphorusInput.onChange}
+                  onBlur={phosphorusInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div className="col-sm-6 col-lg-4">
+              <label>Iron(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={ironInput.name}
+                  defaultValue={defaultValue?.Iron}
+                  readOnly={showInfo}
+                  innerRef={ironInput.ref}
+                  onChange={ironInput.onChange}
+                  onBlur={ironInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Magnesium(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={magnesiumInput.name}
+                  defaultValue={defaultValue?.Magnesium}
+                  readOnly={showInfo}
+                  innerRef={magnesiumInput.ref}
+                  onChange={magnesiumInput.onChange}
+                  onBlur={magnesiumInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Zinc(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={zincInput.name}
+                  defaultValue={defaultValue?.Zinc}
+                  readOnly={showInfo}
+                  innerRef={zincInput.ref}
+                  onChange={zincInput.onChange}
+                  onBlur={zincInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Copper(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={copperInput.name}
+                  defaultValue={defaultValue?.Copper}
+                  readOnly={showInfo}
+                  innerRef={copperInput.ref}
+                  onChange={copperInput.onChange}
+                  onBlur={copperInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Fluorine(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={fluorineInput.name}
+                  defaultValue={defaultValue?.Fluorine}
+                  readOnly={showInfo}
+                  innerRef={fluorineInput.ref}
+                  onChange={fluorineInput.onChange}
+                  onBlur={fluorineInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div className="col-sm-6 col-lg-4">
+              <label>Iodine(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={iodineInput.name}
+                  defaultValue={defaultValue?.Iodine}
+                  readOnly={showInfo}
+                  innerRef={iodineInput.ref}
+                  onChange={iodineInput.onChange}
+                  onBlur={iodineInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Manganese(mg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={manganeseInput.name}
+                  defaultValue={defaultValue?.Manganese}
+                  readOnly={showInfo}
+                  innerRef={manganeseInput.ref}
+                  onChange={manganeseInput.onChange}
+                  onBlur={manganeseInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+
+              <label>Selenium(µg/100g)</label>
+              <div className="form-group">
+                <Input
+                  name={seleniumInput.name}
+                  defaultValue={defaultValue?.Selenium}
+                  readOnly={showInfo}
+                  innerRef={seleniumInput.ref}
+                  onChange={seleniumInput.onChange}
+                  onBlur={seleniumInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+              <label>Edible Portion(%)</label>
+              <div className="form-group">
+                <Input
+                  name={edibleportionInput.name}
+                  defaultValue={defaultValue?.EdiblePortion}
+                  readOnly={showInfo}
+                  innerRef={edibleportionInput.ref}
+                  onChange={edibleportionInput.onChange}
+                  onBlur={edibleportionInput.onBlur}
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{ display: page === 3 ? "flex" : "none" }}
+            className="row"
+          >
+            <div className="col-sm-4 col-lg-2">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Low energy</label>
                 </div>
-                <div className="col-sm-10">
-                  <label>Energy Levels</label>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={parseInt(energyValue) < 10 ? true : false}
+                    readOnly={true}
+                  />
 
-                  <div className="col-sm-6 col-lg-3">
-                    <Input
-                      type="checkbox"
-                      className="form-check-input"
-                      checked={parseInt(energyValue) < 10 ? true : false}
-                      readOnly={true}
-                    />
+                  <span className="form-check-sign">Energy free</span>
+                </div>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Low fat</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={parseInt(energyValue) < 10 ? true : false}
+                    readOnly={true}
+                  />
 
-                    <span className="form-check-sign">Light</span>
-                  </div>
-                  <div className="checkbox-radios col-sm-10">
-                    <Input
-                      type="checkbox"
-                      className="form-check-input"
-                      checked={parseInt(energyValue) < 10 ? true : false}
-                      readOnly={true}
-                    />
-
-                    <span className="form-check-sign">Light</span>
-                  </div>
+                  <span className="form-check-sign">Fat free</span>
                 </div>
               </div>
             </div>
-          )}
-          
-           */}
+
+            <div className="col-sm-4 col-lg-2">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Low saturated fat</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={parseInt(energyValue) < 10 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Saturated fat free</span>
+                </div>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Low sugars</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={parseInt(energyValue) < 10 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Sugars free</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-2">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Low sodium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Very low sodium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Sodium free</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of fibre</span>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-2">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High fibre</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of protein</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High protein</span>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-3">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">
+                  High monounsaturated fat
+                </span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">
+                  High polyunsaturated fat
+                </span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={parseInt(energyValue) < 10 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High unsaturated fat</span>
+              </div>
+            </div>
+          </div>
         </div>
       </CardBody>
       <CardFooter>
@@ -1548,7 +1700,7 @@ export default function MyForm({
               {page !== 3 && (
                 <Button
                   onClick={goNextPage}
-                  type = 'button'
+                  type="button"
                   color="info"
                   className="btn-round btn btn-info"
                 >
