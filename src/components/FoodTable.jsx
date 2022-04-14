@@ -268,7 +268,7 @@ const cargarDocumentos = () => {
                             <th>Food Group</th>
                             <th>Food Subgroup</th>
                             <th>Country</th>
-                            <th>Energy(Kcal/KJ)</th>
+                            <th>Energy(Kcal/100g)</th>
                           </tr>
                         </thead>
                         <tbody>

@@ -71,17 +71,83 @@ export default function MyForm({
   });
 
   const onSubmit = (data) => {
-    console.log("pagina onsubmit: ", page);
     console.log(data);
   };
-
-  useEffect(() => {
-    console.log("pagina useEffect: ", page);
-  });
 
   //Añadir nuevo registro de comida
   const addFood = async (datos) => {
     console.log(1, datos);
+
+    //NUTRITIONAL CLAIMS
+
+    datos.LowEnergy =
+      Number(energyValue) < 40 && Number(energyValue) > 4 ? true : false;
+    datos.EnergyFree = Number(energyValue) <= 4 ? true : false;
+
+    datos.LowFat =
+      Number(totalLipidsValue) < 3 && Number(totalLipidsValue) > 0.5
+        ? true
+        : false;
+    datos.FatFree = Number(totalLipidsValue) <= 0.5 ? true : false;
+
+    datos.LowSaturatedFat =
+      Number(saturatedFattyAcidsValue) < 1.5 &&
+      Number(saturatedFattyAcidsValue) > 0.1
+        ? true
+        : false;
+    datos.SaturatedFatFree =
+      Number(saturatedFattyAcidsValue) <= 0.1 ? true : false;
+
+    datos.LowSugars =
+      Number(totalSugarsValue) < 5 && Number(totalSugarsValue) > 0.5
+        ? true
+        : false;
+    datos.SugarsFree = Number(totalSugarsValue) <= 0.5 ? true : false;
+
+    if (datos.Sodium) {
+      datos.LowSodium =
+        Number(sodiumValue) > 40 && Number(sodiumValue) < 120 ? true : false;
+      datos.VeryLowSodium =
+        Number(sodiumValue) <= 40 && Number(sodiumValue) > 5 ? true : false;
+      datos.SodiumFree = Number(sodiumValue) <= 5 ? true : false;
+    }
+
+    if (datos.Fibre) {
+      datos.HighFibre = Number(fibreValue) > 6 ? true : false;
+      datos.SourceFibre =
+        Number(fibreValue) <= 6 && Number(fibreValue) > 3 ? true : false;
+    }
+
+    datos.SourceProtein =
+      Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
+      Number(totalProteinValue) > 0.12 * Number(energyValue)
+        ? true
+        : false;
+    datos.HighProtein =
+      Number(totalProteinValue) > 0.2 * Number(energyValue) ? true : false;
+
+    if (datos.MonounsaturatedFattyAcids) {
+      datos.HighMonounsaturatedFat =
+        Number(monounsaturatedFattyAcidsValue) > 0.2 * Number(energyValue)
+          ? true
+          : false;
+    }
+
+    if (datos.PolyunsaturatedFattyAcids) {
+      datos.HighPolyunsaturatedFat =
+        Number(polyunsaturatedFattyAcidsValue) > 0.2 * Number(energyValue)
+          ? true
+          : false;
+    }
+
+    if (datos.UnsaturatedFattyAcids) {
+      datos.HighUnsaturatedFat =
+        Number(unsaturatedFattyAcidsValue) > 0.2 * Number(energyValue)
+          ? true
+          : false;
+    }
+
+    //CAMBIO DE TIPOS
 
     datos.FoodGroup =
       typeof datos.FoodGroup === "string"
@@ -96,130 +162,120 @@ export default function MyForm({
         typeof datos.Country === "string" ? datos.Country : datos.Country.value;
     }
 
-    
-    
-    datos.Light = parseInt(energyValue) < 10 ? true : false;
-    
-    
-    
-    datos.Energy = parseInt(datos.Energy);
+    datos.Energy = Number(datos.Energy);
     datos.Energykj = energyValue * 4.184;
-    datos.TotalCarbohydrates = parseInt(datos.TotalCarbohydrates);
-    datos.TotalLipids = parseInt(datos.TotalLipids);
-    datos.TotalProteins = parseInt(datos.TotalProteins);
-    datos.TotalSugars = parseInt(datos.TotalSugars);
-    datos.SaturatedFattyAcids = parseInt(datos.SaturatedFattyAcids);
+    datos.TotalCarbohydrates = Number(datos.TotalCarbohydrates);
+    datos.TotalLipids = Number(datos.TotalLipids);
+    datos.TotalProteins = Number(datos.TotalProteins);
+    datos.TotalSugars = Number(datos.TotalSugars);
+    datos.SaturatedFattyAcids = Number(datos.SaturatedFattyAcids);
 
     if (datos.Water) {
-      datos.Water = parseInt(datos.Water);
+      datos.Water = Number(datos.Water);
     }
     if (datos.Fibre) {
-      datos.Fibre = parseInt(datos.Fibre);
+      datos.Fibre = Number(datos.Fibre);
     }
     if (datos.MonounsaturatedFattyAcids) {
-      datos.MonounsaturatedFattyAcids = parseInt(
-        datos.MonounsaturatedFattyAcids
-      );
+      datos.MonounsaturatedFattyAcids = Number(datos.MonounsaturatedFattyAcids);
     }
     if (datos.PolyunsaturatedFattyAcids) {
-      datos.PolyunsaturatedFattyAcids = parseInt(
-        datos.PolyunsaturatedFattyAcids
-      );
+      datos.PolyunsaturatedFattyAcids = Number(datos.PolyunsaturatedFattyAcids);
     }
     if (datos.UnsaturatedFattyAcids) {
-      datos.UnsaturatedFattyAcids = parseInt(datos.UnsaturatedFattyAcids);
+      datos.UnsaturatedFattyAcids = Number(datos.UnsaturatedFattyAcids);
     }
     if (datos.TransFattyAcids) {
-      datos.TransFattyAcids = parseInt(datos.TransFattyAcids);
+      datos.TransFattyAcids = Number(datos.TransFattyAcids);
     }
 
     if (datos.Cholesterol) {
-      datos.Cholesterol = parseInt(datos.Cholesterol);
+      datos.Cholesterol = Number(datos.Cholesterol);
     }
     if (datos.Ash) {
-      datos.Ash = parseInt(datos.Ash);
+      datos.Ash = Number(datos.Ash);
     }
     if (datos.A) {
-      datos.A = parseInt(datos.A);
+      datos.A = Number(datos.A);
     }
     if (datos.BetaCarotenes) {
-      datos.BetaCarotenes = parseInt(datos.BetaCarotenes);
+      datos.BetaCarotenes = Number(datos.BetaCarotenes);
     }
     if (datos.B1) {
-      datos.B1 = parseInt(datos.B1);
+      datos.B1 = Number(datos.B1);
     }
     if (datos.B2) {
-      datos.B2 = parseInt(datos.B2);
+      datos.B2 = Number(datos.B2);
     }
     if (datos.B3) {
-      datos.B3 = parseInt(datos.B3);
+      datos.B3 = Number(datos.B3);
     }
     if (datos.B5) {
-      datos.B5 = parseInt(datos.B5);
+      datos.B5 = Number(datos.B5);
     }
     if (datos.B6) {
-      datos.B6 = parseInt(datos.B6);
+      datos.B6 = Number(datos.B6);
     }
     if (datos.B8) {
-      datos.B8 = parseInt(datos.B8);
+      datos.B8 = Number(datos.B8);
     }
     if (datos.B9) {
-      datos.B9 = parseInt(datos.B9);
+      datos.B9 = Number(datos.B9);
     }
     if (datos.B12) {
-      datos.B12 = parseInt(datos.B12);
+      datos.B12 = Number(datos.B12);
     }
     if (datos.C) {
-      datos.C = parseInt(datos.C);
+      datos.C = Number(datos.C);
     }
     if (datos.D) {
-      datos.D = parseInt(datos.D);
+      datos.D = Number(datos.D);
     }
     if (datos.E) {
-      datos.E = parseInt(datos.E);
+      datos.E = Number(datos.E);
     }
     if (datos.K) {
-      datos.K = parseInt(datos.K);
+      datos.K = Number(datos.K);
     }
     if (datos.Ethanol) {
-      datos.Ethanol = parseInt(datos.Ethanol);
+      datos.Ethanol = Number(datos.Ethanol);
     }
     if (datos.Sodium) {
-      datos.Sodium = parseInt(datos.Sodium);
+      datos.Sodium = Number(datos.Sodium);
     }
     if (datos.Calcium) {
-      datos.Calcium = parseInt(datos.Calcium);
+      datos.Calcium = Number(datos.Calcium);
     }
     if (datos.Potassium) {
-      datos.Potassium = parseInt(datos.Potassium);
+      datos.Potassium = Number(datos.Potassium);
     }
     if (datos.Phosphorus) {
-      datos.Phosphorus = parseInt(datos.Phosphorus);
+      datos.Phosphorus = Number(datos.Phosphorus);
     }
     if (datos.Iron) {
-      datos.Iron = parseInt(datos.Iron);
+      datos.Iron = Number(datos.Iron);
     }
     if (datos.Magnesium) {
-      datos.Magnesium = parseInt(datos.Magnesium);
+      datos.Magnesium = Number(datos.Magnesium);
     }
     if (datos.Zinc) {
-      datos.Zinc = parseInt(datos.Zinc);
+      datos.Zinc = Number(datos.Zinc);
     }
 
     if (datos.Copper) {
-      datos.Copper = parseInt(datos.Copper);
+      datos.Copper = Number(datos.Copper);
     }
     if (datos.Fluorine) {
-      datos.Fluorine = parseInt(datos.Fluorine);
+      datos.Fluorine = Number(datos.Fluorine);
     }
     if (datos.Iodine) {
-      datos.Iodine = parseInt(datos.Iodine);
+      datos.Iodine = Number(datos.Iodine);
     }
     if (datos.Manganese) {
-      datos.Manganese = parseInt(datos.Manganese);
+      datos.Manganese = Number(datos.Manganese);
     }
     if (datos.Selenium) {
-      datos.Selenium = parseInt(datos.Selenium);
+      datos.Selenium = Number(datos.Selenium);
     }
 
     if (defaultValue) {
@@ -290,7 +346,26 @@ export default function MyForm({
     reset({ Manganese: " " });
     reset({ Selenium: " " });
     reset({ EdiblePortion: " " });
-    reset({ Light: " " });
+
+    reset({ LowEnergy: " " });
+    reset({ EnergyFree: " " });
+    reset({ LowFat: " " });
+    reset({ FatFree: " " });
+    reset({ LowSaturatedFat: " " });
+    reset({ SaturatedFatFree: " " });
+    reset({ LowSugars: " " });
+    reset({ SugarsFree: " " });
+    reset({ LowSodium: " " });
+    reset({ SodiumFree: " " });
+    reset({ VeryLowSodium: " " });
+    reset({ HighFibre: " " });
+    reset({ SourceFibre: " " });
+    reset({ SourceProtein: " " });
+    reset({ HighProtein: " " });
+    reset({ HighMonounsaturatedFat: " " });
+    reset({ HighPolyunsaturatedFat: " " });
+    reset({ HighUnsaturatedFat: " " });
+    reset({ HighMonounsaturatedFat: " " });
 
     console.log(2, datos);
   };
@@ -331,17 +406,16 @@ export default function MyForm({
     required: "Required field",
   });
 
-
- /*
+  /*
   const energykjInput = register("Energykj", {
     value: energyValue * 4.184,
   });
 
   
   useEffect(() => {
-    setValue("Light", parseInt(energyValue) < 10 ? true : false);
+    setValue("Light", Number(energyValue) < 10 ? true : false);
     console.log("Hello");
-    console.log("A veeer", parseInt(energyValue) < 10);
+    console.log("A veeer", Number(energyValue) < 10);
   }, [energyValue]);
   */
 
@@ -652,7 +726,7 @@ export default function MyForm({
 
   function goNextPage() {
     if (page === 3) return;
-    console.log("pagina: ", page);
+
     setPage((page) => page + 1);
 
     trigger([
@@ -715,6 +789,15 @@ export default function MyForm({
 
   //WATCH
   const energyValue = watch("Energy");
+  const totalLipidsValue = watch("TotalLipids");
+  const saturatedFattyAcidsValue = watch("SaturatedFattyAcids");
+  const totalSugarsValue = watch("TotalSugars");
+  const sodiumValue = watch("Sodium");
+  const fibreValue = watch("Fibre");
+  const totalProteinValue = watch("TotalProteins");
+  const monounsaturatedFattyAcidsValue = watch("MonounsaturatedFattyAcids");
+  const polyunsaturatedFattyAcidsValue = watch("PolyunsaturatedFattyAcids");
+  const unsaturatedFattyAcidsValue = watch("UnsaturatedFattyAcids");
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -829,6 +912,7 @@ export default function MyForm({
                   onBlur={energyInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
                 {errors.Energy && !showInfo && (
                   <label className="error">
@@ -853,6 +937,7 @@ export default function MyForm({
                   onBlur={waterInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Fibre(g/100g)</label>
@@ -866,6 +951,7 @@ export default function MyForm({
                   onBlur={fibreInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Saturated Fatty Acids(g/100g)*</label>
@@ -885,6 +971,7 @@ export default function MyForm({
                   onBlur={saturatedfattyacidsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
 
                 {errors.SaturatedFattyAcids && !showInfo && (
@@ -904,6 +991,7 @@ export default function MyForm({
                   onBlur={monounsaturatedfattyacidsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Polyunsaturated Fatty Acids(g/100g)</label>
@@ -917,6 +1005,7 @@ export default function MyForm({
                   onBlur={polyunsaturatedfattyacidsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -936,6 +1025,7 @@ export default function MyForm({
                   onBlur={totalproteinsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
                 {errors.TotalProteins && !showInfo && (
                   <label className="error">
@@ -960,6 +1050,7 @@ export default function MyForm({
                   onBlur={totalcarbohydratesInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
                 {errors.TotalCarbohydrates && !showInfo && (
                   <label className="error">
@@ -982,6 +1073,7 @@ export default function MyForm({
                   onBlur={totalsugarsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
                 {errors.TotalSugars && (
                   <label className="error">
@@ -1004,6 +1096,7 @@ export default function MyForm({
                   onBlur={totallipidsInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
                 {errors.TotalLipids && !showInfo && (
                   <label className="error">
@@ -1024,6 +1117,7 @@ export default function MyForm({
                     onBlur={unsaturatedfattyacidsInput.onBlur}
                     type="number"
                     min="0"
+                    step = "0.0001"
                   />
                 </div>
                 <label>Trans Fatty Acids(g/100g)</label>
@@ -1295,6 +1389,7 @@ export default function MyForm({
                   onBlur={sodiumInput.onBlur}
                   type="number"
                   min="0"
+                  step = "0.0001"
                 />
               </div>
 
@@ -1473,7 +1568,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={Number(energyValue) < 40 && Number(energyValue) > 4}
                   readOnly={true}
                 />
                 <div className="form-check-sign">
@@ -1483,7 +1578,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={parseInt(energyValue) < 10 ? true : false}
+                    checked={Number(energyValue) <= 4 ? true : false}
                     readOnly={true}
                   />
 
@@ -1494,7 +1589,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(totalLipidsValue) < 3 &&
+                    Number(totalLipidsValue) > 0.5
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
                 <div className="form-check-sign">
@@ -1504,7 +1604,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={parseInt(energyValue) < 10 ? true : false}
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
                     readOnly={true}
                   />
 
@@ -1518,7 +1618,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(saturatedFattyAcidsValue) < 1.5 &&
+                    Number(saturatedFattyAcidsValue) > 0.1
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
                 <div className="form-check-sign">
@@ -1528,7 +1633,9 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={parseInt(energyValue) < 10 ? true : false}
+                    checked={
+                      Number(saturatedFattyAcidsValue) <= 0.1 ? true : false
+                    }
                     readOnly={true}
                   />
 
@@ -1539,7 +1646,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(totalSugarsValue) < 5 &&
+                    Number(totalSugarsValue) > 0.5
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
                 <div className="form-check-sign">
@@ -1549,7 +1661,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={parseInt(energyValue) < 10 ? true : false}
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
                     readOnly={true}
                   />
 
@@ -1563,7 +1675,11 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(sodiumValue) < 120 && Number(sodiumValue) > 40
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1573,7 +1689,11 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(sodiumValue) <= 40 && Number(sodiumValue) > 5
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1583,7 +1703,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={Number(sodiumValue) <= 5 ? true : false}
                   readOnly={true}
                 />
 
@@ -1593,7 +1713,11 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1606,7 +1730,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={Number(fibreValue) > 6 ? true : false}
                   readOnly={true}
                 />
 
@@ -1616,7 +1740,10 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
+                    Number(totalProteinValue) > 0.12 * Number(energyValue)
+                      ? true
+                      : false}
                   readOnly={true}
                 />
 
@@ -1626,7 +1753,11 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(totalProteinValue) > 0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1639,7 +1770,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(monounsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1651,7 +1787,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(polyunsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1663,7 +1804,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={parseInt(energyValue) < 10 ? true : false}
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
