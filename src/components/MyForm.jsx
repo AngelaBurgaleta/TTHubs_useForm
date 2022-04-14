@@ -75,10 +75,39 @@ export default function MyForm({
   };
 
   //Añadir nuevo registro de comida
+
+  const aRDA = 800;
+  const dRDA = 5;
+  const eRDA = 12;
+  const kRDA = 75;
+  const cRDA = 80;
+  const riboflavinRDA = 1.4;
+
+  const niacinRDA = 16;
+  const b6RDA = 1.4;
+  const folicAcidRDA = 200;
+  const b12RDA = 2.5;
+  const biotinRDA = 50;
+  const pantothenicAcidRDA = 6;
+
+  const thiaminRDA = 1.1;
+  const potassiumRDA = 2000;
+  const calciumRDA = 800;
+  const phosphorusRDA = 700;
+  const magnesiumRDA = 375;
+  const ironRDA = 14;
+
+  const zincRDA = 10;
+  const copperRDA = 1;
+  const manganeseRDA = 2;
+  const fluorineRDA = 3.5;
+  const seleniumRDA = 55;
+  const iodineRDA = 150;
+
   const addFood = async (datos) => {
     console.log(1, datos);
 
-    //NUTRITIONAL CLAIMS
+    //NUTRITIONAL CLAIMS PAGINA 3
 
     datos.LowEnergy =
       Number(energyValue) < 40 && Number(energyValue) > 4 ? true : false;
@@ -145,6 +174,250 @@ export default function MyForm({
         Number(unsaturatedFattyAcidsValue) > 0.2 * Number(energyValue)
           ? true
           : false;
+    }
+
+    //NUTRITIONAL CLAIMS PAGINA 4
+
+    if (datos.A) {
+      datos.SourceA =
+        Number(aValue) > 0.15 * aRDA && Number(aValue) <= 0.3 * aRDA
+          ? true
+          : false;
+
+      datos.HighA = Number(aValue) > 0.3 * aRDA ? true : false;
+    }
+
+    if (datos.D) {
+      datos.SourceD =
+        Number(dValue) > 0.15 * dRDA && Number(dValue) <= 0.3 * dRDA
+          ? true
+          : false;
+
+      datos.HighD = Number(dValue) > 0.3 * dRDA ? true : false;
+    }
+
+    if (datos.E) {
+      datos.SourceE =
+        Number(eValue) > 0.15 * eRDA && Number(eValue) <= 0.3 * eRDA
+          ? true
+          : false;
+
+      datos.HighE = Number(eValue) > 0.3 * eRDA ? true : false;
+    }
+
+    if (datos.K) {
+      datos.SourceK =
+        Number(kValue) > 0.15 * kRDA && Number(kValue) <= 0.3 * kRDA
+          ? true
+          : false;
+
+      datos.HighK = Number(kValue) > 0.3 * kRDA ? true : false;
+    }
+
+    if (datos.C) {
+      datos.SourceC =
+        Number(cValue) > 0.15 * cRDA && Number(cValue) <= 0.3 * cRDA
+          ? true
+          : false;
+
+      datos.HighC = Number(cValue) > 0.3 * cRDA ? true : false;
+    }
+
+    if (datos.B2) {
+      datos.SourceRiboflavin =
+        Number(riboflavinValue) > 0.15 * riboflavinRDA &&
+        Number(riboflavinValue) <= 0.3 * riboflavinRDA
+          ? true
+          : false;
+
+      datos.HighRiboflavin =
+        Number(riboflavinValue) > 0.3 * riboflavinRDA ? true : false;
+    }
+
+    if (datos.B3) {
+      datos.SourceNiacin =
+        Number(niacinValue) > 0.15 * niacinRDA &&
+        Number(niacinValue) <= 0.3 * niacinRDA
+          ? true
+          : false;
+
+      datos.HighNiacin = Number(niacinValue) > 0.3 * niacinRDA ? true : false;
+    }
+
+    if (datos.B6) {
+      datos.SourceB6 =
+        Number(b6Value) > 0.15 * b6RDA && Number(b6Value) <= 0.3 * b6RDA
+          ? true
+          : false;
+
+      datos.HighB6 = Number(b6Value) > 0.3 * b6RDA ? true : false;
+    }
+
+    if (datos.B9) {
+      datos.SourceFolicAcid =
+        Number(folicAcidValue) > 0.15 * folicAcidRDA &&
+        Number(folicAcidValue) <= 0.3 * folicAcidRDA
+          ? true
+          : false;
+
+      datos.HighFolicAcid =
+        Number(folicAcidValue) > 0.3 * folicAcidRDA ? true : false;
+    }
+
+    if (datos.B12) {
+      datos.SourceB12 =
+        Number(b12Value) > 0.15 * b12RDA && Number(b12Value) <= 0.3 * b12RDA
+          ? true
+          : false;
+
+      datos.HighB12 = Number(b12Value) > 0.3 * b12RDA ? true : false;
+    }
+
+    if (datos.B8) {
+      datos.SourceBiotin =
+        Number(biotinValue) > 0.15 * biotinRDA &&
+        Number(biotinValue) <= 0.3 * biotinRDA
+          ? true
+          : false;
+
+      datos.HighBiotin = Number(biotinValue) > 0.3 * biotinRDA ? true : false;
+    }
+
+    if (datos.B5) {
+      datos.SourceB5 =
+        Number(pantothenicAcidValue) > 0.15 * pantothenicAcidRDA &&
+        Number(pantothenicAcidValue) <= 0.3 * pantothenicAcidRDA
+          ? true
+          : false;
+
+      datos.HighB5 =
+        Number(pantothenicAcidValue) > 0.3 * pantothenicAcidRDA ? true : false;
+    }
+
+    if (datos.B1) {
+      datos.SourceThiamin =
+        Number(thiaminValue) > 0.15 * thiaminRDA &&
+        Number(thiaminValue) <= 0.3 * thiaminRDA
+          ? true
+          : false;
+
+      datos.HighThiamin =
+        Number(thiaminValue) > 0.3 * thiaminRDA ? true : false;
+    }
+
+    if (datos.Potassium) {
+      datos.SourcePotassium =
+        Number(potassiumValue) > 0.15 * potassiumRDA &&
+        Number(potassiumValue) <= 0.3 * potassiumRDA
+          ? true
+          : false;
+
+      datos.HighPotassium =
+        Number(potassiumValue) > 0.3 * potassiumRDA ? true : false;
+    }
+
+    if (datos.Calcium) {
+      datos.SourceCalcium =
+        Number(calciumValue) > 0.15 * calciumRDA &&
+        Number(calciumValue) <= 0.3 * calciumRDA
+          ? true
+          : false;
+
+      datos.HighCalcium =
+        Number(calciumValue) > 0.3 * calciumRDA ? true : false;
+    }
+
+    if (datos.Phosphorus) {
+      datos.SourcePhosphorus =
+        Number(phosphorusValue) > 0.15 * phosphorusRDA &&
+        Number(phosphorusValue) <= 0.3 * phosphorusRDA
+          ? true
+          : false;
+
+      datos.HighPhosphorus =
+        Number(phosphorusValue) > 0.3 * phosphorusRDA ? true : false;
+    }
+
+    if (datos.Magnesium) {
+      datos.SourceMagnesium =
+        Number(magnesiumValue) > 0.15 * magnesiumRDA &&
+        Number(magnesiumValue) <= 0.3 * magnesiumRDA
+          ? true
+          : false;
+
+      datos.HighMagnesium =
+        Number(magnesiumValue) > 0.3 * magnesiumRDA ? true : false;
+    }
+
+    if (datos.Iron) {
+      datos.SourceIron =
+        Number(ironValue) > 0.15 * ironRDA && Number(ironValue) <= 0.3 * ironRDA
+          ? true
+          : false;
+
+      datos.HighIron = Number(ironValue) > 0.3 * ironRDA ? true : false;
+    }
+
+    if (datos.Zinc) {
+      datos.SourceZinc =
+        Number(zincValue) > 0.15 * zincRDA && Number(zincValue) <= 0.3 * zincRDA
+          ? true
+          : false;
+
+      datos.HighZinc = Number(zincValue) > 0.3 * zincRDA ? true : false;
+    }
+
+    if (datos.Copper) {
+      datos.SourceCopper =
+        Number(copperValue) > 0.15 * copperRDA &&
+        Number(copperValue) <= 0.3 * copperRDA
+          ? true
+          : false;
+
+      datos.HighCopper = Number(copperValue) > 0.3 * copperRDA ? true : false;
+    }
+
+    if (datos.Manganese) {
+      datos.SourceManganese =
+        Number(manganeseValue) > 0.15 * manganeseRDA &&
+        Number(manganeseValue) <= 0.3 * manganeseRDA
+          ? true
+          : false;
+
+      datos.HighManganese =
+        Number(manganeseValue) > 0.3 * manganeseRDA ? true : false;
+    }
+
+    if (datos.Fluorine) {
+      datos.SourceFluorine =
+        Number(fluorineValue) > 0.15 * fluorineRDA &&
+        Number(fluorineValue) <= 0.3 * fluorineRDA
+          ? true
+          : false;
+
+      datos.HighFluorine =
+        Number(fluorineValue) > 0.3 * fluorineRDA ? true : false;
+    }
+
+    if (datos.Selenium) {
+      datos.SourceSelenium =
+        Number(seleniumValue) > 0.15 * seleniumRDA &&
+        Number(seleniumValue) <= 0.3 * seleniumRDA
+          ? true
+          : false;
+
+      datos.HighSelenium =
+        Number(seleniumValue) > 0.3 * seleniumRDA ? true : false;
+    }
+
+    if (datos.Iodine) {
+      datos.SourceSelenium =
+        Number(iodineValue) > 0.15 * iodineRDA &&
+        Number(iodineValue) <= 0.3 * iodineRDA
+          ? true
+          : false;
+
+      datos.HighIodine = Number(iodineValue) > 0.3 * iodineRDA ? true : false;
     }
 
     //CAMBIO DE TIPOS
@@ -366,6 +639,9 @@ export default function MyForm({
     reset({ HighPolyunsaturatedFat: " " });
     reset({ HighUnsaturatedFat: " " });
     reset({ HighMonounsaturatedFat: " " });
+
+    reset({ SourceA: " " });
+    reset({ HighA: " " });
 
     console.log(2, datos);
   };
@@ -798,6 +1074,31 @@ export default function MyForm({
   const monounsaturatedFattyAcidsValue = watch("MonounsaturatedFattyAcids");
   const polyunsaturatedFattyAcidsValue = watch("PolyunsaturatedFattyAcids");
   const unsaturatedFattyAcidsValue = watch("UnsaturatedFattyAcids");
+
+  const aValue = watch("A");
+  const eValue = watch("E");
+  const kValue = watch("K");
+  const dValue = watch("D");
+  const cValue = watch("C");
+  const riboflavinValue = watch("B2");
+  const niacinValue = watch("B3");
+  const b6Value = watch("B6");
+  const folicAcidValue = watch("B9");
+  const b12Value = watch("B12");
+  const biotinValue = watch("B8");
+  const pantothenicAcidValue = watch("B5");
+  const thiaminValue = watch("B1");
+  const potassiumValue = watch("Potassium");
+  const calciumValue = watch("Calcium");
+  const phosphorusValue = watch("Phosphorus");
+  const magnesiumValue = watch("Magnesium");
+  const ironValue = watch("Iron");
+  const zincValue = watch("Zinc");
+  const copperValue = watch("Copper");
+  const manganeseValue = watch("Manganese");
+  const fluorineValue = watch("Fluorine");
+  const seleniumValue = watch("Selenium");
+  const iodineValue = watch("Iodine");
 
   return (
     <form className="form" onSubmit={handleSubmit(addFood, onSubmit)}>
@@ -1859,7 +2160,11 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={Number(energyValue) < 40 && Number(energyValue) > 4}
+                  checked={
+                    Number(aValue) > 0.15 * aRDA && Number(aValue) <= 0.3 * aRDA
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
                 <div className="form-check-sign">
@@ -1869,10 +2174,9 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(energyValue) <= 4 ? true : false}
+                    checked={Number(aValue) > 0.3 * aRDA ? true : false}
                     readOnly={true}
                   />
-                  
 
                   <span className="form-check-sign">High Vitamin A</span>
                 </div>
@@ -1882,8 +2186,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(totalLipidsValue) < 3 &&
-                    Number(totalLipidsValue) > 0.5
+                    Number(eValue) > 0.15 * eRDA && Number(eValue) <= 0.3 * eRDA
                       ? true
                       : false
                   }
@@ -1896,7 +2199,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={Number(eValue) > 0.3 * eRDA ? true : false}
                     readOnly={true}
                   />
 
@@ -1906,7 +2209,12 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(kValue) > 0.15 * kRDA &&
+                      Number(kValue) <= 0.3 * kRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -1916,7 +2224,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={Number(kValue) > 0.3 * kRDA ? true : false}
                     readOnly={true}
                   />
 
@@ -1926,7 +2234,12 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(cValue) > 0.15 * cRDA &&
+                      Number(cValue) <= 0.3 * cRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -1936,7 +2249,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={Number(cValue) > 0.3 * cRDA ? true : false}
                     readOnly={true}
                   />
 
@@ -1946,7 +2259,12 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(dValue) > 0.15 * dRDA &&
+                      Number(dValue) <= 0.3 * dRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -1956,7 +2274,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={Number(dValue) > 0.3 * dRDA ? true : false}
                     readOnly={true}
                   />
 
@@ -1966,7 +2284,12 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(riboflavinValue) > 0.15 * riboflavinRDA &&
+                      Number(riboflavinValue) <= 0.3 * riboflavinRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -1976,7 +2299,11 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(riboflavinValue) > 0.3 * riboflavinRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -1991,8 +2318,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(saturatedFattyAcidsValue) < 1.5 &&
-                    Number(saturatedFattyAcidsValue) > 0.1
+                    Number(niacinValue) > 0.15 * niacinRDA &&
+                    Number(niacinValue) <= 0.3 * niacinRDA
                       ? true
                       : false
                   }
@@ -2006,7 +2333,7 @@ export default function MyForm({
                     type="checkbox"
                     className="form-check-input"
                     checked={
-                      Number(saturatedFattyAcidsValue) <= 0.1 ? true : false
+                      Number(niacinValue) > 0.3 * niacinRDA ? true : false
                     }
                     readOnly={true}
                   />
@@ -2019,8 +2346,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(totalSugarsValue) < 5 &&
-                    Number(totalSugarsValue) > 0.5
+                    Number(b6Value) > 0.15 * b6RDA &&
+                    Number(b6Value) <= 0.3 * b6RDA
                       ? true
                       : false
                   }
@@ -2033,7 +2360,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={Number(b6Value) > 0.3 * b6RDA ? true : false}
                     readOnly={true}
                   />
 
@@ -2043,27 +2370,39 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(folicAcidValue) > 0.15 * folicAcidRDA &&
+                      Number(folicAcidValue) <= 0.3 * folicAcidRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
-                  <span className="form-check-sign">Source of Folid acid</span>
+                  <span className="form-check-sign">Source of Folic acid</span>
                 </div>
                 <div className="form-group">
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(folicAcidValue) > 0.3 * folicAcidRDA ? true : false
+                    }
                     readOnly={true}
                   />
 
-                  <span className="form-check-sign">High Folid Acid</span>
+                  <span className="form-check-sign">High Folic Acid</span>
                 </div>
                 <div className="form-group">
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(b12Value) > 0.15 * b12RDA &&
+                      Number(b12Value) <= 0.3 * b12RDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -2073,7 +2412,7 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={Number(b12Value) > 0.3 * b12RDA ? true : false}
                     readOnly={true}
                   />
 
@@ -2083,17 +2422,24 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(biotinValue) > 0.15 * biotinRDA &&
+                      Number(biotinValue) <= 0.3 * biotinRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
-                  <span className="form-check-sign">Source Biotin</span>
+                  <span className="form-check-sign">Source of Biotin</span>
                 </div>
                 <div className="form-group">
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(biotinValue) > 0.3 * biotinRDA ? true : false
+                    }
                     readOnly={true}
                   />
 
@@ -2103,17 +2449,29 @@ export default function MyForm({
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(pantothenicAcidValue) >
+                        0.15 * pantothenicAcidRDA &&
+                      Number(pantothenicAcidValue) <= 0.3 * pantothenicAcidRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
-                  <span className="form-check-sign">Source of Pantothenic acid </span>
+                  <span className="form-check-sign">
+                    Source of Pantothenic acid{" "}
+                  </span>
                 </div>
                 <div className="form-group">
                   <Input
                     type="checkbox"
                     className="form-check-input"
-                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    checked={
+                      Number(pantothenicAcidValue) > 0.3 * pantothenicAcidRDA
+                        ? true
+                        : false
+                    }
                     readOnly={true}
                   />
 
@@ -2128,7 +2486,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(sodiumValue) < 120 && Number(sodiumValue) > 40
+                    Number(thiaminValue) > 0.15 * thiaminRDA &&
+                    Number(thiaminValue) <= 0.3 * thiaminRDA
                       ? true
                       : false
                   }
@@ -2142,9 +2501,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(sodiumValue) <= 40 && Number(sodiumValue) > 5
-                      ? true
-                      : false
+                    Number(thiaminValue) > 0.3 * thiaminRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2155,7 +2512,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={Number(sodiumValue) <= 5 ? true : false}
+                  checked={
+                    Number(potassiumValue) > 0.15 * potassiumRDA &&
+                    Number(potassiumValue) <= 0.3 * potassiumRDA
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -2166,9 +2528,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
-                      ? true
-                      : false
+                    Number(potassiumValue) > 0.3 * potassiumRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2180,7 +2540,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                    Number(calciumValue) > 0.15 * calciumRDA &&
+                    Number(calciumValue) <= 0.3 * calciumRDA
                       ? true
                       : false
                   }
@@ -2194,9 +2555,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
-                      ? true
-                      : false
+                    Number(calciumValue) > 0.3 * calciumRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2208,7 +2567,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                    Number(phosphorusValue) > 0.15 * phosphorusRDA &&
+                    Number(phosphorusValue) <= 0.3 * phosphorusRDA
                       ? true
                       : false
                   }
@@ -2222,9 +2582,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
-                      ? true
-                      : false
+                    Number(phosphorusValue) > 0.3 * phosphorusRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2236,7 +2594,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                    Number(magnesiumValue) > 0.15 * magnesiumRDA &&
+                    Number(magnesiumValue) <= 0.3 * magnesiumRDA
                       ? true
                       : false
                   }
@@ -2250,9 +2609,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
-                      ? true
-                      : false
+                    Number(magnesiumValue) > 0.3 * magnesiumRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2264,7 +2621,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                    Number(ironValue) > 0.15 * ironRDA &&
+                    Number(ironValue) <= 0.3 * ironRDA
                       ? true
                       : false
                   }
@@ -2277,11 +2635,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={
-                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
-                      ? true
-                      : false
-                  }
+                  checked={Number(ironValue) > 0.3 * ironRDA ? true : false}
                   readOnly={true}
                 />
 
@@ -2294,7 +2648,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={Number(fibreValue) > 6 ? true : false}
+                  checked={
+                    Number(zincValue) > 0.15 * zincRDA &&
+                    Number(zincValue) <= 0.3 * zincRDA
+                      ? true
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -2304,12 +2663,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={
-                    Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
-                    Number(totalProteinValue) > 0.12 * Number(energyValue)
-                      ? true
-                      : false
-                  }
+                  checked={Number(zincValue) > 0.3 * zincRDA ? true : false}
                   readOnly={true}
                 />
 
@@ -2320,7 +2674,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(totalProteinValue) > 0.2 * Number(energyValue)
+                    Number(copperValue) > 0.15 * copperRDA &&
+                    Number(copperValue) <= 0.3 * copperRDA
                       ? true
                       : false
                   }
@@ -2329,52 +2684,38 @@ export default function MyForm({
 
                 <span className="form-check-sign">Source of Copper</span>
               </div>
-            
 
-            
               <div className="form-group">
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={
-                    Number(monounsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
-                      ? true
-                      : false
-                  }
+                  checked={Number(copperValue) > 0.3 * copperRDA ? true : false}
                   readOnly={true}
                 />
 
-                <span className="form-check-sign">
-                  High Copper
-                </span>
+                <span className="form-check-sign">High Copper</span>
               </div>
               <div className="form-group">
                 <Input
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(polyunsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
+                    Number(manganeseValue) > 0.15 * manganeseRDA &&
+                    Number(manganeseValue) <= 0.3 * manganeseRDA
                       ? true
                       : false
                   }
                   readOnly={true}
                 />
 
-                <span className="form-check-sign">
-                Source of Manganese
-                </span>
+                <span className="form-check-sign">Source of Manganese</span>
               </div>
               <div className="form-group">
                 <Input
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
-                      ? true
-                      : false
+                    Number(manganeseValue) > 0.3 * manganeseRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2386,38 +2727,35 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
+                    Number(fluorineValue) > 0.15 * fluorineRDA &&
+                    Number(fluorineValue) <= 0.3 * fluorineRDA
                       ? true
                       : false
                   }
                   readOnly={true}
                 />
 
-                <span className="form-check-sign">Source of Fluoride</span>
+                <span className="form-check-sign">Source of Fluorine</span>
               </div>
               <div className="form-group">
                 <Input
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
-                      ? true
-                      : false
+                    Number(fluorineValue) > 0.3 * fluorineRDA ? true : false
                   }
                   readOnly={true}
                 />
 
-                <span className="form-check-sign">High Fluoride</span>
+                <span className="form-check-sign">High Fluorine</span>
               </div>
               <div className="form-group">
                 <Input
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
+                    Number(seleniumValue) > 0.15 * seleniumRDA &&
+                    Number(seleniumValue) <= 0.3 * seleniumRDA
                       ? true
                       : false
                   }
@@ -2431,10 +2769,7 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
-                      ? true
-                      : false
+                    Number(seleniumValue) > 0.3 * seleniumRDA ? true : false
                   }
                   readOnly={true}
                 />
@@ -2446,8 +2781,8 @@ export default function MyForm({
                   type="checkbox"
                   className="form-check-input"
                   checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
+                    Number(iodineValue) > 0.15 * iodineRDA &&
+                    Number(iodineValue) <= 0.3 * iodineRDA
                       ? true
                       : false
                   }
@@ -2460,12 +2795,7 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={
-                    Number(unsaturatedFattyAcidsValue) >
-                    0.2 * Number(energyValue)
-                      ? true
-                      : false
-                  }
+                  checked={Number(iodineValue) > 0.3 * iodineRDA ? true : false}
                   readOnly={true}
                 />
 
