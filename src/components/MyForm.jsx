@@ -725,7 +725,7 @@ export default function MyForm({
   const [page, setPage] = useState(1);
 
   function goNextPage() {
-    if (page === 3) return;
+    if (page === 4) return;
 
     setPage((page) => page + 1);
 
@@ -1117,7 +1117,7 @@ export default function MyForm({
                     onBlur={unsaturatedfattyacidsInput.onBlur}
                     type="number"
                     min="0"
-                    step = "0.0001"
+                    step="0.0001"
                   />
                 </div>
                 <label>Trans Fatty Acids(g/100g)</label>
@@ -1407,7 +1407,7 @@ export default function MyForm({
                   onBlur={sodiumInput.onBlur}
                   type="number"
                   min="0"
-                  step = "0.0001"
+                  step="0.0001"
                 />
               </div>
 
@@ -1770,10 +1770,12 @@ export default function MyForm({
                 <Input
                   type="checkbox"
                   className="form-check-input"
-                  checked={Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
+                  checked={
+                    Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
                     Number(totalProteinValue) > 0.12 * Number(energyValue)
                       ? true
-                      : false}
+                      : false
+                  }
                   readOnly={true}
                 />
 
@@ -1847,6 +1849,630 @@ export default function MyForm({
               </div>
             </div>
           </div>
+
+          <div
+            style={{ display: page === 4 ? "flex" : "none" }}
+            className="row"
+          >
+            <div className="col-sm-4 col-lg-3">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={Number(energyValue) < 40 && Number(energyValue) > 4}
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Source of Vitamin A</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(energyValue) <= 4 ? true : false}
+                    readOnly={true}
+                  />
+                  
+
+                  <span className="form-check-sign">High Vitamin A</span>
+                </div>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(totalLipidsValue) < 3 &&
+                    Number(totalLipidsValue) > 0.5
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Source of Vitamin E</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin E</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source Vitamin K</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin K</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Vitamin C</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin C</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Vitamin D</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin D</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Riboflavin</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalLipidsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Riboflavin</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-3">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(saturatedFattyAcidsValue) < 1.5 &&
+                    Number(saturatedFattyAcidsValue) > 0.1
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Source of Niacin</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={
+                      Number(saturatedFattyAcidsValue) <= 0.1 ? true : false
+                    }
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Niacin</span>
+                </div>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(totalSugarsValue) < 5 &&
+                    Number(totalSugarsValue) > 0.5
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+                <div className="form-check-sign">
+                  <label>Source of Vitamin B6</label>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin B6</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Folid acid</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Folid Acid</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Vitamin B12</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Vitamin B12</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source Biotin</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Biotin</span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">Source of Pantothenic acid </span>
+                </div>
+                <div className="form-group">
+                  <Input
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={Number(totalSugarsValue) <= 0.5 ? true : false}
+                    readOnly={true}
+                  />
+
+                  <span className="form-check-sign">High Pantothenic acid</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-3">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(sodiumValue) < 120 && Number(sodiumValue) > 40
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Thiamin</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(sodiumValue) <= 40 && Number(sodiumValue) > 5
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Thiamin</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={Number(sodiumValue) <= 5 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Potassium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Potassium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Calcium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Calcium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Phosphorus</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Phosphorus</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Magnesium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Magnesium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Iron</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(fibreValue) <= 6 && Number(fibreValue) > 3
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Iron</span>
+              </div>
+            </div>
+
+            <div className="col-sm-4 col-lg-2">
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={Number(fibreValue) > 6 ? true : false}
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Zinc</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(totalProteinValue) <= 0.2 * Number(energyValue) &&
+                    Number(totalProteinValue) > 0.12 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Zinc</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(totalProteinValue) > 0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Copper</span>
+              </div>
+            
+
+            
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(monounsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">
+                  High Copper
+                </span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(polyunsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">
+                Source of Manganese
+                </span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Manganese</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Fluoride</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Fluoride</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Selenium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Selenium</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">Source of Iodine</span>
+              </div>
+              <div className="form-group">
+                <Input
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={
+                    Number(unsaturatedFattyAcidsValue) >
+                    0.2 * Number(energyValue)
+                      ? true
+                      : false
+                  }
+                  readOnly={true}
+                />
+
+                <span className="form-check-sign">High Iodine</span>
+              </div>
+            </div>
+          </div>
         </div>
       </CardBody>
       <CardFooter>
@@ -1863,7 +2489,7 @@ export default function MyForm({
           </div>
           <div className="col-sm-6 col-lg-3">
             <div className="form group">
-              {!showInfo && page === 3 && (
+              {!showInfo && page === 4 && (
                 <Button
                   type="submit"
                   color="info"
@@ -1873,7 +2499,7 @@ export default function MyForm({
                 </Button>
               )}
 
-              {page !== 3 && (
+              {page !== 4 && (
                 <Button
                   onClick={goNextPage}
                   type="button"
