@@ -1131,6 +1131,7 @@ export default function MyForm({
                     onBlur={transfattyacidsInput.onBlur}
                     type="number"
                     min="0"
+                    step="0.0001"
                   />
                 </div>
 
@@ -1146,6 +1147,7 @@ export default function MyForm({
                     onBlur={cholesterolInput.onBlur}
                     type="number"
                     min="0"
+                    step="0.0001"
                   />
                 </div>
               </div>
@@ -1168,6 +1170,7 @@ export default function MyForm({
                   onBlur={ashInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>A: Retinol(µg/100g)</label>
@@ -1181,6 +1184,7 @@ export default function MyForm({
                   onBlur={aInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
 
@@ -1195,6 +1199,7 @@ export default function MyForm({
                   onBlur={betacarotenesInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>B1: Thiamine(mg/100g)</label>
@@ -1208,6 +1213,7 @@ export default function MyForm({
                   onBlur={b1Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
 
@@ -1222,6 +1228,7 @@ export default function MyForm({
                   onBlur={b2Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -1238,6 +1245,7 @@ export default function MyForm({
                   onBlur={b3Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>B5: Pantothenic Acid(mg/100g)</label>
@@ -1251,6 +1259,7 @@ export default function MyForm({
                   onBlur={b5Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>B6: Pyridoxine(mg/100g)</label>
@@ -1264,6 +1273,7 @@ export default function MyForm({
                   onBlur={b6Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>B8: Biotin(mg/100g)</label>
@@ -1277,6 +1287,7 @@ export default function MyForm({
                   onBlur={b8Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>B9: Folic Acid(µg/100g)</label>
@@ -1290,6 +1301,7 @@ export default function MyForm({
                   onBlur={b9Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -1306,6 +1318,7 @@ export default function MyForm({
                   onBlur={b12Input.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>C: Ascorbic Acid(mg/100g)</label>
@@ -1319,6 +1332,7 @@ export default function MyForm({
                   onBlur={cInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>D: Calciferol(µg/100g)</label>
@@ -1332,6 +1346,7 @@ export default function MyForm({
                   onBlur={dInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>E: Tocopherol(mg/100g)</label>
@@ -1345,6 +1360,7 @@ export default function MyForm({
                   onBlur={eInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>K(µg/100g)</label>
@@ -1358,6 +1374,7 @@ export default function MyForm({
                   onBlur={kInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -1375,6 +1392,7 @@ export default function MyForm({
                   onBlur={ethanolInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
 
@@ -1404,6 +1422,7 @@ export default function MyForm({
                   onBlur={calciumInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Potassium(mg/100g)</label>
@@ -1417,6 +1436,7 @@ export default function MyForm({
                   onBlur={potassiumInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Phosphorus(mg/100g)</label>
@@ -1430,6 +1450,7 @@ export default function MyForm({
                   onBlur={phosphorusInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -1446,6 +1467,7 @@ export default function MyForm({
                   onBlur={ironInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Magnesium(mg/100g)</label>
@@ -1459,6 +1481,7 @@ export default function MyForm({
                   onBlur={magnesiumInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Zinc(mg/100g)</label>
@@ -1472,6 +1495,7 @@ export default function MyForm({
                   onBlur={zincInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Copper(mg/100g)</label>
@@ -1485,6 +1509,7 @@ export default function MyForm({
                   onBlur={copperInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Fluorine(mg/100g)</label>
@@ -1498,6 +1523,7 @@ export default function MyForm({
                   onBlur={fluorineInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
@@ -1514,6 +1540,7 @@ export default function MyForm({
                   onBlur={iodineInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Manganese(mg/100g)</label>
@@ -1527,6 +1554,7 @@ export default function MyForm({
                   onBlur={manganeseInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
 
@@ -1541,6 +1569,7 @@ export default function MyForm({
                   onBlur={seleniumInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
               <label>Edible Portion(%)</label>
@@ -1554,6 +1583,7 @@ export default function MyForm({
                   onBlur={edibleportionInput.onBlur}
                   type="number"
                   min="0"
+                  step="0.0001"
                 />
               </div>
             </div>
