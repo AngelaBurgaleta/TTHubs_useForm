@@ -1,35 +1,13 @@
-import React, { Fragment } from "react";
-import { useForm, Controller } from "react-hook-form";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Table,
-  Row,
-  Col,
-  Form,
-  Input,
-  InputGroup,
-  InputGroupText,
-  InputGroupAddon,
-  Collapse,
-  Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Navbar,
-} from "reactstrap";
-import Creatable, { useCreatable } from "react-select/creatable";
+import React from "react";
+import {Controller} from "react-hook-form";
+import { Input } from "reactstrap";
+import Creatable from "react-select/creatable";
 
 export default function Pagina1({
   control,
   defaultValue,
   showInfo,
   errors,
-  foodsCollectionRefs,
   styleDanger,
   nameInput,
   foodgroupInput,
@@ -169,51 +147,51 @@ export default function Pagina1({
       </div>
 
       <div className="col-sm-6 col-lg-4">
-      <label>Unsaturated Fatty Acids(g/100g)</label>
-          <div className="form-group">
-            <Input
-              name={unsaturatedfattyacidsInput.name}
-              defaultValue={defaultValue?.UnsaturatedFattyAcids}
-              readOnly={showInfo}
-              innerRef={unsaturatedfattyacidsInput.ref}
-              onChange={unsaturatedfattyacidsInput.onChange}
-              onBlur={unsaturatedfattyacidsInput.onBlur}
-              type="number"
-              min="0"
-              step="0.0001"
-            />
-          </div>
-          <label>Trans Fatty Acids(g/100g)</label>
-          <div className="form-group">
-            <Input
-              name={transfattyacidsInput.name}
-              defaultValue={defaultValue?.TransFattyAcids}
-              readOnly={showInfo}
-              innerRef={transfattyacidsInput.ref}
-              onChange={transfattyacidsInput.onChange}
-              onBlur={transfattyacidsInput.onBlur}
-              type="number"
-              min="0"
-              step="0.0001"
-            />
-          </div>
+        <label>Unsaturated Fatty Acids(g/100g)</label>
+        <div className="form-group">
+          <Input
+            name={unsaturatedfattyacidsInput.name}
+            defaultValue={defaultValue?.UnsaturatedFattyAcids}
+            readOnly={showInfo}
+            innerRef={unsaturatedfattyacidsInput.ref}
+            onChange={unsaturatedfattyacidsInput.onChange}
+            onBlur={unsaturatedfattyacidsInput.onBlur}
+            type="number"
+            min="0"
+            step="0.0001"
+          />
+        </div>
+        <label>Trans Fatty Acids(g/100g)</label>
+        <div className="form-group">
+          <Input
+            name={transfattyacidsInput.name}
+            defaultValue={defaultValue?.TransFattyAcids}
+            readOnly={showInfo}
+            innerRef={transfattyacidsInput.ref}
+            onChange={transfattyacidsInput.onChange}
+            onBlur={transfattyacidsInput.onBlur}
+            type="number"
+            min="0"
+            step="0.0001"
+          />
+        </div>
 
-          <label>Cholesterol(g/100g)</label>
+        <label>Cholesterol(g/100g)</label>
 
-          <div className="form-group">
-            <Input
-              name={cholesterolInput.name}
-              defaultValue={defaultValue?.Cholesterol}
-              readOnly={showInfo}
-              innerRef={cholesterolInput.ref}
-              onChange={cholesterolInput.onChange}
-              onBlur={cholesterolInput.onBlur}
-              type="number"
-              min="0"
-              step="0.0001"
-            />
-          </div>
-        
+        <div className="form-group">
+          <Input
+            name={cholesterolInput.name}
+            defaultValue={defaultValue?.Cholesterol}
+            readOnly={showInfo}
+            innerRef={cholesterolInput.ref}
+            onChange={cholesterolInput.onChange}
+            onBlur={cholesterolInput.onBlur}
+            type="number"
+            min="0"
+            step="0.0001"
+          />
+        </div>
+
         <label>Saturated Fatty Acids(g/100g)*</label>
         <div
           className={
@@ -362,36 +340,34 @@ export default function Pagina1({
         </div>
 
         <div col="col-md-6 ml-auto mr-auto">
-        <label>Water(g/100g)</label>
-        <div className="form-group">
-          <Input
-            name={waterInput.name}
-            defaultValue={defaultValue?.Water}
-            readOnly={showInfo}
-            innerRef={waterInput.ref}
-            onChange={waterInput.onChange}
-            onBlur={waterInput.onBlur}
-            type="number"
-            min="0"
-            step="0.0001"
-          />
-        </div>
-        <label>Fibre(g/100g)</label>
-        <div className="form-group">
-          <Input
-            name={fibreInput.name}
-            defaultValue={defaultValue?.Fibre}
-            readOnly={showInfo}
-            innerRef={fibreInput.ref}
-            onChange={fibreInput.onChange}
-            onBlur={fibreInput.onBlur}
-            type="number"
-            min="0"
-            step="0.0001"
-          />
-        </div>
-
-          
+          <label>Water(g/100g)</label>
+          <div className="form-group">
+            <Input
+              name={waterInput.name}
+              defaultValue={defaultValue?.Water}
+              readOnly={showInfo}
+              innerRef={waterInput.ref}
+              onChange={waterInput.onChange}
+              onBlur={waterInput.onBlur}
+              type="number"
+              min="0"
+              step="0.0001"
+            />
+          </div>
+          <label>Fibre(g/100g)</label>
+          <div className="form-group">
+            <Input
+              name={fibreInput.name}
+              defaultValue={defaultValue?.Fibre}
+              readOnly={showInfo}
+              innerRef={fibreInput.ref}
+              onChange={fibreInput.onChange}
+              onBlur={fibreInput.onBlur}
+              type="number"
+              min="0"
+              step="0.0001"
+            />
+          </div>
         </div>
       </div>
     </div>
