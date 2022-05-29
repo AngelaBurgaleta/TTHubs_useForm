@@ -1,10 +1,13 @@
 
 import React from 'react';
 
+import Query from '../Query';
+
 function Statistics() {
   return (
     <div className='statistics'>
-      <h1>Statistics</h1>
+      Hola
+      
     </div>
   );
 }

@@ -39,6 +39,7 @@ import {
 } from "reactstrap";
 import MyForm from "./MyForm";
 import Query from "./Query";
+import InfoFood from "./InfoFood";
 //import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 export function FoodTable() {
@@ -47,7 +48,6 @@ export function FoodTable() {
 
   //Referencia a la db
   const foodsCollectionRefs = collection(db, "data");
-
 
   //PAGINACION
 
@@ -172,7 +172,7 @@ const cargarDocumentos = () => {
   const [showInfo, setShowInfo] = useState(false);
 
   const openInfoModal = async (food) => {
-    setShow(true);
+    //setShow(true);
 
     setShowInfo(true);
 
@@ -196,6 +196,8 @@ const cargarDocumentos = () => {
     event.preventDefault();
     setShow(true);
   };
+
+  
 
   return (
     <>
@@ -374,7 +376,7 @@ const cargarDocumentos = () => {
                     style={{ maxWidth: "100%", width: "90%" }}
                   >
                     <ModalHeader>
-                      {showInfo ? "Show" : openFood ? "Edit" : "Create"} food
+                      {openFood ? "Edit" : "Create"} food
                     </ModalHeader>
 
                     <ModalBody>
@@ -387,15 +389,33 @@ const cargarDocumentos = () => {
                       />
                     </ModalBody>
                   </Modal>
+
+                  <Modal
+                    isOpen = {showInfo}
+                    style={{ maxWidth: "100%", width: "90%" }}
+                  >
+                  
+                    <ModalBody>
+                      <InfoFood
+                        defaultValue={openFood}
+                        foodsCollectionRefs={foodsCollectionRefs}
+                        handleClose={handleClose}
+                        foods = {foods}
+                        setFoods={setFoods}
+                        showInfo={showInfo}
+                      />
+                    </ModalBody>
+                    </Modal>
+                  {/* 
                   <div>
-                    <Query
+                    <InfoFood
                       defaultValue={openFood}
                       foodsCollectionRefs={foodsCollectionRefs}
                       handleClose={handleClose}
                       setFoods={setFoods}
                       showInfo={showInfo}
                     />
-                  </div>
+                  </div>*/}
                 </Col>
               </Row>
             </div>

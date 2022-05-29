@@ -182,14 +182,14 @@ export default function MyForm({
 
     //NUTRITIONAL CLAIMS PAGINA 4
 
-    if (datos.A) {
+    
       datos.SourceA =
         Number(aValue) > 0.15 * aRDA && Number(aValue) <= 0.3 * aRDA
           ? true
           : false;
 
       datos.HighA = Number(aValue) > 0.3 * aRDA ? true : false;
-    }
+    
 
     if (datos.D) {
       datos.SourceD =

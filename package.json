@@ -53,8 +53,9 @@
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"
-},
+  },
   "devDependencies": {
+    "firebase-tools": "^10.8.0",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
     "react-error-overlay": "6.0.9"
