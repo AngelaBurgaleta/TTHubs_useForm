@@ -179,6 +179,9 @@ const cargarDocumentos = () => {
     setOpenFood(food);
   };
 
+  const handleCloseInfo = () => {
+    setShowInfo(false)
+  };
   //---------------------
 
   //MODAL
@@ -399,7 +402,7 @@ const cargarDocumentos = () => {
                       <InfoFood
                         defaultValue={openFood}
                         foodsCollectionRefs={foodsCollectionRefs}
-                        handleClose={handleClose}
+                        handleCloseInfo={handleCloseInfo}
                         foods = {foods}
                         setFoods={setFoods}
                         showInfo={showInfo}

@@ -440,7 +440,7 @@ export default function MyForm({
     }
 
     datos.Energy = Number(datos.Energy);
-    datos.Energykj = energyValue * 4.184;
+    datos.Energykj = (energyValue * 4.184).toFixed(2);
     datos.TotalCarbohydrates = Number(datos.TotalCarbohydrates);
     datos.TotalLipids = Number(datos.TotalLipids);
     datos.TotalProteins = Number(datos.TotalProteins);

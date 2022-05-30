@@ -142,7 +142,7 @@ export default function Pagina1({
 
         <label>Energy(KJ/100g) *</label>
         <div className={"form-group"}>
-          <Input value={energyValue * 4.184} readOnly={true} />
+          <Input value={(energyValue * 4.184).toFixed(2)} readOnly={true} />
         </div>
       </div>
 
