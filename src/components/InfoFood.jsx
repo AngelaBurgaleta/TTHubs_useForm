@@ -23,7 +23,7 @@ import sesamegreen from "./Allergens/sesame-green.png";
 import soybeangreen from "./Allergens/soybean-green.png";
 import sulphitegreen from "./Allergens/sulphite-green.png";
 
-import logoTT from "./logoTT.png";
+import logoTTinfo from "./logoTT_info.png";
 
 //import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 //import {Steps, Step, useSteps, StepsStyleConfig} from 'chakra-ui-steps';
@@ -79,14 +79,20 @@ export default function InfoFood({
   showInfo,
   foods,
 }) {
+
+  const azuloscuro = "#196694"
+  const grisblanco = "f9f9f9"
+
   return (
+
+    
     <CardBody>
-      <ModalHeader style={{ color: "#1E88E5", fontSize: 27 }}>
+      <ModalHeader style={{ color: azuloscuro, fontSize: 27 }}>
         <Row>
-        {/*<img src={logoTT} height="100" />*/} 
-        TTHubs &nbsp;&nbsp;
-        {defaultValue.Name}
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src={logoTTinfo} alt= 'TTHubs MED FOOD' height="100" />
+          &nbsp;&nbsp;
+        <Fragment style = {{fontWeight: 'bold'}}>  {defaultValue.Name}</Fragment>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Button
             className="btn"
             style={{ fontSize: 15 }}
@@ -101,17 +107,17 @@ export default function InfoFood({
       <CardBody>
         <div className="row">
           <div className="col-sm-6 col-lg-3">
-            <h3 style={{ color: "#196694" }}>
+            <h3 style={{ color: azuloscuro, fontWeight: 'bold'}}>
               NUTRITION
               <br></br>
               FACTS
               <br></br>
-              <small style={{ color: "#196694" }}>per 100gr</small>
+              <small style={{ color: azuloscuro, fontWeight: 'bold' }}>per 100gr</small>
               <hr size="8px" color="#E7E7E7" />
             </h3>
             <table>
               <tr>
-                <th style={{ fontSize: 15, color: "#1E88E5" }}>
+                <th style={{ fontSize: 15, color: azuloscuro }}>
                   ENERGY (KCAL/KJ)
                 </th>
               </tr>
@@ -127,20 +133,20 @@ export default function InfoFood({
           </div>
           <div className="col-sm-6 col-lg-3">
             <div className="row">
-              <h6 style={{ color: "#1E88E5" }} className="col-6">
+              <label style={{ color: azuloscuro, fontSize: 17,  fontWeight: 'bold' }} className="col-6">
                 Amount/100gr
-              </h6>
-              <h6 style={{ color: "#1E88E5" }} className="col-6">
+              </label>
+              <label style={{ color: azuloscuro, fontSize: 17,  fontWeight: 'bold' }} className="col-6">
                 %Daily Value *
-              </h6>
+              </label>
             </div>
-            <hr size="8px" color="#1E88E5" />
+            <hr size="8px" color="#196694" />
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Total fat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.TotalLipids}g{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}>
                 {((defaultValue.TotalLipids * 100) / 70).toFixed(2)} %
               </div>
             </div>
@@ -159,24 +165,24 @@ export default function InfoFood({
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.TransFattyAcids}g{" "}
               </label>
-              <div className="col-6">XX %</div>
+              
             </div>
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Cholesterol &nbsp;&nbsp;&nbsp;&nbsp; {defaultValue.Cholesterol}
                 mg{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}>
                 {((defaultValue.Cholesterol * 100) / 300).toFixed(2)} %
               </div>
             </div>
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Sodium
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.Sodium}g{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}>
                 {defaultValue.Sodium
                   ? ((defaultValue.Sodium * 100) / 6).toFixed(2)
                   : 0}{" "}
@@ -188,20 +194,20 @@ export default function InfoFood({
 
           <div className="col-sm-6 col-lg-3">
             <div className="row">
-              <h6 style={{ color: "#1E88E5" }} className="col-6">
+              <label style={{ color: azuloscuro, fontSize: 17,  fontWeight: 'bold' }} className="col-6">
                 Amount/100gr
-              </h6>
-              <h6 style={{ color: "#1E88E5" }} className="col-6">
+              </label>
+              <label style={{ color: azuloscuro, fontSize: 17,  fontWeight: 'bold' }} className="col-6">
                 %Daily Value *
-              </h6>
+              </label>
             </div>
-            <hr color="#1E88E5" />
+            <hr color="#196694" />
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Total carbohydrate &nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.TotalCarbohydrates}g{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}>
                 {" "}
                 {((defaultValue.TotalCarbohydrates * 100) / 260).toFixed(2)} %
               </div>
@@ -210,7 +216,10 @@ export default function InfoFood({
               <label className="col-6">
                 &nbsp;&nbsp; Fiber &nbsp;&nbsp;&nbsp; {defaultValue.Fiber}g{" "}
               </label>
-              <div className="col-6">XX %</div>
+              <div className="col-6">{defaultValue.Fiber
+                  ? ((defaultValue.Fiber * 100) / 25).toFixed(2)
+                  : 0}
+                %  </div>
             </div>
             <div className="row">
               <label className="col-6">
@@ -222,20 +231,21 @@ export default function InfoFood({
               </div>
             </div>
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Proteins &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.TotalProteins}g{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}>
                 {((defaultValue.TotalProteins * 100) / 50).toFixed(2)} %
               </div>
             </div>
             <div className="row">
-              <label className="col-6">
+              <label className="col-6" style={{fontWeight: 'bold'}}>
                 Water &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 {defaultValue.Water}g{" "}
               </label>
-              <div className="col-6">
+              <div className="col-6" style={{fontWeight: 'bold'}}
+              >
                 {((defaultValue.Water * 100) / 200).toFixed(2)} %
               </div>
             </div>
@@ -251,10 +261,10 @@ export default function InfoFood({
         <div className="row">
           <div className="col-sm-6 col-lg-3"></div>
           <div className="col-sm">
-            List of vitamins/minerals {">"}
-            {defaultValue.Ash ? defaultValue.Ash + "mg·Ash, " : " "}
-            {defaultValue.A ? defaultValue.A + " mg·Vitamin A, " : " "}
-            {defaultValue.Iron ? defaultValue.Iron + "mg·Iron, " : " "}
+            List of vitamins/minerals {">"} 0: &nbsp;
+            {defaultValue.Ash ? "Ash " + defaultValue.Ash + "mg · " : " "}
+            {defaultValue.A ? "Vitamin A " +  defaultValue.A + " mg · " : " "}
+            {defaultValue.Iron ? "Iron " + defaultValue.Iron + "mg ·  " : " "}
             {defaultValue.BetaCarotenes
               ? defaultValue.BetaCarotenes + "mg·BetaCarotenes, "
               : " "}
@@ -302,22 +312,22 @@ export default function InfoFood({
         </div>
       </CardBody>
 
-      <CardBody style={{ backgroundColor: " #f5f5f5" }}>
+      <CardBody style={{ backgroundColor: grisblanco }}>
         <div className="row">
           <div className="col-lg-3">
-            <h6 style={{ color: "#1E88E5" }}>GROUP</h6>
+            <h6 style={{ color: azuloscuro}}>GROUP</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.FoodGroup}</p>
-            <h6 style={{ color: "#1E88E5" }}>SUBGROUP</h6>
+            <h6 style={{ color: azuloscuro}}>SUBGROUP</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.FoodSubgroup}</p>
             <hr align="left" className="col-sm-4"></hr>
-            <h6 style={{ color: "#1E88E5" }}>COUNTRY</h6>
+            <h6 style={{ color: azuloscuro}}>COUNTRY</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.Country}</p>
           </div>
           <div className="col-md">
             <div className="row">
-              <h6 style={{ color: "#1E88E5" }}>FOOD ALLERGENS</h6>
+              <h6 style={{ color: azuloscuro}}>FOOD ALLERGENS</h6>
             </div>
-            <hr align="left" color="#1E88E5"></hr>
+            <hr align="left" color="#196694"></hr>
             <br></br>
             <div className="row">
               {/* 
@@ -334,7 +344,7 @@ export default function InfoFood({
                 defaultValue.FoodSubgroup.toLowerCase().includes("soups") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("pies") ? (
-                  <img src={glutengreen} height="100" />
+                <figure> <img src={glutengreen} height="80" /> <figcaption style= {{fontSize: 18}}>GLUTEN</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "shellfish"
@@ -345,7 +355,7 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "seafood"
                   ) ? (
-                  <img src={crustaceansgreen} height="100" />
+                <figure>  <img src={crustaceansgreen} title = 'crustaceos' height="80" /><figcaption style= {{fontSize: 18}}>CRUSTACEANS</figcaption></figure> 
                 ) : (
                   " "
                 )}
@@ -354,7 +364,7 @@ export default function InfoFood({
               <div className="col-sm">
                 {defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ? (
-                  <img src={sesamegreen} height="100" />
+               <figure> <img src={sesamegreen} height="80" /><figcaption style= {{fontSize: 18}}>SESAME</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes(
                     "freshwater"
                   ) ||
@@ -363,14 +373,14 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "shellfish"
                   ) ? (
-                  <img src={fishgreen} height="100" />
+                  <figure><img src={fishgreen} height="80" /><figcaption style= {{fontSize: 18}}>FISH</figcaption></figure> 
                 ) : (
                   " "
                 )}
               </div>
               {defaultValue.FoodSubgroup.toLowerCase().includes("egg") ||
               defaultValue.FoodSubgroup.toLowerCase().includes("eggs") ? (
-                <img src={egggreen} height="100" />
+                <figure><img src={egggreen} height="80" /><figcaption style= {{fontSize: 18}}>EGGS</figcaption></figure> 
               ) : defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
@@ -379,7 +389,7 @@ export default function InfoFood({
                 defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
-                <img src={lupingreen} height="100" />
+               <figure><img src={lupingreen} height="80" /><figcaption style= {{fontSize: 18}}>LUPIN</figcaption></figure> 
               ) : (
                 " "
               )}
@@ -394,7 +404,7 @@ export default function InfoFood({
                 ) ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("chocolate") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("nut") ? (
-                  <img src={peanutsgreen} height="100" />
+                 <figure> <img src={peanutsgreen} height="80" /><figcaption style= {{fontSize: 18}}>PEANUTS</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes(
                     "dairy imitate based sweets"
                   ) ||
@@ -405,7 +415,7 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
-                  <img src={milkgreen} height="100" />
+                 <figure> <img src={milkgreen} height="80" /><figcaption style= {{fontSize: 18}}>MILK</figcaption></figure> 
                 ) : (
                   " "
                 )}
@@ -421,7 +431,7 @@ export default function InfoFood({
                 ) ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("noodles") ? (
-                  <img src={soybeangreen} height="100" />
+                <figure>  <img src={soybeangreen} height="80" /><figcaption style= {{fontSize: 18}}>SOYBEAN</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes(
                     "dairy imitate based sweets"
                   ) ||
@@ -432,7 +442,7 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "vegetables dried"
                   ) ? (
-                  <img src={celerygreen} height="100" />
+                  <figure><img src={celerygreen} height="80" /><figcaption style= {{fontSize: 18}}>CELERY</figcaption></figure> 
                 ) : (
                   " "
                 )}
@@ -446,7 +456,7 @@ export default function InfoFood({
                 defaultValue.FoodSubgroup.toLowerCase().includes(
                   "vegetable oils"
                 ) ? (
-                  <img src={mustardgreen} height="100" />
+               <figure>   <img src={mustardgreen} height="80" /><figcaption style= {{fontSize: 18}}>MUSTARD</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes("wheat") ||
                   defaultValue.FoodGroup.toLowerCase().includes("fish") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("potato") ||
@@ -482,7 +492,7 @@ export default function InfoFood({
                   ) ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("seafood") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("soups") ? (
-                  <img src={sulphitegreen} height="100" />
+                <figure>  <img src={sulphitegreen} height="80" /><figcaption style= {{fontSize: 18}}>SULPHITE</figcaption></figure> 
                 ) : (
                   " "
                 )}
@@ -500,13 +510,13 @@ export default function InfoFood({
                 defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
                 defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
                 defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ? (
-                  <img src={nutsgreen} height="100" />
+                 <figure> <img src={nutsgreen} height="80" /><figcaption style= {{fontSize: 18}}>NUTS</figcaption></figure> 
                 ) : defaultValue.FoodSubgroup.toLowerCase().includes(
                     "shellfish"
                   ) ||
                   defaultValue.FoodGroup.toLowerCase().includes("fish") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("offal") ? (
-                  <img src={molluscgreen} height="100" />
+                <figure>  <img src={molluscgreen} height="100" /><figcaption style= {{fontSize: 18}}>MOLLUSC</figcaption></figure> 
                 ) : (
                   " "
                 )}
@@ -516,8 +526,8 @@ export default function InfoFood({
         </div>
       </CardBody>
       <CardBody>
-        <h6 style={{ color: "#1E88E5" }}>NUTRITIONAL CLAIMS</h6>
-        <hr align="left" color="#1E88E5"></hr>
+        <h6 style={{ color: azuloscuro, fontWeight: "bold"}}>NUTRITIONAL CLAIMS</h6>
+        <hr align="left" color="#196694"></hr>
         <div className="row">
           <div className="col-sm">
             {defaultValue.EnergyFree == true
