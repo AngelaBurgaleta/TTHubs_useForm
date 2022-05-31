@@ -266,47 +266,47 @@ export default function InfoFood({
             {defaultValue.A ? "Vitamin A " +  defaultValue.A + " mg · " : " "}
             {defaultValue.Iron ? "Iron " + defaultValue.Iron + "mg ·  " : " "}
             {defaultValue.BetaCarotenes
-              ? defaultValue.BetaCarotenes + "mg·BetaCarotenes, "
+              ? "BetaCarotenes " + defaultValue.BetaCarotenes + "mg · "
               : " "}
-            {defaultValue.B1 ? defaultValue.B1 + " mg·Vitamin B1, " : " "}
-            {defaultValue.B2 ? defaultValue.B2 + " mg·Vitamin B2, " : " "}
-            {defaultValue.B3 ? defaultValue.B3 + " mg·Vitamin B3, " : " "}
-            {defaultValue.B5 ? defaultValue.B5 + " mg·Vitamin B5, " : " "}
-            {defaultValue.B6 ? defaultValue.B6 + " mg·Vitamin B6, " : " "}
-            {defaultValue.B8 ? defaultValue.B8 + " mg·Vitamin B8, " : " "}
-            {defaultValue.B9 ? defaultValue.B9 + " mg·Vitamin B9, " : " "}
-            {defaultValue.B12 ? defaultValue.B12 + " mg·Vitamin B12, " : " "}
-            {defaultValue.C ? defaultValue.C + " mg·Vitamin C, " : " "}
-            {defaultValue.D ? defaultValue.D + " mg·Vitamin D, " : " "}
-            {defaultValue.E ? defaultValue.E + " mg·Vitamin E, " : " "}
-            {defaultValue.K ? defaultValue.K + " mg·Vitamin K, " : " "}
-            {defaultValue.Ethanol
-              ? defaultValue.Ethanol + " mg·Ethanol, "
+            {defaultValue.B1 ? "Vitamin B1 " + defaultValue.B1 + " mg · " : " "}
+            {defaultValue.B2 ? "Vitamin B2 " + defaultValue.B2 + " mg ·  " : " "}
+            {defaultValue.B3 ?"Vitamin B3 " + defaultValue.B3 + " mg ·  " : " "}
+            {defaultValue.B5 ? "Vitamin B5 " +  defaultValue.B5 + " mg · 5 " : " "}
+            {defaultValue.B6 ? "Vitamin B6 " + defaultValue.B6 + " mg ·  " : " "}
+            {defaultValue.B8 ? "Vitamin B8 " + defaultValue.B8 + " mg ·  " : " "}
+            {defaultValue.B9 ? "Vitamin B9 " + defaultValue.B9 + " mg ·  " : " "}
+            {defaultValue.B12 ? "Vitamin B12 " + defaultValue.B12 + " mg ·  " : " "}
+            {defaultValue.C ? "Vitamin C " + defaultValue.C + " mg ·  " : " "}
+            {defaultValue.D ? "Vitamin D " + defaultValue.D + " mg ·  " : " "}
+            {defaultValue.E ? "Vitamin E " + defaultValue.E + " mg ·  " : " "}
+            {defaultValue.K ? "Vitamin K " + defaultValue.K + " mg ·  " : " "}
+            {defaultValue.Ethanol 
+              ? "Ethanol " + defaultValue.Ethanol + " mg ·  "
               : " "}
             {defaultValue.Calcium
-              ? defaultValue.Calcium + " mg·Calcium, "
+              ? "Calcium " + defaultValue.Calcium + " mg ·  "
               : " "}
             {defaultValue.Potassium
-              ? defaultValue.Potassium + " mg·Potassium, "
+              ? "Potassium " + defaultValue.Potassium + " mg ·  "
               : " "}
             {defaultValue.Phosphorus
-              ? defaultValue.Phosphorus + " mg·Phosphorus, "
+              ? "Phosphorus " + defaultValue.Phosphorus + " mg ·  "
               : " "}
-            {defaultValue.Iron ? defaultValue.Iron + " mg·Iron, " : " "}
+            {defaultValue.Iron ? "Iron " + defaultValue.Iron + " mg ·  " : " "}
             {defaultValue.Magnesium
-              ? defaultValue.Magnesium + " mg·Magnesium, "
+              ? "Magnesium " + defaultValue.Magnesium + " mg ·  "
               : " "}
-            {defaultValue.Zinc ? defaultValue.Zinc + " mg·Zinc, " : " "}
-            {defaultValue.Copper ? defaultValue.Copper + " mg·Copper, " : " "}
+            {defaultValue.Zinc ? "Zinc " + defaultValue.Zinc + " mg ·  " : " "}
+            {defaultValue.Copper ? "Copper " + defaultValue.Copper + " mg ·  " : " "}
             {defaultValue.Fluorine
-              ? defaultValue.Fluorine + " mg·Fluorine, "
+              ? "Fluorine " + defaultValue.Fluorine + " mg ·  "
               : " "}
-            {defaultValue.Iodine ? defaultValue.Iodine + " mg·Iodine, " : " "}
+            {defaultValue.Iodine ? "Iodine " + defaultValue.Iodine + " mg ·  " : " "}
             {defaultValue.Manganese
-              ? defaultValue.Manganese + " mg·Manganese, "
+              ? "Manganese " + defaultValue.Manganese + " mg ·  "
               : " "}
             {defaultValue.Selenium
-              ? defaultValue.Selenium + " mg·Selenium, "
+              ? "Selenium " + defaultValue.Selenium + " mg ·  "
               : " "}
           </div>
         </div>
