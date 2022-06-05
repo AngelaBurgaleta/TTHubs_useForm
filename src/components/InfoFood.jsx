@@ -134,11 +134,25 @@ export default function InfoFood({
             </table>
           </div>
           <div className="col-sm-6 col-lg-3">
-            <div className="row">
+            <div
+              className="flex-container"
+              style={{
+                height: "25px",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                justifyContent: "flex-start",
+                alignItems: "baseline",
+                justifyContent: "flex-start",
+                gap: "15px",
+              }}
+            >
               <label
                 style={{
+                  display: "flex",
                   color: azuloscuro,
-                  fontSize: "16px",
+                  flex: "flex-shrink",
+                  flexShrink: "3",
                   fontWeight: "bold",
                 }}
                 className="col-6"
@@ -148,7 +162,8 @@ export default function InfoFood({
               <label
                 style={{
                   color: azuloscuro,
-                  fontSize: "16px",
+                  display: "flex",
+                  flexShrink: "3",
                   fontWeight: "bold",
                 }}
                 className="col-6"
@@ -205,16 +220,36 @@ export default function InfoFood({
           </div>
 
           <div className="col-sm-6 col-lg-3">
-            <div className="row">
+            <div
+              className="flex-container"
+              style={{
+                height: "25px",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "nowrap",
+                justifyContent: "flex-start",
+                alignItems: "baseline",
+                justifyContent: "flex-start",
+                gap: "15px",
+              }}
+            >
               <label
-                style={{ color: azuloscuro, fontSize: 16, fontWeight: "bold" }}
-                className="col-6"
+                style={{
+                  color: azuloscuro,
+                  display: "flex",
+                  flexShrink: "3",
+                  fontWeight: "bold",
+                }}
               >
                 Amount/100gr
               </label>
               <label
-                style={{ color: azuloscuro, fontSize: 16, fontWeight: "bold" }}
-                className="col-6"
+                style={{
+                  color: azuloscuro,
+                  display: "flex",
+                  flexShrink: "3",
+                  fontWeight: "bold",
+                }}
               >
                 %Daily Value*
               </label>
@@ -348,8 +383,19 @@ export default function InfoFood({
       </CardBody>
 
       <CardBody style={{ backgroundColor: grisblanco }}>
-        <div className="row">
-          <div className="col-lg-3">
+        <div
+          className="flex-container"
+          style={{
+            height: "200px",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            margin: "10px",
+            alignItems: "baseline",
+            justifyContent: "flex-start",
+          }}
+        >
+          <div style={{ display: "inline", flexGrow: "1" }}>
             <h6 style={{ color: azuloscuro }}>GROUP</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.FoodGroup}</p>
             <h6 style={{ color: azuloscuro }}>SUBGROUP</h6>
@@ -358,245 +404,327 @@ export default function InfoFood({
             <h6 style={{ color: azuloscuro }}>COUNTRY</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.Country}</p>
           </div>
-          <div className="container">
-            <div className="row">
+          <div style={{ display: "inline" }}>
+            <div style={{ display: "inline" }}>
               <h6 style={{ color: azuloscuro }}>FOOD ALLERGENS</h6>
             </div>
-            <hr align="left" color="#196694"></hr>
+            <hr color="#196694"></hr>
             <br></br>
-            <div className="row" style={{ justifyContent: "space-around" }}>
-              {/* 
+            <div style={{ display: "inline", flexShrink: "3" }}>
+              <div
+                className="flex-container"
+                style={{
+                  height: "100px",
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "nowrap",
+                  justifyContent: "flex-start",
+                  gap: "10px 20px",
+                }}
+              >
+                {/* <div className="row" style={{ justifyContent: "space-around" }}>
             <p style={{ fontSize: 15 }}>
               {(defaultValue.FoodGroup === 'Milk and milk products') ? 'MILK' : "no milk"}
               {(defaultValue.FoodGroup === 'Legumes, nuts, oilseeds, oilseeds and spices') ? 'LEGUME' : "no LEGUME"}
               <br></br></p>*/}
+                <div style={{ display: "inline", flex: "flex-shrink" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("sorgum") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("soups") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pies") ? (
+                    <figure>
+                      {" "}
+                      <img src={glutengreen} height="60" />{" "}
+                      <figcaption style={{ fontSize: 13 }}>GLUTEN</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodSubgroup.toLowerCase().includes("sorgum") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("soups") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("pies") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={glutengreen} height="80" />{" "}
-                  <figcaption style={{ fontSize: 18 }}>GLUTEN</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("shellfish") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "fish and shellfish"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("seafood") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={crustaceansgreen} title="crustaceos" height="80" />
-                  <figcaption style={{ fontSize: 18 }}>CRUSTACEANS</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline", flex: "flex-shrink" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "shellfish"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "fish and shellfish"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "seafood"
+                  ) ? (
+                    <figure>
+                      {" "}
+                      <img
+                        src={crustaceansgreen}
+                        title="crustaceos"
+                        height="60"
+                      />
+                      <figcaption style={{ fontSize: 13 }}>
+                        CRUSTACEANS
+                      </figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ? (
-                <figure>
-                  {" "}
-                  <img src={sesamegreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>SESAME</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "freshwater"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("fish") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "shellfish"
-                ) ? (
-                <figure>
-                  <img src={fishgreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>FISH</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ? (
+                    <figure>
+                      {" "}
+                      <img src={sesamegreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SESAME</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodSubgroup.toLowerCase().includes("egg") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("eggs") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  <img src={egggreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>EGGS</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  <img src={lupingreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>LUPIN</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "freshwater"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("fish") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "shellfish"
+                  ) ? (
+                    <figure>
+                      <img src={fishgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>FISH</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable fat"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable oils"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("chocolate") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("nut") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={peanutsgreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>PEANUTS</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "dairy imitate based sweets"
-                ) ||
-                defaultValue.FoodGroup.toLowerCase().includes("milk") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("infant") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={milkgreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>MILK</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("egg") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("eggs") ? (
+                    <figure>
+                      <img src={egggreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>EGGS</figcaption>
+                    </figure>
+                  ) : (
+                    ""
+                  )}
+                </div>
 
-              {defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable fat"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable oils"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("noodles") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={soybeangreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>SOYBEAN</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "dairy imitate based sweets"
-                ) ||
-                defaultValue.FoodGroup.toLowerCase().includes("condiments") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "excluding leafy vegetables"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "vegetables dried"
-                ) ? (
-                <figure style={{ marginRight: "60px" }}>
-                  <img src={celerygreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>CELERY</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "cereals"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
+                    <figure>
+                      <img src={lupingreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>LUPIN</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodGroup.toLowerCase().includes("nuts") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable fat"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable oils"
-              ) ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={mustardgreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>MUSTARD</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes("wheat") ||
-                defaultValue.FoodGroup.toLowerCase().includes("fish") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("potato") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "vegetables dried"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "mixed and unspecified"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "leafy vegetables"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "fruits dried"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "fruits sweets"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "dairy or dairy imitate based sweets"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("herbs") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "condiments"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "alcoholic drinks"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "vegetable drinks"
-                ) ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("seafood") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("soups") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={sulphitegreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>SULPHITE</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "chocolate"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("nut") ? (
+                    <figure>
+                      {" "}
+                      <img src={peanutsgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>PEANUTS</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
 
-              {defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable fat"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes(
-                "vegetable oils"
-              ) ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
-              defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
-              defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={nutsgreen} height="80" />
-                  <figcaption style={{ fontSize: 18 }}>NUTS</figcaption>
-                </figure>
-              ) : defaultValue.FoodSubgroup.toLowerCase().includes(
-                  "shellfish"
-                ) ||
-                defaultValue.FoodGroup.toLowerCase().includes("fish") ||
-                defaultValue.FoodSubgroup.toLowerCase().includes("offal") ? (
-                <figure style={{ marginRight: "60px" }}>
-                  {" "}
-                  <img src={molluscgreen} height="100" />
-                  <figcaption style={{ fontSize: 18 }}>MOLLUSC</figcaption>
-                </figure>
-              ) : (
-                " "
-              )}
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "dairy imitate based sweets"
+                  ) ||
+                  defaultValue.FoodGroup.toLowerCase().includes("milk") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("infant") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("rice") ? (
+                    <figure>
+                      {" "}
+                      <img src={milkgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MILK</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "noodles"
+                  ) ? (
+                    <figure>
+                      {" "}
+                      <img src={soybeangreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SOYBEAN</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "dairy imitate based sweets"
+                  ) ||
+                  defaultValue.FoodGroup.toLowerCase().includes("condiments") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "excluding leafy vegetables"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetables dried"
+                  ) ? (
+                    <figure>
+                      <img src={celerygreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>CELERY</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodGroup.toLowerCase().includes("nuts") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) ? (
+                    <figure>
+                      {" "}
+                      <img src={mustardgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MUSTARD</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes("wheat") ||
+                  defaultValue.FoodGroup.toLowerCase().includes("fish") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("potato") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetables dried"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "mixed and unspecified"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "leafy vegetables"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "fruits dried"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "fruits sweets"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "dairy or dairy imitate based sweets"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("herbs") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "condiments"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "alcoholic drinks"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable drinks"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seafood") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("soups") ? (
+                    <figure>
+                      {" "}
+                      <img src={sulphitegreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SULPHITE</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
+                  defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ? (
+                    <figure>
+                      {" "}
+                      <img src={nutsgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>NUTS</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+                <div style={{ display: "inline" }}>
+                  {defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "shellfish"
+                  ) ||
+                  defaultValue.FoodGroup.toLowerCase().includes("fish") ||
+                  defaultValue.FoodSubgroup.toLowerCase().includes("offal") ? (
+                    <figure>
+                      {" "}
+                      <img src={molluscgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MOLLUSC</figcaption>
+                    </figure>
+                  ) : (
+                    " "
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -610,20 +738,23 @@ export default function InfoFood({
           <div
             className="flex-container"
             style={{
-              height: "100px",
+              height: "140px",
               display: "flex",
               flexDirection: "column",
               flexWrap: "wrap",
-              flex: '2 2 10px',
+              alignItems: "baseline",
+              alignContent: "flex-start",
+              gap: "4px 30px",
             }}
           >
-            <div className="flex-item" style={{ display: "inline"}}>
+            <div style={{ display: "inline" }}>
               {defaultValue.EnergyFree == true
                 ? "Energy free"
                 : "" || defaultValue.LowEnergy == true
                 ? "Low energy"
                 : " "}
             </div>
+
             <div style={{ display: "inline" }}>
               {defaultValue.FatFree == true
                 ? "Fat free"
@@ -631,6 +762,7 @@ export default function InfoFood({
                 ? "Low fat"
                 : " "}
             </div>
+
             <div style={{ display: "inline" }}>
               {defaultValue.SugarsFree == true
                 ? "Sugars free"
@@ -646,6 +778,7 @@ export default function InfoFood({
                 ? "Low saturated fat"
                 : " "}
             </div>
+
             <div style={{ display: "inline" }}>
               {defaultValue.SodiumFree == true
                 ? "Sodium free"
@@ -655,13 +788,16 @@ export default function InfoFood({
                 ? "Very low sodium"
                 : " "}
             </div>
+
             <div style={{ display: "inline" }}>
               {defaultValue.HighFibre == true
                 ? "High fibre"
                 : "" || defaultValue.SourceFibre == true
                 ? "Source of fibre"
                 : " "}
+            </div>
 
+            <div style={{ display: "inline" }}>
               {defaultValue.HighProtein == true
                 ? "High protein"
                 : "" || defaultValue.SourceProtein == true
@@ -672,7 +808,8 @@ export default function InfoFood({
               {defaultValue.HighMonounsaturatedFat == true
                 ? "High monounsaturated fat"
                 : ""}
-
+            </div>
+            <div style={{ display: "inline" }}>
               {defaultValue.HighPolyunsaturatedFat == true
                 ? "High polyunsaturated fat"
                 : ""}
@@ -690,13 +827,16 @@ export default function InfoFood({
                 ? "Source of vitamin A"
                 : " "}
             </div>
+
             <div style={{ display: "inline" }}>
               {defaultValue.HighD == true
                 ? "High vitamin D"
                 : "" || defaultValue.SourceD == true
                 ? "Source of vitamin D"
                 : " "}
+            </div>
 
+            <div style={{ display: "inline" }}>
               {defaultValue.HighE == true
                 ? "High vitamin E"
                 : "" || defaultValue.SourceE == true

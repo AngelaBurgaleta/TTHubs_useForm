@@ -395,7 +395,7 @@ const cargarDocumentos = () => {
 
                   <Modal
                     isOpen = {showInfo}
-                    style={{ maxWidth: "100%", width: "90%" }}
+                    style={{ maxWidth: "100%", width: "75%" }}
                   >
                   
                     <ModalBody>
