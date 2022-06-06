@@ -6,6 +6,7 @@ import { Nav } from "reactstrap";
 
 //import logo from "logo.svg";
 import logoTT from "./logoTT.png";
+import logoTTinfo from "./logoTT_info.png";
 
 var ps;
 
@@ -26,8 +27,8 @@ export function Sidebar(props) {
     >
       <div className="logo">
         <div className="simple-text logo-normal">
-         TTHubs
-           {/*<img src={logoTT} alt="react-logo" />*/}
+        {/*} TTHubs*/}
+           <img src={logoTTinfo} alt="react-logo" />
         </div>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>

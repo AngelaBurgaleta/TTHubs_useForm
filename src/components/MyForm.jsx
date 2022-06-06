@@ -1,6 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { countrySelect, foodgroupSelect, foodsubgroupSelect } from "./Selects";
+import {
+  countrySelect,
+  foodgroupSelect,
+  foodsubgroupSelect,
+  districtSelect,
+} from "./Selects";
 import Pagina1 from "./PaginasMyForm/Pagina1";
 import Pagina2 from "./PaginasMyForm/Pagina2";
 import Pagina3 from "./PaginasMyForm/Pagina3";
@@ -71,6 +76,7 @@ export default function MyForm({
       FoodGroup: defaultValue?.FoodGroup || "",
       FoodSubgroup: defaultValue?.FoodSubgroup || "",
       Country: defaultValue?.Country || "",
+      District: defaultValue?.District || "",
     },
   });
 
@@ -182,14 +188,12 @@ export default function MyForm({
 
     //NUTRITIONAL CLAIMS PAGINA 4
 
-    
-      datos.SourceA =
-        Number(aValue) > 0.15 * aRDA && Number(aValue) <= 0.3 * aRDA
-          ? true
-          : false;
+    datos.SourceA =
+      (Number(aValue) + Number(carotenesValue)) > 0.15 * aRDA && (Number(aValue) + Number(carotenesValue))  <= 0.3 * aRDA
+        ? true
+        : false;
 
-      datos.HighA = Number(aValue) > 0.3 * aRDA ? true : false;
-    
+    datos.HighA = (Number(aValue) + Number(carotenesValue))  > 0.3 * aRDA ? true : false;
 
     if (datos.D) {
       datos.SourceD =
@@ -439,6 +443,11 @@ export default function MyForm({
         typeof datos.Country === "string" ? datos.Country : datos.Country.value;
     }
 
+    if (datos.District) {
+      datos.District =
+        typeof datos.District === "string" ? datos.District : datos.District.value;
+    }
+
     datos.Energy = Number(datos.Energy);
     datos.Energykj = (energyValue * 4.184).toFixed(2);
     datos.TotalCarbohydrates = Number(datos.TotalCarbohydrates);
@@ -588,6 +597,7 @@ export default function MyForm({
     reset({ TotalSugars: " " });
     reset({ TotalLipids: " " });
     reset({ Fibre: " " });
+    reset({ District: " " });
     reset({ SaturatedFattyAcids: " " });
     reset({ MonounsaturatedFattyAcids: " " });
     reset({ PolyunsaturatedFattyAcids: " " });
@@ -677,6 +687,8 @@ export default function MyForm({
   });
 
   const countryInput = register("Country", { required: false });
+
+  const districtInput = register("District", { required: false });
 
   const energyInput = register("Energy", {
     min: {
@@ -1021,6 +1033,7 @@ export default function MyForm({
       "TotalSugars",
       "TotalLipids",
       "Country",
+      "District",
       "Water",
       "Fibre",
       "MonounsaturatedFattyAcids",
@@ -1080,6 +1093,7 @@ export default function MyForm({
   const unsaturatedFattyAcidsValue = watch("UnsaturatedFattyAcids");
 
   const aValue = watch("A");
+  const carotenesValue = watch("BetaCarotenes"); 
   const eValue = watch("E");
   const kValue = watch("K");
   const dValue = watch("D");
@@ -1122,6 +1136,7 @@ export default function MyForm({
               foodsubgroupInput={foodsubgroupInput}
               foodsubgroupSelect={foodsubgroupSelect}
               countryInput={countryInput}
+              districtInput={districtInput}
               countrySelect={countrySelect}
               waterInput={waterInput}
               fibreInput={fibreInput}
@@ -1140,8 +1155,9 @@ export default function MyForm({
             />
           )}
 
-          {(page === 2 && 
+          {page === 2 && (
             <Pagina2
+              waterInput={waterInput}
               defaultValue={defaultValue}
               showInfo={showInfo}
               errors={errors}
@@ -1176,9 +1192,10 @@ export default function MyForm({
               seleniumInput={seleniumInput}
               edibleportionInput={edibleportionInput}
             />
-            )}
-          
+          )}
 
+
+{/* 
           {page === 3 && (
             <Pagina3
               energyValue={energyValue}
@@ -1246,6 +1263,10 @@ export default function MyForm({
               iodineRDA={iodineRDA}
             />
           )}
+          
+        */}
+
+
         </div>
       </CardBody>
       <CardFooter>
@@ -1262,7 +1283,7 @@ export default function MyForm({
           </div>
           <div className="col-sm-6 col-lg-3">
             <div className="form group">
-              {!showInfo && page === 4 && (
+              {!showInfo && page === 2 && (
                 <Button
                   type="submit"
                   color="info"
@@ -1272,7 +1293,7 @@ export default function MyForm({
                 </Button>
               )}
 
-              {page !== 4 && (
+              {page !== 2 && (
                 <Button
                   onClick={goNextPage}
                   type="button"
@@ -1286,13 +1307,15 @@ export default function MyForm({
           </div>
           <div className="col-md-3 ml-auto">
             <div className="form group">
+
+              {page !== 1 && (
               <Button
                 onClick={goPrevPage}
                 color="default"
                 className="btn-round btn btn-default"
               >
                 BACK
-              </Button>
+              </Button>)}
             </div>
           </div>
         </div>

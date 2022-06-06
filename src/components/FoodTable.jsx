@@ -223,14 +223,14 @@ const cargarDocumentos = () => {
                   </div>
                 </div>
 
-                <div className="justify-content-end collapse navbar-collapse">
+                {/* <div className="justify-content-end collapse navbar-collapse">
                   <button className="btn-round btn btn-warning btn-sm">
                     Light
                   </button>
                   <button className="btn-round btn btn-warning btn-sm">
                     Gluten free
                   </button>
-                </div>
+                </div>*/}
               </div>
             </Navbar>
 

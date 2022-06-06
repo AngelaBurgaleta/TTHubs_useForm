@@ -465,3 +465,34 @@ export const foodsubgroupSelect = [
     },
     { value: "Others...", label: "Others..." },
   ];
+
+export const districtSelect = [
+  {
+    value: "ES ",
+    label: "ES ",
+  },
+  {
+    value: "IT ",
+    label: "IT ",
+  },
+  {
+    value: "PT ",
+    label: "PT ",
+  },
+  {
+    value: "GR ",
+    label: "GR ",
+  },
+  {
+    value: "TN ",
+    label: "TN ",
+  },
+  {
+    value: "JO ",
+    label: "JO ",
+  },
+  {
+    value: "EG ",
+    label: "EG ",
+  },
+]

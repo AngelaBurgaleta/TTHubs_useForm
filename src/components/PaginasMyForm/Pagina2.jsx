@@ -34,6 +34,7 @@ export default function Pagina1({
   manganeseInput,
   seleniumInput,
   edibleportionInput,
+  waterInput,
 }) {
   return (
     <div className="row">
@@ -465,6 +466,20 @@ export default function Pagina1({
             step="0.0001"
           />
         </div>
+        <label>Water(g/100g)</label>
+          <div className="form-group">
+            <Input
+              name={waterInput.name}
+              defaultValue={defaultValue?.Water}
+              readOnly={showInfo}
+              innerRef={waterInput.ref}
+              onChange={waterInput.onChange}
+              onBlur={waterInput.onBlur}
+              type="number"
+              min="0"
+              step="0.0001"
+            />
+          </div>
       </div>
     </div>
   );

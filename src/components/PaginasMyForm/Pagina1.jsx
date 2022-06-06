@@ -1,7 +1,8 @@
 import React from "react";
-import {Controller} from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Input } from "reactstrap";
 import Creatable from "react-select/creatable";
+import { districtSelect } from "components/Selects";
 
 export default function Pagina1({
   control,
@@ -10,13 +11,14 @@ export default function Pagina1({
   errors,
   styleDanger,
   nameInput,
+  districtInput,
   foodgroupInput,
   foodgroupSelect,
   foodsubgroupInput,
   foodsubgroupSelect,
   countryInput,
   countrySelect,
-  waterInput,
+
   fibreInput,
   saturatedfattyacidsInput,
   monounsaturatedfattyacidsInput,
@@ -340,20 +342,6 @@ export default function Pagina1({
         </div>
 
         <div col="col-md-6 ml-auto mr-auto">
-          <label>Water(g/100g)</label>
-          <div className="form-group">
-            <Input
-              name={waterInput.name}
-              defaultValue={defaultValue?.Water}
-              readOnly={showInfo}
-              innerRef={waterInput.ref}
-              onChange={waterInput.onChange}
-              onBlur={waterInput.onBlur}
-              type="number"
-              min="0"
-              step="0.0001"
-            />
-          </div>
           <label>Fibre(g/100g)</label>
           <div className="form-group">
             <Input
@@ -366,6 +354,24 @@ export default function Pagina1({
               type="number"
               min="0"
               step="0.0001"
+            />
+          </div>
+          <label>District</label>
+
+          <div className="form-group">
+            <div></div>
+            <Controller
+              control={control}
+              name={districtInput.name}
+              readOnly={showInfo}
+              render={({ field }) => (
+                <Creatable
+                  defaultInputValue={defaultValue?.District}
+                  isClearable
+                  options={districtSelect}
+                  {...field}
+                />
+              )}
             />
           </div>
         </div>
