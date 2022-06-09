@@ -151,7 +151,7 @@ export default function InfoFood({
                 style={{
                   display: "flex",
                   color: azuloscuro,
-                 
+
                   flexShrink: "3",
                   fontWeight: "bold",
                 }}
@@ -163,7 +163,7 @@ export default function InfoFood({
                 style={{
                   color: azuloscuro,
                   display: "flex",
-                  
+
                   fontWeight: "bold",
                 }}
                 className="col-6"
@@ -386,7 +386,6 @@ export default function InfoFood({
         <div
           className="flex-container"
           style={{
-            
             height: "200px",
             display: "flex",
             flexDirection: "row",
@@ -396,10 +395,7 @@ export default function InfoFood({
             justifyContent: "space-between",
           }}
         >
-          <div
-            className="col-sm-6 col-lg-3"
-            style={{ display: "inline" }}
-          >
+          <div className="col-sm-6 col-lg-3" style={{ display: "inline" }}>
             <h6 style={{ color: azuloscuro }}>GROUP</h6>
             <p style={{ fontSize: 15 }}>{defaultValue.FoodGroup}</p>
             <h6 style={{ color: azuloscuro }}>SUBGROUP</h6>
@@ -437,17 +433,15 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("soups") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("bread") ||
-                  defaultValue.FoodSubgroup.toLowerCase().includes("pies") )&& (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={glutengreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>GLUTEN</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
-
-                
+                  defaultValue.FoodSubgroup.toLowerCase().includes("pies")) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={glutengreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>GLUTEN</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("offal") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes(
@@ -459,39 +453,39 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "seafood"
                   )) && (
-                    <div
-                      style={{
-                        display: "inline",
-                        
-                        marginRight: "10%",
-                      }}
-                    >
-                      <figure>
-                        {" "}
-                        <img
-                          src={crustaceansgreen}
-                          title="crustaceos"
-                          height="60"
-                        />
-                        <figcaption style={{ fontSize: 13 }}>
-                          CRUSTACEANS
-                        </figcaption>
-                      </figure>
-                    </div>
-                  )}
+                  <div
+                    style={{
+                      display: "inline",
+
+                      marginRight: "10%",
+                    }}
+                  >
+                    <figure>
+                      {" "}
+                      <img
+                        src={crustaceansgreen}
+                        title="crustaceos"
+                        height="60"
+                      />
+                      <figcaption style={{ fontSize: 13 }}>
+                        CRUSTACEANS
+                      </figcaption>
+                    </figure>
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "seeds"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={sesamegreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>SESAME</figcaption>
-                      </figure>
-                    </div>
-                  )}
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={sesamegreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SESAME</figcaption>
+                    </figure>
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes(
                   "freshwater"
@@ -501,23 +495,33 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "shellfish"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%", maxWidth: "200% !important" }}>
-                      <figure style={{maxWidth:"200% !important"}}>
-                        <img src={fishgreen} height="60" max-width="200% !important"/>
-                        <figcaption style={{ fontSize: 13 }}>FISH</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  <div
+                    style={{
+                      display: "inline",
+                      marginRight: "10%",
+                      maxWidth: "200% !important",
+                    }}
+                  >
+                    <figure style={{ maxWidth: "200% !important" }}>
+                      <img
+                        src={fishgreen}
+                        height="60"
+                        max-width="200% !important"
+                      />
+                      <figcaption style={{ fontSize: 13 }}>FISH</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("egg") ||
-                  defaultValue.FoodSubgroup.toLowerCase().includes("eggs") )&& (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        <img src={egggreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>EGGS</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  defaultValue.FoodSubgroup.toLowerCase().includes("eggs")) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      <img src={egggreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>EGGS</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
@@ -527,13 +531,13 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("rice")) && (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        <img src={lupingreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>LUPIN</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      <img src={lupingreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>LUPIN</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("nuts") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
@@ -546,17 +550,19 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "chocolate"
                   ) ||
-                  defaultValue.FoodSubgroup.toLowerCase().includes("nut") )&& (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={peanutsgreen} height="60" style = {{maxWidth: "200% !important"}} />
-                        <figcaption style={{ fontSize: 13 }}>
-                          PEANUTS
-                        </figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  defaultValue.FoodSubgroup.toLowerCase().includes("nut")) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img
+                        src={peanutsgreen}
+                        height="60"
+                        style={{ maxWidth: "200% !important" }}
+                      />
+                      <figcaption style={{ fontSize: 13 }}>PEANUTS</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes(
                   "dairy imitate based sweets"
@@ -568,14 +574,14 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes("pasta") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("pies") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("rice")) && (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={milkgreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>MILK</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={milkgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MILK</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
@@ -589,16 +595,14 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "noodles"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={soybeangreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>
-                          SOYBEAN
-                        </figcaption>
-                      </figure>
-                    </div>
-                  )}
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={soybeangreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SOYBEAN</figcaption>
+                    </figure>
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes(
                   "dairy imitate based sweets"
@@ -609,14 +613,14 @@ export default function InfoFood({
                   ) ||
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "vegetables dried"
-                  ) )&& (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        <img src={celerygreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>CELERY</figcaption>
-                      </figure>
-                    </div>
-                  )}
+                  )) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      <img src={celerygreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>CELERY</figcaption>
+                    </figure>
+                  </div>
+                )}
 
                 {(defaultValue.FoodGroup.toLowerCase().includes("nuts") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("seeds") ||
@@ -626,16 +630,14 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "vegetable oils"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%"  }}>
-                      <figure>
-                        {" "}
-                        <img src={mustardgreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>
-                          MUSTARD
-                        </figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={mustardgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MUSTARD</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes("wheat") ||
                   defaultValue.FoodGroup.toLowerCase().includes("fish") ||
@@ -673,17 +675,15 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes("seafood") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "soups"
-                  ))&& (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={sulphitegreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>
-                          SULPHITE
-                        </figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  )) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={sulphitegreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>SULPHITE</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodGroup.toLowerCase().includes("cereals") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("soybean") ||
@@ -699,14 +699,24 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "pasta"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%", maxWidth: "200% !important" }} >
-                      <figure>
-                        {" "}
-                        <img src={nutsgreen} height="60" style={{maxWidth: "200"}}  />
-                        <figcaption style={{ fontSize: 13 }}>NUTS</figcaption>
-                      </figure>{" "}
-                    </div>
-                  )}
+                  <div
+                    style={{
+                      display: "inline",
+                      marginRight: "10%",
+                      maxWidth: "200% !important",
+                    }}
+                  >
+                    <figure>
+                      {" "}
+                      <img
+                        src={nutsgreen}
+                        height="60"
+                        style={{ maxWidth: "200" }}
+                      />
+                      <figcaption style={{ fontSize: 13 }}>NUTS</figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
 
                 {(defaultValue.FoodSubgroup.toLowerCase().includes(
                   "shellfish"
@@ -715,17 +725,14 @@ export default function InfoFood({
                   defaultValue.FoodSubgroup.toLowerCase().includes(
                     "offal"
                   )) && (
-                    <div style={{ display: "inline", marginRight: "10%" }}>
-                      <figure>
-                        {" "}
-                        <img src={molluscgreen} height="60" />
-                        <figcaption style={{ fontSize: 13 }}>
-                          MOLLUSC
-                        </figcaption>
-                      </figure>
-                    </div>
-                  )}
-
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={molluscgreen} height="60" />
+                      <figcaption style={{ fontSize: 13 }}>MOLLUSC</figcaption>
+                    </figure>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -736,7 +743,7 @@ export default function InfoFood({
           NUTRITIONAL CLAIMS
         </h6>
         <hr align="left" color="#196694"></hr>
-        <div className="row" >
+        <div className="row">
           <div
             className="flex-container"
             style={{
@@ -745,267 +752,272 @@ export default function InfoFood({
               flexDirection: "column",
               flexWrap: "wrap",
               alignItems: "baseline",
-              alignContent: "flex-start",
-              gap: "4px 30px",
+              justifyContent: "flex-start",
+              gap: "2px 25%"
             }}
           >
-            <div style={{ display: "inline" }}>
-              {defaultValue.EnergyFree == true
-                ? "Energy free"
-                : "" || defaultValue.LowEnergy == true
-                ? "Low energy"
-                : " "}
-            </div>
+            {defaultValue.EnergyFree == true && (
+              <div style={{ display: "inline" }}>Energy free</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.FatFree == true
-                ? "Fat free"
-                : "" || defaultValue.LowFat == true
-                ? "Low fat"
-                : " "}
-            </div>
+            {defaultValue.LowEnergy == true && (
+              <div style={{ display: "inline" }}>Low energy</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.SugarsFree == true
-                ? "Sugars free"
-                : "" || defaultValue.LowSugars == true
-                ? "Low sugars"
-                : " "}
-            </div>
+            {defaultValue.FatFree == true && (
+              <div style={{ display: "inline" }}>Fat free</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.SaturatedFatFree == true
-                ? "Saturated fat free"
-                : "" || defaultValue.LowSaturatedFat == true
-                ? "Low saturated fat"
-                : " "}
-            </div>
+            {defaultValue.LowFat == true && (
+              <div style={{ display: "inline" }}>Low fat</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.SodiumFree == true
-                ? "Sodium free"
-                : "" || defaultValue.LowSodium == true
-                ? "Low sodium"
-                : " " || defaultValue.VeryLowSodium == true
-                ? "Very low sodium"
-                : " "}
-            </div>
+            {defaultValue.SugarsFree == true && (
+              <div style={{ display: "inline" }}>Sugars free</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighFibre == true
-                ? "High fibre"
-                : "" || defaultValue.SourceFibre == true
-                ? "Source of fibre"
-                : " "}
-            </div>
+            {defaultValue.LowSugars == true && (
+              <div style={{ display: "inline" }}>Low sugars</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighProtein == true
-                ? "High protein"
-                : "" || defaultValue.SourceProtein == true
-                ? "Source of protein"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighMonounsaturatedFat == true
-                ? "High monounsaturated fat"
-                : ""}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighPolyunsaturatedFat == true
-                ? "High polyunsaturated fat"
-                : ""}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighUnsaturatedFat == true
-                ? "High unsaturated fat"
-                : ""}
-            </div>
+            {defaultValue.SaturatedFatFree == true && (
+              <div style={{ display: "inline" }}>Saturated fat free</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighA == true
-                ? "High vitamin A"
-                : "" || defaultValue.SourceA == true
-                ? "Source of vitamin A"
-                : " "}
-            </div>
+            {defaultValue.LowSaturatedFat == true && (
+              <div style={{ display: "inline" }}>Low saturated fat</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighD == true
-                ? "High vitamin D"
-                : "" || defaultValue.SourceD == true
-                ? "Source of vitamin D"
-                : " "}
-            </div>
+            {defaultValue.SodiumFree == true && (
+              <div style={{ display: "inline" }}>Sodium free</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighE == true
-                ? "High vitamin E"
-                : "" || defaultValue.SourceE == true
-                ? "Source of vitamin E"
-                : " "}
-            </div>
+            {defaultValue.LowSodium == true && (
+              <div style={{ display: "inline" }}>Low sodium</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighK == true
-                ? "High vitamin K"
-                : "" || defaultValue.SourceK == true
-                ? "Source of vitamin K"
-                : " "}
-            </div>
+            {defaultValue.VeryLowSodium == true && (
+              <div style={{ display: "inline" }}>Very low sodium</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighC == true
-                ? "High vitamin C"
-                : "" || defaultValue.SourceC == true
-                ? "Source of vitamin C"
-                : " "}
-            </div>
+            {defaultValue.HighFibre == true && (
+              <div style={{ display: "inline" }}>High fibre</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighRiboflavin == true
-                ? "High Riboflavin"
-                : "" || defaultValue.SourceRiboflavin == true
-                ? "Source of Riboflavin"
-                : " "}
-            </div>
+            {defaultValue.SourceFibre == true && (
+              <div style={{ display: "inline" }}>Source of fibre</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighNiacin == true
-                ? "High Niacin"
-                : "" || defaultValue.SourceNiacin == true
-                ? "Source of Niacin"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighB6 == true
-                ? "High vitamin B6"
-                : "" || defaultValue.SourceB6 == true
-                ? "Source of vitamin B6"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighFolicAcid == true
-                ? "High  FolicAcid"
-                : "" || defaultValue.SourceFolicAcid == true
-                ? "Source of FolicAcid"
-                : " "}
-            </div>
+            {defaultValue.HighProtein == true && (
+              <div style={{ display: "inline" }}>High protein</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighB12 == true
-                ? "High vitamin B12"
-                : "" || defaultValue.SourceB12 == true
-                ? "Source of vitamin B12"
-                : " "}
-            </div>
+            {defaultValue.SourceProtein == true && (
+              <div style={{ display: "inline" }}>Source of protein</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighBiotin == true
-                ? "High Biotin"
-                : "" || defaultValue.SourceBiotin == true
-                ? "Source of Biotin"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighB5 == true
-                ? "High vitamin B5"
-                : "" || defaultValue.SourceB5 == true
-                ? "Source of vitamin B5"
-                : " "}
-            </div>
+            {defaultValue.HighMonounsaturatedFat == true && (
+              <div style={{ display: "inline" }}>High monounsaturated fat</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighThiamin == true
-                ? "High Thiamin"
-                : "" || defaultValue.SourceThiamin == true
-                ? "Source of Thiamin"
-                : " "}
-            </div>
+            {defaultValue.HighPolyunsaturatedFat == true && (
+              <div style={{ display: "inline" }}>High polyunsaturated fat</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighPotassium == true
-                ? "High Potassium"
-                : "" || defaultValue.SourcePotassium == true
-                ? "Source of Potassium"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighCalcium == true
-                ? "High Calcium"
-                : "" || defaultValue.SourceCalcium == true
-                ? "Source of Calcium"
-                : " "}
-            </div>
+            {defaultValue.HighUnsaturatedFat == true && (
+              <div style={{ display: "inline" }}>High unsaturated fat</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighPhosphorus == true
-                ? "High Phosphorus"
-                : "" || defaultValue.SourcePhosphorus == true
-                ? "Source of Phosphorus"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighMagnesium == true
-                ? "High Magnesium"
-                : "" || defaultValue.SourceMagnesium == true
-                ? "Source of Magnesium"
-                : " "}
-            </div>
+            {defaultValue.HighA == true && (
+              <div style={{ display: "inline" }}>High vitamin A</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighIron == true
-                ? "High Iron"
-                : "" || defaultValue.SourceIron == true
-                ? "Source of Iron"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighZinc == true
-                ? "High Zinc"
-                : "" || defaultValue.SourceZinc == true
-                ? "Source of Zinc"
-                : " "}
-            </div>
+            {defaultValue.SourceA == true && (
+              <div style={{ display: "inline" }}>Source of vitamin A</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighCopper == true
-                ? "High Copper"
-                : "" || defaultValue.SourceCopper == true
-                ? "Source of Copper"
-                : " "}
-            </div>
+            {defaultValue.HighD == true && (
+              <div style={{ display: "inline" }}>High vitamin D</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighManganese == true
-                ? "High Manganese"
-                : "" || defaultValue.SourceManganese == true
-                ? "Source of Manganese"
-                : " "}
-            </div>
+            {defaultValue.SourceD == true && (
+              <div style={{ display: "inline" }}>Source of vitamin D</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighFluorine == true
-                ? "High Fluorine"
-                : "" || defaultValue.SourceFluorine == true
-                ? "Source of Fluorine"
-                : " "}
-            </div>
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighSelenium == true
-                ? "High Selenium"
-                : "" || defaultValue.SourceSelenium == true
-                ? "Source of Selenium"
-                : " "}
-            </div>
+            {defaultValue.HighE == true && (
+              <div style={{ display: "inline" }}>High vitamin E</div>
+            )}
 
-            <div style={{ display: "inline" }}>
-              {defaultValue.HighIodine == true
-                ? "High Iodine"
-                : "" || defaultValue.SourceIodine == true
-                ? "Source of Iodine"
-                : " "}
-            </div>
+            {defaultValue.SourceE == true && (
+              <div style={{ display: "inline" }}>Source of vitamin E</div>
+            )}
+
+            {defaultValue.HighK == true && (
+              <div style={{ display: "inline" }}>High vitamin K</div>
+            )}
+
+            {defaultValue.SourceK == true && (
+              <div style={{ display: "inline" }}>Source of vitamin K</div>
+            )}
+
+            {defaultValue.HighC == true && (
+              <div style={{ display: "inline" }}>High vitamin C</div>
+            )}
+
+            {defaultValue.SourceC == true && (
+              <div style={{ display: "inline" }}>Source of vitamin C</div>
+            )}
+
+            {defaultValue.HighRiboflavin == true && (
+              <div style={{ display: "inline" }}>High Riboflavin</div>
+            )}
+
+            {defaultValue.SourceRiboflavin == true && (
+              <div style={{ display: "inline" }}>Source of Riboflavin</div>
+            )}
+
+            {defaultValue.HighNiacin == true && (
+              <div style={{ display: "inline" }}>High Niacin</div>
+            )}
+
+            {defaultValue.SourceNiacin == true && (
+              <div style={{ display: "inline" }}>Source of Niacin</div>
+            )}
+
+            {defaultValue.HighB6 == true && (
+              <div style={{ display: "inline" }}>High vitamin B6</div>
+            )}
+
+            {defaultValue.SourceB6 == true && (
+              <div style={{ display: "inline" }}>Source of vitamin B6</div>
+            )}
+
+            {defaultValue.HighFolicAcid == true && (
+              <div style={{ display: "inline" }}>High Folic Acid</div>
+            )}
+
+            {defaultValue.SourceFolicAcid == true && (
+              <div style={{ display: "inline" }}>Source of Folic Acid</div>
+            )}
+
+            {defaultValue.HighB12 == true && (
+              <div style={{ display: "inline" }}>High vitamin B12</div>
+            )}
+
+            {defaultValue.SourceB12 == true && (
+              <div style={{ display: "inline" }}>Source of vitamin B12</div>
+            )}
+
+            {defaultValue.HighBiotin == true && (
+              <div style={{ display: "inline" }}>High Biotin</div>
+            )}
+
+            {defaultValue.SourceBiotin == true && (
+              <div style={{ display: "inline" }}>Source of Biotin</div>
+            )}
+
+            {defaultValue.HighB5 == true && (
+              <div style={{ display: "inline" }}>High vitamin B5</div>
+            )}
+
+            {defaultValue.SourceB5 == true && (
+              <div style={{ display: "inline" }}>Source of vitamin B5</div>
+            )}
+
+            {defaultValue.HighThiamin == true && (
+              <div style={{ display: "inline" }}>High Thiamin</div>
+            )}
+
+            {defaultValue.SourceThiamin == true && (
+              <div style={{ display: "inline" }}>Source of Thiamin</div>
+            )}
+
+            {defaultValue.HighPotassium == true && (
+              <div style={{ display: "inline" }}>High Potassium</div>
+            )}
+
+            {defaultValue.SourcePotassium == true && (
+              <div style={{ display: "inline" }}>Source of Potassium</div>
+            )}
+
+            {defaultValue.HighCalcium == true && (
+              <div style={{ display: "inline" }}>High Calcium</div>
+            )}
+
+            {defaultValue.SourceCalcium == true && (
+              <div style={{ display: "inline" }}>Source of Calcium</div>
+            )}
+
+            {defaultValue.HighPhosphorus == true && (
+              <div style={{ display: "inline" }}>High Phosphorus</div>
+            )}
+
+            {defaultValue.SourcePhosphorus == true && (
+              <div style={{ display: "inline" }}>Source of Phosphorus</div>
+            )}
+
+            {defaultValue.HighMagnesium == true && (
+              <div style={{ display: "inline" }}>High Magnesium</div>
+            )}
+
+            {defaultValue.SourceMagnesium == true && (
+              <div style={{ display: "inline" }}>Source of Magnesium</div>
+            )}
+
+            {defaultValue.HighIron == true && (
+              <div style={{ display: "inline" }}>High Iron</div>
+            )}
+
+            {defaultValue.SourceIron == true && (
+              <div style={{ display: "inline" }}>Source of Iron</div>
+            )}
+
+            {defaultValue.HighZinc == true && (
+              <div style={{ display: "inline" }}>High Zinc</div>
+            )}
+
+            {defaultValue.SourceZinc == true && (
+              <div style={{ display: "inline" }}>Source of Zinc</div>
+            )}
+
+            {defaultValue.HighCopper == true && (
+              <div style={{ display: "inline" }}>High Copper</div>
+            )}
+
+            {defaultValue.SourceCopper == true && (
+              <div style={{ display: "inline" }}>Source of Copper</div>
+            )}
+
+            {defaultValue.HighManganese == true && (
+              <div style={{ display: "inline" }}>High Manganese</div>
+            )}
+
+            {defaultValue.SourceManganese == true && (
+              <div style={{ display: "inline" }}>Source of Manganese</div>
+            )}
+
+            {defaultValue.HighFluorine == true && (
+              <div style={{ display: "inline" }}>High Fluorine</div>
+            )}
+
+            {defaultValue.SourceFluorine == true && (
+              <div style={{ display: "inline" }}>Source of Fluorine</div>
+            )}
+            {defaultValue.HighSelenium == true && (
+              <div style={{ display: "inline" }}>High Selenium</div>
+            )}
+
+            {defaultValue.SourceSelenium == true && (
+              <div style={{ display: "inline" }}>Source of Selenium</div>
+            )}
+
+            {defaultValue.HighIodine == true && (
+              <div style={{ display: "inline" }}>High Iodine</div>
+            )}
+
+            {defaultValue.SourceIodine == true && (
+              <div style={{ display: "inline" }}>Source of Iodine</div>
+            )}
           </div>
         </div>
       </CardBody>
