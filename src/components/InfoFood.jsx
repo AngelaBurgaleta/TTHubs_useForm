@@ -24,6 +24,7 @@ import sesamegreen from "./Allergens/sesame-green.png";
 
 import soybeangreen from "./Allergens/soybean-green.png";
 import sulphitegreen from "./Allergens/sulphite-green.png";
+import notresultsgreen from "./Allergens/not-results-green.png";
 
 import logoTTinfo from "./logoTT_info.png";
 
@@ -427,6 +428,148 @@ export default function InfoFood({
               {(defaultValue.FoodGroup === 'Legumes, nuts, oilseeds, oilseeds and spices') ? 'LEGUME' : "no LEGUME"}
               <br></br></p>*/}
 
+                {(!defaultValue.FoodGroup.toLowerCase().includes("sorgum") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "cereals"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("dough") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pasta") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("soups") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("bread") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pies") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("offal") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "shellfish"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "fish and shellfish"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "seafood"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("nuts") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("seeds") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "freshwater"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("fish") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("offal") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "shellfish"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("egg") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("eggs") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "cereals"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("nuts") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("seeds") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("dough") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("bread") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pasta") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pies") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("rice") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("nuts") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("seeds") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "chocolate"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("nut") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "dairy imitate based sweets"
+                  ) &&
+                  !defaultValue.FoodGroup.toLowerCase().includes("milk") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("infant") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("dough") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("bread") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pasta") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pies") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("rice") &&
+                  !defaultValue.FoodGroup.toLowerCase().includes("cereals") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "soybean"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable fat"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetable oils"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("pasta") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "noodles"
+                  ) &&
+                  !defaultValue.FoodGroup.toLowerCase().includes(
+                    "condiments"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "excluding leafy vegetables"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetables dried"
+                  ) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("wheat")&&
+                  !defaultValue.FoodGroup.toLowerCase().includes("fish") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes("potato") &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "cereals"
+                  ) &&
+                  (!defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "vegetables dried"
+                  ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "mixed and unspecified"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "leafy vegetables"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "fruits dried"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "dough"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "fruits sweets"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "dairy or dairy imitate based sweets"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "herbs"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "condiments"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "alcoholic drinks"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "vegetable drinks"
+                    ) &&
+                    !defaultValue.FoodSubgroup.toLowerCase().includes(
+                      "seafood"
+                    )) &&
+                  !defaultValue.FoodSubgroup.toLowerCase().includes(
+                    "soups"
+                  )) && (
+                  <div style={{ display: "inline", marginRight: "10%" }}>
+                    <figure>
+                      {" "}
+                      <img src={notresultsgreen} height="60" />
+                      <figcaption style={{ fontSize: 12 }}>
+                        NOT RESULTS
+                      </figcaption>
+                    </figure>{" "}
+                  </div>
+                )}
+
                 {(defaultValue.FoodGroup.toLowerCase().includes("sorgum") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("cereals") ||
                   defaultValue.FoodSubgroup.toLowerCase().includes("dough") ||
@@ -739,21 +882,23 @@ export default function InfoFood({
         </div>
       </CardBody>
       <CardBody>
-        <h6 style={{ color: azuloscuro, fontWeight: "bold" }}>
+        <h6 style={{ color: azuloscuro, fontWeight: "bold", marginLeft: "16px" }}>
           NUTRITIONAL CLAIMS
         </h6>
-        <hr align="left" color="#196694"></hr>
-        <div className="row">
+        <hr align="left" color="#196694" style={{marginLeft: "16px"}}></hr>
+        <div className="row" style={{marginLeft: "16px"}}>
           <div
             className="flex-container"
             style={{
               height: "140px",
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
               flexWrap: "wrap",
               alignItems: "baseline",
               justifyContent: "flex-start",
-              gap: "2px 25%"
+              gap: "1px 20px"
+             
+
             }}
           >
             {defaultValue.EnergyFree == true && (
