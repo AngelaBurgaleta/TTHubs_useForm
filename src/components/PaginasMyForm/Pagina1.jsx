@@ -104,7 +104,7 @@ export default function Pagina1({
           )}
         </div>
 
-        <label>Country</label>
+        <label>Countrye</label>
 
         <div className="form-group">
           <div></div>
@@ -114,6 +114,7 @@ export default function Pagina1({
             readOnly={showInfo}
             render={({ field }) => (
               <Creatable
+                isMulti
                 defaultInputValue={defaultValue?.Country}
                 isClearable
                 options={countrySelect}

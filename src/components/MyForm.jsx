@@ -440,7 +440,7 @@ export default function MyForm({
         : datos.FoodSubgroup.value;
     if (datos.Country) {
       datos.Country =
-        typeof datos.Country === "string" ? datos.Country : datos.Country.value;
+        typeof datos.Country === "array" ? datos.Country : datos.Country.value;
     }
 
     if (datos.District) {
